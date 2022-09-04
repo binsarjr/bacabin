@@ -4,5 +4,8 @@ body {
 }
 
 #layoutapp {
-    @apply w-[90vw] py-10 mx-auto;
+    @apply w-[90vw] mx-auto;
+    footer {
+        @apply mb-5;
+    }
 }
