@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@brainandbones/skeleton@^0.32.19":
+  version "0.32.19"
+  resolved "https://registry.yarnpkg.com/@brainandbones/skeleton/-/skeleton-0.32.19.tgz#f747a36ff6ea0e6c4c5408e25b130f00bde990e7"
+  integrity sha512-vhpffwplTb6bqt9S+0OxOJZB4bzUcqPIMotMxqth72Cz/rnXOWFqTuTmJmYiUjoCfVSnF5GkszsmD+uUBvqMOg==
+
 "@cloudflare/workers-types@^3.14.0":
   version "3.16.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-3.16.0.tgz#011658ca3f9810373e0eb4a2b5d6cabe4848d8d6"
