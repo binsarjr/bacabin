@@ -7,6 +7,13 @@ import type { Chapter, Komik, KomikDetail } from './types';
 export * from './types';
 
 export default class BaseKomik implements IBaseKomik {
+  name: string;
+  website = "(unkown)";
+  logo = "(unkown)";
+  constructor() {
+    this.name = this.constructor.name
+  }
+
   static instance: IBaseKomik
   static getInstance() {
     if (this.instance) return this.instance
@@ -16,7 +23,7 @@ export default class BaseKomik implements IBaseKomik {
 
   protected readonly request = got.extend({
     timeout: {
-      request: 2_000,
+      request: 60_000,
     },
   });
   protected readonly requestCheerio = async (link: string) => {
@@ -35,5 +42,13 @@ export default class BaseKomik implements IBaseKomik {
   }
   async chaptersImages(link: string): Promise<string[]> {
     return [];
+  }
+
+  toObject() {
+    return {
+      name: this.constructor.name,
+      website: this.website,
+      logo: this.logo
+    }
   }
 }

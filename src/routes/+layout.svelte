@@ -1,9 +1,28 @@
 <script lang="ts">
+	import '../app.scss';
 	import type { PageData } from './$types';
 
 	import { Breadcrumb, Crumb } from '@brainandbones/skeleton';
-	import '../app.scss';
 	export let data: PageData;
+
+	import NProgress from 'nprogress';
+	import { navigating } from '$app/stores';
+
+	// NProgress css
+	import 'nprogress/nprogress.css';
+
+	NProgress.configure({
+		// Full list: https://github.com/rstacruz/nprogress#configuration
+		minimum: 0.16
+	});
+	$: {
+		if ($navigating) {
+			NProgress.start();
+		}
+		if (!$navigating) {
+			NProgress.done();
+		}
+	}
 </script>
 
 <main id="layoutapp" class="py-5">

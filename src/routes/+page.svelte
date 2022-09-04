@@ -3,11 +3,11 @@
 	export let data: PageData;
 </script>
 
-<div class="mt-5 mx-auto text-center">
+<div class="md:w-[80%] mt-10 mb-24 mx-auto text-center">
 	<h1>BacaBin</h1>
 	<h5>@author: Binsar Dwi Jasuma</h5>
 	<div class="my-10 tracking-wide">
-		<h5>*Disclaimer</h5>
+		<h5>*Pesan Langsung Dari Developer. Silakan Disimak!!</h5>
 		<p>
 			Website ini merupakan website baca komik <strong class="uppercase">ilegal</strong> yang mengambil
 			konten dari website lain baik legal maupun ilegal dan digunakan hanya untuk diri saya sendiri.
