@@ -3,7 +3,7 @@
 	export let data: PageData;
 </script>
 
-<div class="mx-auto text-center">
+<div class="mt-5 mx-auto text-center">
 	<h1>BacaBin</h1>
 	<h5>@author: Binsar Dwi Jasuma</h5>
 	<div class="my-10 tracking-wide">
