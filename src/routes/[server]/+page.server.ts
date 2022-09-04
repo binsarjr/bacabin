@@ -11,7 +11,8 @@ export const load: Load = async ({ params, url, parent, depends }) => {
     }
     let server = servers[params.server as string]
     if (!server) throw error(404)
-    const lists = await server.list(url.searchParams.get('q') || '')
-    return { lists, server: server.toObject() }
+    const q = url.searchParams.get('q') || ''
+    const lists = await server.list(q)
+    return { lists, server: server.toObject(),q }
 
 }

@@ -4,5 +4,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("@brainandbones/skeleton/tailwind.cjs")],
+  plugins: [require("@brainandbones/skeleton/tailwind.cjs"),require('@tailwindcss/forms')],
 }

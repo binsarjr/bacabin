@@ -5,6 +5,7 @@
 	import { Breadcrumb, Crumb } from '@brainandbones/skeleton';
 	export let data: PageData;
 
+	// @ts-ignore
 	import NProgress from 'nprogress';
 	import { navigating } from '$app/stores';
 
