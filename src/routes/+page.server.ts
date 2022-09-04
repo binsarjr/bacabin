@@ -1,6 +1,8 @@
-import komikindo from "$lib/scraper/id/komikindo";
 import type { Load } from "@sveltejs/kit";
 
 export const load: Load = async () => {
-    console.log(await komikindo.list('a'))
+    const servers = [{ title: 'komikindo', label: 'https://i2.wp.com/i2.wp.com/kentut.xyz/uploads/2020/12/komikindo.png?w=140?w=140', url: 'https://komikindo.id/' }];
+    return {
+        servers
+    }
 }

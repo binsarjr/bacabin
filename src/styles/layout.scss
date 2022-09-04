@@ -1,0 +1,8 @@
+body {
+    background-color: $primary;
+    @apply text-gray-50;
+}
+
+#layoutapp {
+    @apply w-[90vw] py-10 mx-auto;
+}
