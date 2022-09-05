@@ -1,5 +1,5 @@
 import Cheerio from 'cheerio';
-import got from 'got/dist/source';
+import got from 'got';
 import type { IBaseKomik, ReadChapter } from './interfaces';
 import type { Chapter, Komik, KomikDetail } from './types';
 
