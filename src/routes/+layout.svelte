@@ -1,9 +1,6 @@
 <script lang="ts">
 	import '../app.scss';
-	import type { PageData } from './$types';
-
-	import { Breadcrumb, Crumb } from '@brainandbones/skeleton';
-	export let data: PageData;
+	
 
 	// @ts-ignore
 	import NProgress from 'nprogress';
@@ -11,7 +8,6 @@
 
 	// NProgress css
 	import 'nprogress/nprogress.css';
-	import { browser } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
@@ -33,28 +29,18 @@
 			el.setAttribute('src', el.attributes['data-src'].value);
 		});
 	});
+
 	afterNavigate(() => {
 		document.querySelectorAll('img[data-src]').forEach((el: any) => {
 			el.setAttribute('src', el.attributes['data-src'].value);
 		});
 	});
+	
 </script>
 
 <main id="layoutapp" class="py-5">
-	{#if data.breadcrumbs}
-		<Breadcrumb class="mb-3">
-			{#each data.breadcrumbs as breadcrumb, i}
-				{#if data.breadcrumbs.length - 1 == i}
-					<Crumb current>
-						{breadcrumb.text}
-					</Crumb>
-				{:else}
-					<Crumb href={breadcrumb.link}>
-						{breadcrumb.text}
-					</Crumb>
-				{/if}
-			{/each}
-		</Breadcrumb>
-	{/if}
+	<div class="mb-5">
+		<a href="/">BacaBin</a>
+	</div>
 	<slot />
 </main>

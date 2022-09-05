@@ -1,4 +1,4 @@
-import BaseKomik, { type Komik } from '../BaseKomik';
+import BaseKomik, { type Komik, type KomikDetail } from '../BaseKomik';
 
 class KomikIndo extends BaseKomik {
 	website = 'https://komikindo.id/';
@@ -20,6 +20,11 @@ class KomikIndo extends BaseKomik {
 		});
 
 		return results;
+	}
+
+	async show(link: string): Promise<KomikDetail | null> {
+		const $ = await this.requestCheerio(link)
+		return null
 	}
 }
 
