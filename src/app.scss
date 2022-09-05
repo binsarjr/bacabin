@@ -2,27 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./styles/variable.scss";
-@import "./styles/typography.scss";
-@import "./styles/layout.scss";
-
+@import './styles/variable.scss';
+@import './styles/layout.scss';
+@import './styles/typography.scss';
 
 .cardpost {
-    .image {
-        position: relative;
-        overflow: hidden;
-        &:hover .text-image {
-            display: block;
-        }
-        .text-image {
-            display: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            @apply p-3 font-medium;
-            background-color: rgba($color: #000000, $alpha: 0.75);
-        }
-    }
+	.image {
+		position: relative;
+		overflow: hidden;
+		&:hover .text-image {
+			display: block;
+		}
+		.text-image {
+			display: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			@apply p-3 font-medium;
+			background-color: rgba($color: #000000, $alpha: 0.75);
+		}
+	}
 }

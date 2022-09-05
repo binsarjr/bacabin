@@ -1,15 +1,19 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Button } from '@brainandbones/skeleton';
-	import { goto } from '$app/navigation';
+	import { afterNavigate, goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
+	const currentPathname = $page.url.pathname;
 	let q = data.q;
 	let tid: any;
 	function search() {
-		$page.url.searchParams.set('q', q || '');
-		goto($page.url.toString());
+		const currentUrl = new URL($page.url.toString());
+		currentUrl.searchParams.set('q', q || '');
+
+		goto(currentUrl.toString(), { replaceState: true, noscroll: true });
 	}
 
 	function onSearch() {
@@ -20,14 +24,14 @@
 	}
 	function keydown(e: any) {
 		onSearch();
-		if (e.keyCode === 13 && e.key === 'Enter') {
+		if (e.keyCode == 13) {
 			tid && clearTimeout(tid);
 			search();
 		}
 	}
 </script>
 
-<div class="mt-10 mb-24 mx-auto">
+<div class="my-10 mx-auto">
 	<img src={data.server.logo} alt={data.server.name} width="100px" />
 	<h5>
 		@credit: <a href={data.server.website} class="text-blue-500 hover:text-blue-800"
@@ -48,18 +52,25 @@
 		>
 	</label>
 	{#if q.length}
-		<p>Hasil Pencarian dari <strong>{q}</strong>. Apabila pencarian dan judul tidak sesuai, kemungkinan besar bahwa pencarian tidak ditemukan</p>
+		<div class="mt-5">
+			<p>
+				Hasil Pencarian dari <strong>{q}</strong>.
+			</p>
+		</div>
 	{/if}
 </div>
 
 <div class="py-3">
 	<h2 class="mb-2">Baca Komik</h2>
 	<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-5 gap-y-10">
+		{#if data.lists.length === 0}
+			<div>Data Tidak Ditemukan</div>
+		{/if}
 		{#each data.lists as list}
 			<div class="cardpost">
-				<a href={list.show}>
+				<a href={[currentPathname, list.show].join('/')}>
 					<div class="image">
-						<img src={list.img} alt="[img] {list.img}" width="100%" class="rounded" />
+						<img data-src={list.img} alt="[img] {list.img}" width="100%" class="rounded" />
 						<div class="text-image">{list.title}</div>
 					</div>
 					<div>

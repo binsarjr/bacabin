@@ -1,15 +1,15 @@
 export interface Chapter {
-  title: string;
-  link: string;
+	title: string;
+	link: string;
 }
 
 export interface Komik {
-  title: string;
-  img: string;
-  show: string;
+	title: string;
+	img: string;
+	show: string;
 }
 
 export interface KomikDetail {
-  title: string;
-  chapters: Chapter[];
+	title: string;
+	chapters: Chapter[];
 }

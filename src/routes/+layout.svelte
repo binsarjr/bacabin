@@ -7,10 +7,13 @@
 
 	// @ts-ignore
 	import NProgress from 'nprogress';
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 
 	// NProgress css
 	import 'nprogress/nprogress.css';
+	import { browser } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	NProgress.configure({
 		// Full list: https://github.com/rstacruz/nprogress#configuration
@@ -24,6 +27,17 @@
 			NProgress.done();
 		}
 	}
+
+	onMount(() => {
+		document.querySelectorAll('img[data-src]').forEach((el: any) => {
+			el.setAttribute('src', el.attributes['data-src'].value);
+		});
+	});
+	afterNavigate(() => {
+		document.querySelectorAll('img[data-src]').forEach((el: any) => {
+			el.setAttribute('src', el.attributes['data-src'].value);
+		});
+	});
 </script>
 
 <main id="layoutapp" class="py-5">
