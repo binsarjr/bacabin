@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.scss';
-	
 
 	// @ts-ignore
 	import NProgress from 'nprogress';
@@ -10,6 +9,7 @@
 	import 'nprogress/nprogress.css';
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { imgLazyLoading } from '$lib/browser-supports';
 
 	NProgress.configure({
 		// Full list: https://github.com/rstacruz/nprogress#configuration
@@ -25,17 +25,12 @@
 	}
 
 	onMount(() => {
-		document.querySelectorAll('img[data-src]').forEach((el: any) => {
-			el.setAttribute('src', el.attributes['data-src'].value);
-		});
+		imgLazyLoading();
 	});
 
 	afterNavigate(() => {
-		document.querySelectorAll('img[data-src]').forEach((el: any) => {
-			el.setAttribute('src', el.attributes['data-src'].value);
-		});
+		imgLazyLoading();
 	});
-	
 </script>
 
 <main id="layoutapp" class="py-5">

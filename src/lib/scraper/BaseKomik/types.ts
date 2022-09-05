@@ -11,5 +11,6 @@ export interface Komik {
 
 export interface KomikDetail {
 	title: string;
+	img: string;
 	chapters: Chapter[];
 }

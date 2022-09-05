@@ -1,6 +1,6 @@
 import Cheerio from 'cheerio';
 import got from 'got/dist/source';
-import type { IBaseKomik } from './interfaces';
+import type { IBaseKomik, ReadChapter } from './interfaces';
 import type { Chapter, Komik, KomikDetail } from './types';
 
 export * from './types';
@@ -39,8 +39,14 @@ export default class BaseKomik implements IBaseKomik {
 	async chapters(link: string): Promise<Chapter[]> {
 		return [];
 	}
-	async chaptersImages(link: string): Promise<string[]> {
-		return [];
+	async read(chapter_link: string): Promise<ReadChapter> {
+		return {
+			title: '',
+			chapterImages: [],
+			next: null,
+			prev: null,
+			showLink: null
+		}
 	}
 
 	toObject() {

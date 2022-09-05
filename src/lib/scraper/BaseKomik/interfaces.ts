@@ -6,10 +6,18 @@ export interface IBaseKomikProperty {
 	website: string;
 }
 
+export interface ReadChapter {
+	title: string
+	chapterImages: string[]
+	prev: string | null
+	showLink: string | null
+	next: string | null
+}
+
 export interface IBaseKomik extends IBaseKomikProperty {
 	list(keyword?: string): Promise<Komik[]>;
 	show(link: string): Promise<KomikDetail | null>;
 	chapters(link: string): Promise<Chapter[]>;
-	chaptersImages(link: string): Promise<string[]>;
+	read(chapter_link: string): Promise<ReadChapter>;
 	toObject(): IBaseKomikProperty;
 }
