@@ -6,11 +6,13 @@
 	let prev: string | null = null;
 	let next: string | null = null;
 	let chapterList: string | null = null;
+	let images: string[]=[]
 
 	$: {
 		prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
 		next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
 		chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
+		images=data.item.chapterImages
 	}
 </script>
 
@@ -21,7 +23,7 @@
 	<ChapterPrevNext {prev} {next} {chapterList} />
 </div>
 <div class="flex flex-col justify-center items-center">
-	{#each data.item.chapterImages as image}
+	{#each images as image}
 		<img data-src={image} src="" data-waiting />
 	{/each}
 </div>
