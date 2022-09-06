@@ -9,3 +9,4 @@ Dibuat hanya untuk pribadi.Yang mau pake buat baca juga silakan
 - [ ] add more server
 - [ ] bookmark
 - [ ] history
+- [ ] auto reading (scroll down slowly and automatic to the next page)
