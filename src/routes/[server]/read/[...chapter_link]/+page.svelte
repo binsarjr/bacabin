@@ -8,17 +8,17 @@
 <div class="flex gap-5 justify-center items-center my-5">
 	<div>
         {#if data.item.prev}
-		<a href="/{data.server}/read/{data.item.prev}" class="py-2 px-4 border border-white rounded hover:bg-white hover:text-black">Chapter Selanjutnya</a>
+		<a href="/{data.server}/read/{data.item.prev}" class="text-sm md:text-base py-1 px-2 md:py-2 md:px-4 border border-white rounded hover:bg-white hover:text-black">Chapter Selanjutnya</a>
         {/if}
 	</div>
 	<div>
         {#if data.item.showLink}
-		<a href="/{data.server}/{data.item.showLink}" class="py-2 px-4 border border-white rounded hover:bg-white hover:text-black">Daftar Chapter</a>
+		<a href="/{data.server}/{data.item.showLink}" class="text-sm md:text-base py-1 px-2 md:py-2 md:px-4 border border-white rounded hover:bg-white hover:text-black">Daftar Chapter</a>
         {/if}
 	</div>
     <div>
         {#if data.item.next}
-		<a href="/{data.server}/read/{data.item.next}" class="py-2 px-4 border border-white rounded hover:bg-white hover:text-black">Chapter Selanjutnya</a>
+		<a href="/{data.server}/read/{data.item.next}" class="text-sm md:text-base py-1 px-2 md:py-2 md:px-4 border border-white rounded hover:bg-white hover:text-black">Chapter Selanjutnya</a>
         {/if}
 	</div>
 </div>

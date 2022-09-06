@@ -1,66 +1,6 @@
-fieldset {
-	@apply block;
+#cari {
+	@apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
-
-/* Inputs */
-[type='text'],
-[type='email'],
-[type='url'],
-[type='password'],
-[type='number'],
-[type='date'],
-[type='datetime-local'],
-[type='month'],
-[type='search'],
-[type='tel'],
-[type='time'],
-[type='week'],
-[multiple],
-textarea,
-select {
-	@apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
-	@apply dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
-}
-
-/* Selectable */
-[type='checkbox'],
-[type='radio'] {
-	@apply border-surface-500 rounded text-accent-600 focus:ring-accent-500;
-}
-
-/* Invalid - https://www.bram.us/2021/01/28/form-validation-you-want-notfocusinvalid-not-invalid/ */
-input:not(:focus):not(:placeholder-shown):invalid {
-	@apply bg-warning-300 border-warning-500;
-}
-
-/* Placeholders */
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-	@apply text-surface-400;
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-	@apply text-surface-400;
-}
-input::placeholder,
-textarea::placeholder {
-	@apply text-surface-400;
-}
-
-/* Labels */
-label {
-	@apply block overflow-visible;
-}
-label span,
-legend {
-	@apply block text-surface-700 dark:text-surface-300 text-sm mb-2;
-}
-
-/* Accent Color - https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color */
-[type='range']:not(.range-input) {
-	@apply w-full accent-accent-500;
-}
-
 body {
 	background-color: $primary;
 	@apply text-gray-50;
