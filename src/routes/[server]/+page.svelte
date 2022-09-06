@@ -30,6 +30,7 @@
 		}
 	}
 </script>
+<div class="content">
 
 <div class="my-10 mx-auto">
 	<img src={data.server.logo} alt={data.server.name} width="100px" />
@@ -80,4 +81,6 @@
 			</div>
 		{/each}
 	</div>
+</div>
+
 </div>

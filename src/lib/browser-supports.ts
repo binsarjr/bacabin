@@ -1,3 +1,5 @@
+import EventEmitter from "events";
+
 export const waitImgLoaded = (image: HTMLImageElement) => new Promise((resolve) => {
     image.onload = event => {
         var isLoaded = image.complete && image.naturalHeight !== 0;
@@ -5,11 +7,20 @@ export const waitImgLoaded = (image: HTMLImageElement) => new Promise((resolve) 
     }
 })
 
-export const imgLazyLoading = async () => {
-    for (const _ of document.querySelectorAll('img[data-src]')) {
+const imgEvent = new EventEmitter()
 
+export const imgLazyLoadingStop = () => imgEvent.emit('done')
+
+export const imgLazyLoading = async () => {
+    let isDone = false
+    imgEvent.on('done', _ => {
+        isDone = true
+    })
+    for (const _ of document.querySelectorAll('img[data-src]')) {
+        if (isDone) {
+            return
+        }
         const el: HTMLImageElement = _ as HTMLImageElement
-        console.log(el.dataset.src)
         el.src = el.dataset.src as string
         if (el.dataset.waiting !== undefined) await waitImgLoaded(el)
     }

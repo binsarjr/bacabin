@@ -7,16 +7,18 @@
 
 	// NProgress css
 	import 'nprogress/nprogress.css';
-	import { afterNavigate } from '$app/navigation';
-	import { onMount } from 'svelte';
-	import { imgLazyLoading } from '$lib/browser-supports';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import { onDestroy, onMount } from 'svelte';
+	import { imgLazyLoading, imgLazyLoadingStop } from '$lib/browser-supports';
 
 	NProgress.configure({
 		// Full list: https://github.com/rstacruz/nprogress#configuration
 		minimum: 0.16
 	});
+
 	$: {
 		if ($navigating) {
+			imgLazyLoadingStop();
 			NProgress.start();
 		}
 		if (!$navigating) {
@@ -34,7 +36,7 @@
 </script>
 
 <main id="layoutapp" class="py-5">
-	<div class="mb-5">
+	<div class="mb-5 content">
 		<a href="/">BacaBin</a>
 	</div>
 	<slot />

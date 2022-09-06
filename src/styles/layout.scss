@@ -6,8 +6,11 @@ body {
 	@apply text-gray-50;
 }
 
-#layoutapp {
+.content {
 	@apply w-[90vw] mx-auto;
+}
+
+#layoutapp {
 	footer {
 		@apply mb-5;
 	}
