@@ -1,5 +1,5 @@
 import Cheerio from 'cheerio';
-import got from 'got';
+import { gotScraping } from 'got-scraping';
 import type { IBaseKomik, ReadChapter } from './interfaces';
 import type { Chapter, Komik, KomikDetail } from './types';
 
@@ -20,7 +20,7 @@ export default class BaseKomik implements IBaseKomik {
 		return this.instance;
 	}
 
-	protected readonly request = got.extend({
+	protected readonly request = gotScraping.extend({
 		timeout: {
 			request: 60_000
 		}

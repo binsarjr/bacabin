@@ -10,6 +10,7 @@ interface Server {
 }
 
 export const load: Load = async () => {
+	
 	const servers: Server[] = serverLists()
 
 	const connection: { link: string; text: string; platform: string }[] = [
