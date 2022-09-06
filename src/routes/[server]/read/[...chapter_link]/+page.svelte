@@ -5,7 +5,7 @@
 <div class="text-center">
 	<h1>{data.item.title}</h1>
 </div>
-<div class="flex gap-5 justify-center items-center my-5">
+<div class="flex gap-1 md:gap-5 justify-center items-center my-5">
 	<div>
         {#if data.item.prev}
 		<a href="/{data.server}/read/{data.item.prev}" class="text-sm md:text-base py-1 px-2 md:py-2 md:px-4 border border-white rounded hover:bg-white hover:text-black">Chapter Selanjutnya</a>
