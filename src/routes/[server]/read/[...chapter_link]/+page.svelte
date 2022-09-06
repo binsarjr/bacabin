@@ -1,10 +1,17 @@
 <script lang="ts">
 	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let data: import('./$types').PageData;
-	let prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
-	let next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
-	let chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
+	let prev: string | null = null;
+	let next: string | null = null;
+	let chapterList: string | null = null;
+
+	$: {
+		prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
+		next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
+		chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
+	}
 </script>
 
 <div class="content">
