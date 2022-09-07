@@ -1,8 +1,14 @@
 <script lang="ts">
 	export let data: import('./$types').PageData;
+	let q = '';
 	let chapterAwal = data.item.chapters[0];
 	let chapterAkhir =
 		data.item.chapters[data.item.chapters.length === 0 ? 0 : data.item.chapters.length - 1];
+	let chapters = data.item.chapters;
+	$: if (q.length) {
+		q = q.replace(/\s+/,' ')
+		chapters = data.item.chapters.filter((chapter) => new RegExp(q, 'i').test(chapter.title));
+	}
 </script>
 
 <div class="content">
@@ -24,8 +30,15 @@
 	</div>
 	<div class="bg-secondary rounded p-5">
 		<h2>Chapter List</h2>
+		<input
+			autocomplete="false"
+			type="text"
+			class="form-control"
+			bind:value={q}
+			placeholder="Cari Chapter di sini"
+		/>
 		<div class="mt-3 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-			{#each data.item.chapters as chapter}
+			{#each chapters as chapter}
 				<div>
 					<a
 						href="/{data.server}/read/{chapter.link}"

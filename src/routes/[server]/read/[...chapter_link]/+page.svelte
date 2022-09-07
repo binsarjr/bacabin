@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
-	import { onDestroy, onMount } from 'svelte';
 
 	export let data: import('./$types').PageData;
 	let prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;

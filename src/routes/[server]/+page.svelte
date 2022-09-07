@@ -46,7 +46,7 @@
 	</div>
 	<label for="cari">
 		<span>Silakan Cari Komik Yang Anda inginkan</span>
-		<input type="text" id="cari" bind:value={q} on:keydown={keydown} minlength="2" required />
+		<input autocomplete="false" type="text" class="form-control" id="cari" bind:value={q} on:keydown={keydown} minlength="2" required />
 		<span
 			>Silakan tekan [ENTER] atau tunggu 5 detik setelah Anda berhenti mengetik dan secara otomatis
 			akan melakukan pencarian</span
