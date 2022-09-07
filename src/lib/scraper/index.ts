@@ -1,10 +1,12 @@
 import { error } from '@sveltejs/kit';
 import type { IBaseKomik } from './BaseKomik/interfaces';
+import Bacakomik from './id/Bacakomik';
 import KomikIndo from './id/KomikIndo';
 import type { ServerList } from './types/Server';
 
 const servers: { [i: ServerList]: IBaseKomik } = {
-	komikindo: KomikIndo
+	komikindo: KomikIndo,
+	bacakomik: Bacakomik,
 };
 
 export const serverLists = () => {
