@@ -18,9 +18,10 @@
 		</div>
 	</div>
 
+	<h3 class="mb-5">Silakan Pilih Server Website</h3>
 	<div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10">
 		{#each data.servers as server}
-			<div class="">
+			<div class="transform transition duration-500 hover:scale-110">
 				<a href="/{server.server}">
 					{#if server.img}
 						<img src={server.img} width="100%" alt="" />

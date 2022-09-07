@@ -3,7 +3,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
-	logo = 'https://bd7207342500dcc9a18edb11.forthumbnail.xyz/uploads/2021/04/Ikon-Hd-Fix-150x150.jpg';
+	logo = 'https://i0.wp.com/bacakomik.co/wp-content/uploads/2020/09/bacakomikv2.png';
 	async list(keyword: string = ''): Promise<Komik[]> {
 		const link = new URL('https://bacakomik.co/?s=');
 		link.searchParams.set('s', keyword);
