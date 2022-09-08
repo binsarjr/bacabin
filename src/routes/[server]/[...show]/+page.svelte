@@ -18,6 +18,10 @@
 	<div class="text-center mb-5">
 		<img src={data.item.img} alt={data.item.title} class="mx-auto" />
 		<h1 class="py-5">{data.item.title}</h1>
+		<div class="mb-5">
+			Cek 
+			<a href="{data.show}" class="text-blue-500 hover:text-blue-800" target="_blank">di sini</a> untuk detail lainnya.
+		</div>
 		<div class="flex gap-5 justify-center items-center">
 			<a
 				href="/{data.server}/read/{chapterAkhir.link}"
@@ -46,8 +50,8 @@
 					<a
 						href="/{data.server}/read/{chapter.link}"
 						class="
-                border border-white text-center rounded py-2 px-4 block
-                hover:bg-white hover:text-black
+                border border-white text-center  rounded py-2 px-4 block
+                hover:bg-white hover:text-black visited:bg-gray-600
                 "
 					>
 						{chapter.title}
