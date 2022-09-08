@@ -10,7 +10,7 @@ export default class BaseKomik implements IBaseKomik {
 	website = '(unkown)';
 	logo = '(unkown)';
 	constructor() {
-		this.name = this.constructor.name;
+		this.name ||= this.constructor.name;
 	}
 
 	static instance: IBaseKomik;
@@ -39,7 +39,7 @@ export default class BaseKomik implements IBaseKomik {
 	async chapters(link: string): Promise<Chapter[]> {
 		return [];
 	}
-	async read(chapter_link: string): Promise<ReadChapter> {
+	async read(chapter_link: string): Promise<ReadChapter|null> {
 		return {
 			title: '',
 			chapterImages: [],

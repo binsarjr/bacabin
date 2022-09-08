@@ -45,7 +45,7 @@ class KomikIndo extends BaseKomik {
 		return chapters
 	}
 
-	async read(chapter_link: string): Promise<ReadChapter> {
+	async read(chapter_link: string): Promise<ReadChapter | null> {
 		const $ = await this.requestCheerio(chapter_link)
 		const title = $('.chapter-content h1.entry-title').text().replace(/^komik\s+/i, '')
 
