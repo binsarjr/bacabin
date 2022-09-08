@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { Button } from '@brainandbones/skeleton';
-	import { afterNavigate, goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
@@ -30,6 +28,12 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>{data.server.name} - BacaBin</title>
+	<link rel="icon" href="{data.server.logo}" />
+</svelte:head>
+
 <div class="content">
 
 <div class="my-10 mx-auto">

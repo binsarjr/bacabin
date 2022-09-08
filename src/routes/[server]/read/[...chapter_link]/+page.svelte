@@ -14,6 +14,9 @@
 		images = data.item.chapterImages;
 	}
 </script>
+<svelte:head>
+	<title>{data.item.title}</title>
+</svelte:head>
 
 <div class="content">
 	<div class="text-center">

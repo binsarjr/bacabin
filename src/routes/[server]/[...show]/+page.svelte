@@ -10,6 +10,9 @@
 		chapters = data.item.chapters.filter((chapter) => new RegExp(q, 'i').test(chapter.title));
 	}
 </script>
+<svelte:head>
+	<title>{data.item.title}</title>
+</svelte:head>
 
 <div class="content">
 	<div class="text-center mb-5">
