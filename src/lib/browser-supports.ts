@@ -16,6 +16,10 @@ export const imgLazyLoading = async () => {
     imgEvent.on('done', _ => {
         isDone = true
     })
+    document.querySelectorAll('img[data-src]').forEach((_) => {
+        const el = _ as HTMLImageElement
+        el.src = '/loading.gif'
+    })
     for (const _ of document.querySelectorAll('img[data-src]')) {
         if (isDone) {
             return
