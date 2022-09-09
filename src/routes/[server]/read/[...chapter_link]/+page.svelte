@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+
 	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
+	import { historyChapter, historyKomik } from '$lib/stores/history';
 
 	export let data: import('./$types').PageData;
 	let prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
@@ -12,8 +15,27 @@
 		next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
 		chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
 		images = data.item.chapterImages;
+		$historyKomik = [
+			{
+				title: $page.data.item.title,
+				server: $page.data.server,
+				id: $page.data.showLink,
+				link: $page.url.toString()
+			},
+			...$historyKomik.filter((history) => history.id != $page.data.showLink)
+		];
+		$historyChapter= [
+			{
+				title: $page.data.item.title,
+				server: $page.data.server,
+				id: $page.data.server+$page.data.item.title,
+				link: $page.url.toString()
+			},
+			...$historyChapter.filter((history) => history.id != $page.data.server+$page.data.item.title)
+		];
 	}
 </script>
+
 <svelte:head>
 	<title>{data.item.title}</title>
 </svelte:head>

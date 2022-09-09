@@ -1,11 +1,15 @@
+<script lang="ts">
+	import { SlideToggle } from '@brainandbones/skeleton';
+	import { historyChapter, historyKomik } from '$lib/stores/history';
+	import type { PageData } from './$types';
+	export let data: PageData;
+	let showHistoryKomik = true;
+	let showHistoryChapter = true;
+</script>
+
 <svelte:head>
 	<title>BacaBin</title>
 </svelte:head>
-
-<script lang="ts">
-	import type { PageData } from './$types';
-	export let data: PageData;
-</script>
 
 <div class="content">
 	<div class="md:w-[80%] mt-10 mb-24 mx-auto text-center">
@@ -21,20 +25,62 @@
 			</p>
 		</div>
 	</div>
+	<div class="mb-10">
+		<h3 class="mb-5">Silakan Pilih Server Website</h3>
+		<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10">
+			{#each data.servers as server}
+				<div class="transform transition duration-500 hover:scale-110">
+					<a href="/{server.server}">
+						{#if server.img}
+							<img src={server.img} width="100%" alt="[img] {server.title}" />
+						{:else}
+							<h2>{server.title}</h2>
+						{/if}
+					</a>
+				</div>
+			{/each}
+		</div>
+	</div>
 
-	<h3 class="mb-5">Silakan Pilih Server Website</h3>
-	<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10">
-		{#each data.servers as server}
-			<div class="transform transition duration-500 hover:scale-110">
-				<a href="/{server.server}">
-					{#if server.img}
-						<img src={server.img} width="100%" alt="[img] {server.title}" />
-					{:else}
-						<h2>{server.title}</h2>
-					{/if}
-				</a>
-			</div>
-		{/each}
+	<div class="mb-10">
+		<h3>History Per Komik</h3>
+		<SlideToggle bind:checked={showHistoryKomik} size="sm" accent="bg-gray-500" />
+		<div>
+			{#if showHistoryKomik}
+				<ul>
+					{#each $historyKomik as history}
+						<li class="mb-2">
+							<a href={history.link} class="hover:text-blue-500">
+								<p>{history.title}</p>
+								<p>Server: {history.server}</p>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p>Pencet toggle di atas untuk menampilkan</p>
+			{/if}
+		</div>
+	</div>
+	<div class="mb-10">
+		<h3>History Per Chapter</h3>
+		<SlideToggle bind:checked={showHistoryChapter} size="sm" accent="bg-gray-500" />
+		<div>
+			{#if showHistoryChapter}
+				<ul>
+					{#each $historyChapter as history}
+						<li class="mb-2">
+							<a href={history.link} class="hover:text-blue-500">
+								<p>{history.title}</p>
+								<p>Server: {history.server}</p>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p>Pencet toggle di atas untuk menampilkan</p>
+			{/if}
+		</div>
 	</div>
 
 	<footer class="mt-20">
