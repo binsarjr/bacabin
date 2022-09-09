@@ -10,6 +10,14 @@
 		? `/${$page.data.server}/${$page.data.item.showLink}`
 		: null;
 	let images = $page.data.item.chapterImages;
+	$: {
+		prev = $page.data.item.prev ? `/${$page.data.server}/read/${$page.data.item.prev}` : null;
+		next = $page.data.item.next ? `/${$page.data.server}/read/${$page.data.item.next}` : null;
+		chapterList = $page.data.item.showLink
+			? `/${$page.data.server}/${$page.data.item.showLink}`
+			: null;
+		images = $page.data.item.chapterImages;
+	}
 	async function save() {
 		$historyKomik = [
 			{
@@ -32,7 +40,7 @@
 			)
 		];
 	}
-	save()
+	save();
 </script>
 
 <svelte:head>
