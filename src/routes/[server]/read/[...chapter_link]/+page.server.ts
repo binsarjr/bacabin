@@ -11,7 +11,7 @@ export const load: Load = async ({ params }) => {
         // menghapus -chapter-{numChapter}
         // karena biasanya format penulisan url seperti ini.
         // jadi jika showlink tidak ditemukan maka kita akan menggunakan ini sebagai alternatif
-        showLink = (params.chapter_link as string).replace(/[-]+?chapter[-]+\d+$/, '')
+        showLink = (params.chapter_link as string).replace(/[-]+?chapter[-]+\d+(\.\d+)?$/, '')
     }
     return { item, server: params.server as string, showLink }
 }
