@@ -27,6 +27,7 @@
 			search();
 		}
 	}
+
 </script>
 
 <svelte:head>
@@ -75,7 +76,7 @@
 			<div class="cardpost">
 				<a href={[currentPathname, list.show].join('/')}>
 					<div class="image">
-						<img data-src={list.img} alt="[img] {list.img}" width="100%" class="rounded" />
+						<img src={list.img} loading="lazy" alt="[img] {list.img}" width="100%" class="rounded" />
 						<div class="text-image">{list.title}</div>
 					</div>
 					<div>

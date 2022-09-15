@@ -1,8 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
 
+	import { page } from '$app/stores';
+	import { imgLazyLoading, imgLazyLoadingStop } from '$lib/browser-supports';
+	import BackToTop from '$lib/components/BackToTop.svelte';
+	// import lozad from 'lozad'
 	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
+	import GotoDown from '$lib/components/GotoDown.svelte';
 	import { historyChapter, historyKomik } from '$lib/stores/history';
+	import { onMount } from 'svelte';
 
 	let prev = $page.data.item.prev ? `/${$page.data.server}/read/${$page.data.item.prev}` : null;
 	let next = $page.data.item.next ? `/${$page.data.server}/read/${$page.data.item.next}` : null;
@@ -40,13 +46,21 @@
 			)
 		];
 	}
+
+	async function reload() {
+		goto(window.location.href, { noscroll: true });
+	}
+	// onMount(() => {
+	// 	lozad().observe()
+	// })
 	save();
 </script>
 
 <svelte:head>
 	<title>{$page.data.item.title}</title>
 </svelte:head>
-
+<GotoDown />
+<BackToTop />
 <div class="content">
 	<div class="text-center">
 		<h1>{$page.data.item.title}</h1>
@@ -55,9 +69,26 @@
 </div>
 <div class="flex flex-col justify-center items-center">
 	{#each images as image}
-		<img data-src={image} src="" data-waiting />
+		{@const imageLink = image}
+		<img src="{imageLink}" loading="lazy" />
 	{/each}
 </div>
-<div class="content">
+<div id="reload" on:click={reload}>Reload</div>
+<div class="content mb-[30vh]">
 	<ChapterPrevNext {prev} {next} {chapterList} />
 </div>
+
+<style>
+	#reload {
+		@apply rounded py-2 px-4 cursor-pointer;
+		opacity: 1;
+		transition: opacity 0.5s, visibility 0.5s;
+		position: fixed;
+		z-index: 99;
+		right: 20px;
+		user-select: none;
+		bottom: 80px;
+		color: white;
+		background-color: black;
+	}
+</style>

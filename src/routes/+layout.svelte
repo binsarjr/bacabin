@@ -4,7 +4,6 @@
 	// @ts-ignore
 	import NProgress from 'nprogress';
 	import { navigating, page } from '$app/stores';
-
 	// NProgress css
 	import 'nprogress/nprogress.css';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
@@ -18,7 +17,6 @@
 
 	$: {
 		if ($navigating) {
-			imgLazyLoadingStop();
 			NProgress.start();
 		}
 		if (!$navigating) {
@@ -26,13 +24,16 @@
 		}
 	}
 
-	onMount(() => {
-		imgLazyLoading();
-	});
 
-	afterNavigate(() => {
-		imgLazyLoading();
-	});
+
+	
+	// beforeNavigate(() => {
+	// 	imgLazyLoadingStop()
+	// })
+
+	// afterNavigate(() => {
+	// 	imgLazyLoading();
+	// });
 </script>
 
 <main id="layoutapp" class="py-5">
