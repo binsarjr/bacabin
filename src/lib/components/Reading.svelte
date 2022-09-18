@@ -21,7 +21,7 @@
 	<div class="flex flex-col justify-center items-center">
 		{#each images as image}
 			{@const imageLink = image}
-			<img data-src={imageLink} src="/loading.gif" class="lazyload" loading="lazy" />
+			<img data-src={imageLink} src="/loading.gif" class="lazyload" loading="lazy" data-waiting />
 			<!-- <img src={imageLink} loading="lazy" /> -->
 		{/each}
 	</div>

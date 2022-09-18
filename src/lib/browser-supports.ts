@@ -18,14 +18,18 @@ export const imgLazyLoading = async () => {
     })
     document.querySelectorAll('img[data-src]').forEach((_) => {
         const el = _ as HTMLImageElement
-        el.src = '/loading.gif'
+        if (!el.src) el.src = '/loading.gif'
+        // Read More: http://afarkas.github.io/lazysizes
+        el.classList.add('lazyload')
+        // Read More: https://web.dev/browser-level-image-lazy-loading/
+        el.setAttribute('loading','lazy')
     })
-    for (const _ of document.querySelectorAll('img[data-src]')) {
+    for (const _ of document.querySelectorAll('img[data-src][data-waiting]')) {
         if (isDone) {
             return
         }
         const el: HTMLImageElement = _ as HTMLImageElement
         el.src = el.dataset.src as string
-        if (el.dataset.waiting !== undefined) await waitImgLoaded(el)
+        await waitImgLoaded(el)
     }
 }

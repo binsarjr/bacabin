@@ -32,13 +32,13 @@
 
 
 	
-	// beforeNavigate(() => {
-	// 	imgLazyLoadingStop()
-	// })
+	beforeNavigate(() => {
+		imgLazyLoadingStop()
+	})
 
-	// afterNavigate(() => {
-	// 	imgLazyLoading();
-	// });
+	afterNavigate(() => {
+		imgLazyLoading();
+	});
 </script>
 
 <main id="layoutapp" class="py-5">
