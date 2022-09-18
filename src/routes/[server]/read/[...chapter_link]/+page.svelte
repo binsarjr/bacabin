@@ -1,30 +1,14 @@
 <script lang="ts">
-	import 'lazysizes';
-	// import a plugin
-	import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
 	import { page } from '$app/stores';
-	import { imgLazyLoading, imgLazyLoadingStop } from '$lib/browser-supports';
 	import BackToTop from '$lib/components/BackToTop.svelte';
-	// import lozad from 'lozad'
-	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
 	import GotoDown from '$lib/components/GotoDown.svelte';
 	import { historyChapter, historyKomik } from '$lib/stores/history';
-	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
+	import Reading from '$lib/components/Reading.svelte';
 	export let data: PageData;
 
-	let prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
-	let next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
-	let chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
-	let images = data.item.chapterImages;
-	$: {
-		prev = data.item.prev ? `/${data.server}/read/${data.item.prev}` : null;
-		next = data.item.next ? `/${data.server}/read/${data.item.next}` : null;
-		chapterList = data.item.showLink ? `/${data.server}/${data.item.showLink}` : null;
-		images = data.item.chapterImages;
-	}
 	async function save() {
 		const historyData = {
 			title: data.item.title,
@@ -56,23 +40,10 @@
 {#key $page.url.toString()}
 	<GotoDown />
 	<BackToTop />
-	<div class="content">
-		<div class="text-center">
-			<h1>{data.item.title}</h1>
-		</div>
-		<ChapterPrevNext {prev} {next} {chapterList} />
-	</div>
-	<div class="flex flex-col justify-center items-center">
-		{#each images as image}
-			{@const imageLink = image}
-			<img data-src={imageLink} src="/loading.gif" class="lazyload" loading="lazy" />
-			<!-- <img src={imageLink} loading="lazy" /> -->
-		{/each}
+	<div class="mb-[30vh]">
+		<Reading value={data.item} server={data.server} />
 	</div>
 	<div id="reload" on:click={reload}>Reload</div>
-	<div class="content mb-[30vh]">
-		<ChapterPrevNext {prev} {next} {chapterList} />
-	</div>
 {/key}
 
 <style>

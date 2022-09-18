@@ -76,7 +76,7 @@
 			<div class="cardpost">
 				<a href={[currentPathname, list.show].join('/')}>
 					<div class="image">
-						<img src={list.img} loading="lazy" alt="[img] {list.img}" width="100%" class="rounded" />
+						<img  data-src={list.img} src="/loading.gif" class="lazyload rounded" loading="lazy" alt="[img] {list.img}" width="100%" />
 						<div class="text-image">{list.title}</div>
 					</div>
 					<div>

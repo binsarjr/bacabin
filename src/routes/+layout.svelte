@@ -4,6 +4,11 @@
 	// @ts-ignore
 	import NProgress from 'nprogress';
 	import { navigating, page } from '$app/stores';
+
+	import 'lazysizes';
+	// import a plugin
+	import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+	
 	// NProgress css
 	import 'nprogress/nprogress.css';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
