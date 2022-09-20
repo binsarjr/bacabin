@@ -1,12 +1,9 @@
 # Bacabin
-Dibuat hanya untuk pribadi.Yang mau pake buat baca juga silakan
+for personal but if there are other people who want to read please feel free.don't forget to donate on the server you're reading on and come back to this website to read it for free
 
-# Fitur
-- Tanpa Iklan
-- Load gambar lebih cepat (Lazy Loading => Load gambar ketika dibutuhkan)
+# Feature
+- No Ads
+- Image loading with concurrency and lazy loading
 
-# Planning
-- [ ] add more server
-- [ ] bookmark
-- [ ] history
-- [ ] auto reading (scroll down slowly and automatic to the next page)
+# Contributing
+for contributing read [here](./contributing.md)
