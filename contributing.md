@@ -2,7 +2,9 @@
 
 
 ## What Should i know before i get started?
-Bacabin is a free comic reading mirror website using web scraping techniques. For those who want to contribute, please pay attention to the types provided [here](https://github.com/binsarjr/bacabin/blob/58638f49d4bce0875cb9c4e22efb9fef3dbc6a32/src/lib/scraper/BaseKomik/interfaces.ts#L17) and follow the scheme
+Bacabin is a free comic reading mirror website using web scraping techniques. For those who want to contribute, please pay attention to the types provided [here](https://github.com/binsarjr/bacabin/blob/58638f49d4bce0875cb9c4e22efb9fef3dbc6a32/src/lib/scraper/BaseKomik/interfaces.ts#L17) and follow the scheme.
+
+after you create a class to scrape to the target website. don't forget to add server list [here](https://github.com/binsarjr/bacabin/blob/58638f49d4bce0875cb9c4e22efb9fef3dbc6a32/src/lib/scraper/index.ts#L7)
 
 ## How can i contribute?
 ### Reporting Bug
