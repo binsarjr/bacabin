@@ -13,8 +13,8 @@ export const load: Load = async ({ params, url, parent, depends }) => {
 		
 		const lists = await server.list(q);
 		return { lists, server: server.toObject(), q };
-	} catch (e) {
-		throw error(500, "Gagal mengambil resources ke server yang di tuju")
+	} catch (e:any) {
+		throw error(500, e.toString())
 	}
 
 };

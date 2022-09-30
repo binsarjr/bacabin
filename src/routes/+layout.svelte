@@ -8,10 +8,10 @@
 	import 'lazysizes';
 	// import a plugin
 	import 'lazysizes/plugins/parent-fit/ls.parent-fit';
-	
+
 	// NProgress css
 	import 'nprogress/nprogress.css';
-	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
 	import { onDestroy, onMount } from 'svelte';
 	import { imgLazyLoading, imgLazyLoadingStop } from '$lib/browser-supports';
 
@@ -29,12 +29,9 @@
 		}
 	}
 
-
-
-	
 	beforeNavigate(() => {
-		imgLazyLoadingStop()
-	})
+		imgLazyLoadingStop();
+	});
 
 	afterNavigate(() => {
 		imgLazyLoading();
