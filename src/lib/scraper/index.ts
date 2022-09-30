@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { IBaseKomik } from './BaseKomik/interfaces';
 import Manganato from './en/Manganato';
+import Mangastic from './en/Mangastic';
 import Bacakomik from './id/Bacakomik';
 import KomikIndo from './id/KomikIndo';
 import type { ServerList } from './types/Server';
@@ -8,7 +9,8 @@ import type { ServerList } from './types/Server';
 const servers: { [i: ServerList]: IBaseKomik } = {
 	komikindo: KomikIndo,
 	bacakomik: Bacakomik,
-	manganato: Manganato
+	manganato: Manganato,
+	mangastic: Mangastic,
 };
 
 export const serverLists = () => {
