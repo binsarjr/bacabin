@@ -1,1 +1,1 @@
-export type ServerList = string | 'komikindo' | 'bacakomik';
+export type ServerList = string | 'komikindo' | 'bacakomik' | 'komiku';
