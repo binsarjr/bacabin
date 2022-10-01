@@ -4,9 +4,11 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class Mgkomik extends BaseKomik {
 	website = 'https://mgkomik.com/';
 	logo = 'https://mgkomik.com/wp-content/uploads/2021/04/logo-159x30-1.png';
-	async list(keyword: string = ''): Promise<Komik[]> {
+	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://mgkomik.com/?s=&post_type=wp-manga');
-		link.searchParams.set('s', keyword);
+		searchParams.set('s', searchParams.get('q') || '');
+		searchParams.delete('q')
+		link.search = searchParams.toString()
 
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];

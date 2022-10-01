@@ -5,15 +5,19 @@ class Mangastic extends BaseKomik {
 	website = 'https://mangastic.me/';
 	logo = 'https://mangastic.me/wp-content/uploads/2021/11/Picture2.png';
 
-	async list(keyword: string): Promise<Komik[]> {
+	async list(searchParams: URLSearchParams): Promise<Komik[]> {
+		const keyword = searchParams.get('q') || ''
+		searchParams.delete('q')
 		const link = new URL('https://mangastic.me/?s=&op=&author=&artist=&release=&adult=');
-		link.searchParams.append('s', keyword);
-		link.searchParams.append('post_type', 'wp-manga');
-		link.searchParams.append('op', '');
-		link.searchParams.append('author', '');
-		link.searchParams.append('artist', '');
-		link.searchParams.append('release', '');
-		link.searchParams.append('adult', '');
+		searchParams.set('s', keyword);
+		searchParams.set('post_type', 'wp-manga');
+		// searchParams.set('op', '');
+		// searchParams.set('author', '');
+		// searchParams.set('artist', '');
+		// searchParams.set('release', '');
+		// searchParams.set('adult', '');
+
+		link.search =  searchParams.toString()
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.row.c-tabs-item__content').each((i, el) => {
