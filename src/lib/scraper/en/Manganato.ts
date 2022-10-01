@@ -18,16 +18,16 @@ class Manganato extends BaseKomik {
 		return results;
 	}
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
-		const keyword = searchParams.get('q')||''
+		const keyword = searchParams.get('q') || '';
 		// karena data tidak ditemukan ketika keyword kosong.maka kita kasih alternatif lain
 		if (keyword === '') {
 			return this.latest();
 		}
-		searchParams.delete('q')
+		searchParams.delete('q');
 
 		const link = new URL('https://manganato.com/search/story');
 		link.pathname += '/' + snakeCase(keyword);
-		link.search = searchParams.toString()
+		link.search = searchParams.toString();
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.search-story-item').each((i, el) => {

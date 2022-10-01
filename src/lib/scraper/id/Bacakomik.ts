@@ -5,11 +5,11 @@ class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
 	logo = 'https://i0.wp.com/bacakomik.co/wp-content/uploads/2020/09/bacakomikv2.png';
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
-		const keyword = searchParams.get('q')||''
-		searchParams.delete('q')
+		const keyword = searchParams.get('q') || '';
+		searchParams.delete('q');
 		const link = new URL('https://bacakomik.co/?s=');
 		searchParams.set('s', keyword);
-		link.search=searchParams.toString()
+		link.search = searchParams.toString();
 
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];

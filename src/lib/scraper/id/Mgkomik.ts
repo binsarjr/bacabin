@@ -7,8 +7,8 @@ class Mgkomik extends BaseKomik {
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://mgkomik.com/?s=&post_type=wp-manga');
 		searchParams.set('s', searchParams.get('q') || '');
-		searchParams.delete('q')
-		link.search = searchParams.toString()
+		searchParams.delete('q');
+		link.search = searchParams.toString();
 
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];

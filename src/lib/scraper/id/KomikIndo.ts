@@ -7,8 +7,8 @@ class KomikIndo extends BaseKomik {
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://komikindo.id/?s=');
 		searchParams.set('s', searchParams.get('q') || '');
-		searchParams.delete('q')
-		link.search = searchParams.toString()
+		searchParams.delete('q');
+		link.search = searchParams.toString();
 
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];

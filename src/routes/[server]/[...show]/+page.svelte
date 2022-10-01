@@ -6,10 +6,11 @@
 		data.item.chapters[data.item.chapters.length === 0 ? 0 : data.item.chapters.length - 1];
 	let chapters = data.item.chapters;
 	$: if (q.length) {
-		q = q.replace(/\s+/,' ')
+		q = q.replace(/\s+/, ' ');
 		chapters = data.item.chapters.filter((chapter) => new RegExp(q, 'i').test(chapter.title));
 	}
 </script>
+
 <svelte:head>
 	<title>{data.item.title}</title>
 </svelte:head>
@@ -19,8 +20,9 @@
 		<img src={data.item.img} alt={data.item.title} class="mx-auto" />
 		<h1 class="py-5">{data.item.title}</h1>
 		<div class="mb-5">
-			Cek 
-			<a href="{data.show}" class="text-blue-500 hover:text-blue-800" target="_blank">di sini</a> untuk detail lainnya.
+			Cek
+			<a href={data.show} class="text-blue-500 hover:text-blue-800" target="_blank">di sini</a> untuk
+			detail lainnya.
 		</div>
 		<div class="flex gap-5 justify-center items-center">
 			<a

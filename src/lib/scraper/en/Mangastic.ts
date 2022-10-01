@@ -6,8 +6,8 @@ class Mangastic extends BaseKomik {
 	logo = 'https://mangastic.me/wp-content/uploads/2021/11/Picture2.png';
 
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
-		const keyword = searchParams.get('q') || ''
-		searchParams.delete('q')
+		const keyword = searchParams.get('q') || '';
+		searchParams.delete('q');
 		const link = new URL('https://mangastic.me/?s=&op=&author=&artist=&release=&adult=');
 		searchParams.set('s', keyword);
 		searchParams.set('post_type', 'wp-manga');
@@ -17,7 +17,7 @@ class Mangastic extends BaseKomik {
 		// searchParams.set('release', '');
 		// searchParams.set('adult', '');
 
-		link.search =  searchParams.toString()
+		link.search = searchParams.toString();
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.row.c-tabs-item__content').each((i, el) => {
