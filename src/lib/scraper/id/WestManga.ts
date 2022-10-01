@@ -4,9 +4,11 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class WestManga extends BaseKomik {
 	website = 'https://westmanga.id/';
 	logo = 'https://i0.wp.com/i2.wp.com/westmanga.id/wp-content/uploads/2022/02/west.png?w=140';
-	async list(keyword: string = ''): Promise<Komik[]> {
+	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://westmanga.id/?s=');
-		link.searchParams.set('s', keyword);
+		searchParams.set('s', searchParams.get('q') || '');
+		searchParams.delete('q');
+		link.search = searchParams.toString();
 
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];

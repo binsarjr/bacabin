@@ -3,8 +3,7 @@
 	let hidden = false;
 
 	function goDown() {
-		window.scrollTo(
-		{top: document.body.scrollHeight, behavior: 'smooth'});
+		window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 	}
 
 	function scrollContainer() {
@@ -16,7 +15,6 @@
 			return;
 		}
 
-		
 		if (scrollContainer().scrollTop < showOnPx) {
 			hidden = false;
 		} else {
@@ -27,7 +25,9 @@
 
 <svelte:window on:scroll={handleOnScroll} />
 
-<div class="back-to-top rounded py-2 px-4 cursor-pointer" on:click={goDown} class:hidden>Go To Down</div>
+<div class="back-to-top rounded py-2 px-4 cursor-pointer" on:click={goDown} class:hidden>
+	Go To Down
+</div>
 
 <style>
 	.back-to-top {

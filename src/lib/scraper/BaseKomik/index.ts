@@ -29,7 +29,7 @@ export default class BaseKomik implements IBaseKomik {
 		const text = await this.request.get(new URL(link).toString()).text();
 		return Cheerio.load(text);
 	};
-	async list(keyword: string): Promise<Komik[]> {
+	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		return [];
 	}
 	async show(link: string): Promise<KomikDetail | null> {

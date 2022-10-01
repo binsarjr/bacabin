@@ -3,8 +3,7 @@
 	let hidden = true;
 
 	function goTop() {
-		window.scrollTo({top: 0, behavior: 'smooth'});
-
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
 	function scrollContainer() {
@@ -26,7 +25,9 @@
 
 <svelte:window on:scroll={handleOnScroll} />
 
-<div class="back-to-top rounded py-2 px-4 cursor-pointer" on:click={goTop} class:hidden>Back to top</div>
+<div class="back-to-top rounded py-2 px-4 cursor-pointer" on:click={goTop} class:hidden>
+	Back to top
+</div>
 
 <style>
 	.back-to-top {

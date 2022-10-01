@@ -15,7 +15,7 @@ export interface ReadChapter {
 }
 
 export interface IBaseKomik extends IBaseKomikProperty {
-	list(keyword?: string): Promise<Komik[]>;
+	list(searchParams: URLSearchParams): Promise<Komik[]>;
 	show(link: string): Promise<KomikDetail | null>;
 	chapters(link: string): Promise<Chapter[]>;
 	read(chapter_link: string): Promise<ReadChapter | null>;
