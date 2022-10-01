@@ -5,6 +5,7 @@ import Mangastic from './en/Mangastic';
 import Bacakomik from './id/Bacakomik';
 import KomikIndo from './id/KomikIndo';
 import Mgkomik from './id/Mgkomik';
+import WestManga from './id/WestManga';
 import type { ServerList } from './types/Server';
 
 const servers: { [i: ServerList]: IBaseKomik } = {
@@ -12,7 +13,8 @@ const servers: { [i: ServerList]: IBaseKomik } = {
 	bacakomik: Bacakomik,
 	manganato: Manganato,
 	mangastic: Mangastic,
-	mgkomik: Mgkomik
+	mgkomik: Mgkomik,
+	westmanga: WestManga
 };
 
 export const serverLists = () => {
