@@ -10,8 +10,7 @@ interface Server {
 }
 
 export const load: Load = async () => {
-	
-	const servers: Server[] = serverLists()
+	const servers: Server[] = serverLists();
 
 	const connection: { link: string; text: string; platform: string }[] = [
 		{ link: 'https://github.com/binsarjr', text: 'github.com/binsarjr', platform: 'Github' },
