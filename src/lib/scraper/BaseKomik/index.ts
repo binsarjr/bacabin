@@ -39,14 +39,14 @@ export default class BaseKomik implements IBaseKomik {
 	async chapters(link: string): Promise<Chapter[]> {
 		return [];
 	}
-	async read(chapter_link: string): Promise<ReadChapter|null> {
+	async read(chapter_link: string): Promise<ReadChapter | null> {
 		return {
 			title: '',
 			chapterImages: [],
 			next: null,
 			prev: null,
 			showLink: null
-		}
+		};
 	}
 
 	toObject() {

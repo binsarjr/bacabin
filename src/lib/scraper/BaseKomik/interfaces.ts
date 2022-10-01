@@ -7,11 +7,11 @@ export interface IBaseKomikProperty {
 }
 
 export interface ReadChapter {
-	title: string
-	chapterImages: string[]
-	prev: string | null
-	showLink: string | null
-	next: string | null
+	title: string;
+	chapterImages: string[];
+	prev: string | null;
+	showLink: string | null;
+	next: string | null;
 }
 
 export interface IBaseKomik extends IBaseKomikProperty {
