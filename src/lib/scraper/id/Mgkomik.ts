@@ -1,11 +1,11 @@
 import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
 import type { ReadChapter } from '../BaseKomik/interfaces';
 
-class ShieldManga extends BaseKomik {
-	website = 'https://m.shieldmanga.io/';
-	logo = 'https://m.shieldmanga.io/wp-content/uploads/2017/10/logo.png';
+class Mgkomik extends BaseKomik {
+	website = 'https://mgkomik.com/';
+	logo = 'https://mgkomik.com/wp-content/uploads/2021/04/logo-159x30-1.png';
 	async list(keyword: string = ''): Promise<Komik[]> {
-		const link = new URL('https://m.shieldmanga.io/?s=&post_type=wp-manga');
+		const link = new URL('https://mgkomik.com/?s=&post_type=wp-manga');
 		link.searchParams.set('s', keyword);
 
 		const $ = await this.requestCheerio(link.toString());
@@ -15,7 +15,7 @@ class ShieldManga extends BaseKomik {
 			const img = $(el).find('img.img-responsive').attr()['src'];
 			results.push({
 				show: anchorAttribute['href'],
-				title: anchorAttribute['title'].replace(/^manga\s+/i, ''),
+				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
 				img
 			});
 		});
@@ -28,8 +28,8 @@ class ShieldManga extends BaseKomik {
 		const $ = await this.requestCheerio(link);
 		const title = $('.post-title h1')
 			.text()
-			.replace(/^manga\s+/i, '');
-		const img = $('.summary_image a img').attr()['src'];
+			.replace(/^komik\s+/i, '');
+		const img = $('.summary_image img').attr()['src'];
 
 		const chapters: Chapter[] = await chapFuture;
 		return { title, img, chapters };
@@ -49,9 +49,7 @@ class ShieldManga extends BaseKomik {
 
 	async read(chapter_link: string): Promise<ReadChapter | null> {
 		const $ = await this.requestCheerio(chapter_link);
-		const title = $('h1#chapter-heading')
-			.text()
-			.replace(/^manga\s+/i, '');
+		const title = '';
 
 		const prevAttr = $('.header .nav-links a.btn.prev_page').attr();
 		const prev = prevAttr ? prevAttr['href'] : null;
@@ -74,4 +72,4 @@ class ShieldManga extends BaseKomik {
 	}
 }
 
-export default ShieldManga.getInstance();
+export default Mgkomik.getInstance();
