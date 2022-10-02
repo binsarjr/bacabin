@@ -1,5 +1,5 @@
 
-name: Continuous Integration Prettier
+name: Format
 
 # This action works with pull requests and pushes
 on:
