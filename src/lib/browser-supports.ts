@@ -3,7 +3,7 @@ import lazySizes from 'lazysizes';
 
 export const waitImgLoaded = (image: HTMLImageElement) =>
 	new Promise((resolve, reject) => {
-		image.onload = (event) => {
+		image.onload = () => {
 			const isLoaded = image.complete && image.naturalHeight !== 0;
 			isLoaded && resolve(isLoaded);
 		};
@@ -16,7 +16,7 @@ export const imgLazyLoadingStop = () => imgEvent.emit('done');
 
 export const imgLazyLoading = async () => {
 	let isDone = false;
-	imgEvent.on('done', (_) => {
+	imgEvent.on('done', () => {
 		isDone = true;
 	});
 	const imgSelectors = 'img[data-waiting-src]';

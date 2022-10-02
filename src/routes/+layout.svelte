@@ -3,16 +3,13 @@
 
 	// @ts-ignore
 	import NProgress from 'nprogress';
-	import { navigating, page } from '$app/stores';
+	import { navigating } from '$app/stores';
 
 	import 'lazysizes';
-	// import a plugin
-	import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 	// NProgress css
 	import 'nprogress/nprogress.css';
-	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
-	import { onDestroy, onMount } from 'svelte';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import { imgLazyLoading, imgLazyLoadingStop } from '$lib/browser-supports';
 
 	NProgress.configure({
