@@ -6,7 +6,7 @@
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
 	let q = data.q;
-	let tid: any;
+	let tid: string;
 	function search() {
 		const currentUrl = new URL($page.url.toString());
 		currentUrl.searchParams.set('q', q || '');
@@ -20,7 +20,7 @@
 			search();
 		}, 5_000);
 	}
-	function keydown(e: any) {
+	function keydown(e: string) {
 		onSearch();
 		if (e.keyCode == 13) {
 			tid && clearTimeout(tid);
