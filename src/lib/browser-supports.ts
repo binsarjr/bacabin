@@ -4,7 +4,7 @@ import lazySizes from 'lazysizes';
 export const waitImgLoaded = (image: HTMLImageElement) =>
 	new Promise((resolve, reject) => {
 		image.onload = (event) => {
-			var isLoaded = image.complete && image.naturalHeight !== 0;
+			const isLoaded = image.complete && image.naturalHeight !== 0;
 			isLoaded && resolve(isLoaded);
 		};
 		image.onerror = (e) => reject(e);
