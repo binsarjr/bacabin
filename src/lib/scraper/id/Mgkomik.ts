@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class Mgkomik extends BaseKomik {
 	website = 'https://mgkomik.com/';
 	logo = 'https://mgkomik.com/wp-content/uploads/2021/04/logo-159x30-1.png';
+	lang = "indonesia"
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://mgkomik.com/?s=&post_type=wp-manga');
 		searchParams.set('s', searchParams.get('q') || '');

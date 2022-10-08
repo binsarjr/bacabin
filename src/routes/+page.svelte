@@ -5,6 +5,21 @@
 	export let data: PageData;
 	let showHistoryKomik = true;
 	let showHistoryChapter = true;
+
+	const servers: {
+		[lang: string]: {
+			title: string;
+			url: string;
+			img: string;
+			server: string;
+			lang: string;
+		}[];
+	} = {};
+	data.servers.map((server) => {
+		const lang = server.lang.charAt(0).toUpperCase() + server.lang.slice(1).toLowerCase();
+		if (!servers[lang]) servers[lang] = [];
+		servers[lang].push(server);
+	});
 </script>
 
 <svelte:head>
@@ -27,16 +42,21 @@
 	</div>
 	<div class="mb-10">
 		<h3 class="mb-5">Silakan Pilih Server Website</h3>
-		<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10">
-			{#each data.servers as server}
-				<div class="transform transition duration-500 hover:scale-110">
-					<a href="/{server.server}">
-						{#if server.img}
-							<img src={server.img} width="100%" alt="[img] {server.title}" />
-						{:else}
-							<h2>{server.title}</h2>
-						{/if}
-					</a>
+		<div class="flex flex-col">
+			{#each Object.keys(servers) as lang}
+				<h1>Language: {lang}</h1>
+				<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10 mb-20 mt-5">
+					{#each servers[lang] as server}
+						<div class="transform transition duration-500 hover:scale-110">
+							<a href="/{server.server}">
+								{#if server.img}
+									<img src={server.img} width="100%" alt="[img] {server.title}" />
+								{:else}
+									<h2>{server.title}</h2>
+								{/if}
+							</a>
+						</div>
+					{/each}
 				</div>
 			{/each}
 		</div>

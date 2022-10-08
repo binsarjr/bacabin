@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class Mangastic extends BaseKomik {
 	website = 'https://mangastic.me/';
 	logo = 'https://mangastic.me/wp-content/uploads/2021/11/Picture2.png';
+	lang = "english"
 
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const keyword = searchParams.get('q') || '';

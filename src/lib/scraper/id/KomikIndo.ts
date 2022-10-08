@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class KomikIndo extends BaseKomik {
 	website = 'https://komikindo.id/';
 	logo = 'https://i2.wp.com/i2.wp.com/kentut.xyz/uploads/2020/12/komikindo.png?w=140?w=140';
+	lang = "indonesia"
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://komikindo.id/?s=');
 		searchParams.set('s', searchParams.get('q') || '');

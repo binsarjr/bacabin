@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
 	logo = 'https://i0.wp.com/bacakomik.co/wp-content/uploads/2020/09/bacakomikv2.png';
+	lang = "indonesia"
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const keyword = searchParams.get('q') || '';
 		searchParams.delete('q');

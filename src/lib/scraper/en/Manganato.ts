@@ -5,6 +5,7 @@ import { snakeCase } from '../supports';
 class Manganato extends BaseKomik {
 	website = 'https://manganato.com';
 	logo = 'https://readmanganato.com/favicon.png';
+	lang = "english"
 	async latest() {
 		const $ = await this.requestCheerio(this.website);
 		const results: Komik[] = [];

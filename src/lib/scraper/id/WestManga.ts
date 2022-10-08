@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class WestManga extends BaseKomik {
 	website = 'https://westmanga.id/';
 	logo = 'https://i0.wp.com/i2.wp.com/westmanga.id/wp-content/uploads/2022/02/west.png?w=140';
+	lang = "indonesia"
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const link = new URL('https://westmanga.id/?s=');
 		searchParams.set('s', searchParams.get('q') || '');
