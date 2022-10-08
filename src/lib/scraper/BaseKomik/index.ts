@@ -9,6 +9,7 @@ export default class BaseKomik implements IBaseKomik {
 	name: string;
 	website = '(unkown)';
 	logo = '(unkown)';
+	lang = "indonesia"
 	constructor() {
 		this.name ||= this.constructor.name;
 	}
@@ -53,7 +54,8 @@ export default class BaseKomik implements IBaseKomik {
 		return {
 			name: this.constructor.name,
 			website: this.website,
-			logo: this.logo
+			logo: this.logo,
+			lang: this.lang
 		};
 	}
 }

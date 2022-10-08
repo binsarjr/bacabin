@@ -25,7 +25,8 @@ export const serverLists = () => {
 			title: server.name,
 			url: server.website,
 			img: server.logo,
-			server: key
+			server: key,
+			lang: server.lang
 		};
 	});
 };

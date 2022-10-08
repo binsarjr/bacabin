@@ -4,6 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces';
 class Mangastic extends BaseKomik {
 	website = 'https://mangareader.cc/';
 	logo = 'https://mangareader.cc/frontend/imgs/logo.png';
+	lang = "english"
 	async dataHomepage() {
 		const $ = await this.requestCheerio(this.website);
 		const dataTemps: string[] = [];
