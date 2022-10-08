@@ -7,9 +7,8 @@ import Bacakomik from './id/Bacakomik';
 import KomikIndo from './id/KomikIndo';
 import Mgkomik from './id/Mgkomik';
 import WestManga from './id/WestManga';
-import type { ServerList } from './types/Server';
 
-const servers: { [i: ServerList]: IBaseKomik } = {
+const servers: { [i: string]: IBaseKomik } = {
 	komikindo: KomikIndo,
 	bacakomik: Bacakomik,
 	manganato: Manganato,
