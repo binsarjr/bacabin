@@ -58,7 +58,7 @@ class Mangastic extends BaseKomik {
 	async read(chapter_link: string): Promise<ReadChapter | null> {
 		const $ = await this.requestCheerio(chapter_link);
 		const chapterImages: string[] = [];
-		const title = $('.chapter-heading').text();
+		const title = $('#chapter-heading').text();
 		const prevAttribute = $('.nav-previous a').attr();
 		const prev = prevAttribute ? prevAttribute['href'] : null;
 		const nextAttribute = $('.nav-next a').attr();
