@@ -2,6 +2,7 @@
 	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
 
 	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
+	import { useLazyImage } from 'svelte-lazy-image';
 	export let value: ReadChapter;
 	export let server: string;
 
@@ -21,13 +22,7 @@
 	<div class="flex flex-col justify-center items-center">
 		{#each images as image}
 			{@const imageLink = image}
-			<img
-				data-waiting-src={imageLink}
-				src="/loading.gif"
-				class="lazyload"
-				loading="lazy"
-				alt={value.title}
-			/>
+			<img use:useLazyImage data-src={imageLink} src="/loading.gif" alt={value.title} />
 			<!-- <img src={imageLink} loading="lazy" /> -->
 		{/each}
 	</div>

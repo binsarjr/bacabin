@@ -2,7 +2,8 @@
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-
+	import { reveal } from 'svelte-reveal';
+import {useLazyImage} from 'svelte-lazy-image'
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
 	let q = data.q;
@@ -27,6 +28,7 @@
 			search();
 		}
 	}
+	
 </script>
 
 <svelte:head>
@@ -81,13 +83,13 @@
 			{/if}
 			{#key $page.url.toString()}
 				{#each data.lists as list}
-					<div class="cardpost">
+					<div class="cardpost" use:reveal>
 						<a href={[currentPathname, list.show].join('/')}>
 							<div class="image">
 								<img
+								use:useLazyImage
 									data-src={list.img}
 									src="/loading.gif"
-									class="lazyload rounded"
 									loading="lazy"
 									alt="[img] {list.img}"
 									width="100%"

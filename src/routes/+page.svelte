@@ -2,6 +2,8 @@
 	import { SlideToggle } from '@brainandbones/skeleton';
 	import { historyChapter, historyKomik } from '$lib/stores/history';
 	import type { PageData } from './$types';
+	import { reveal } from 'svelte-reveal';
+
 	export let data: PageData;
 	let showHistoryKomik = true;
 	let showHistoryChapter = true;
@@ -44,10 +46,10 @@
 		<h3 class="mb-5">Silakan Pilih Server Website</h3>
 		<div class="flex flex-col">
 			{#each Object.keys(servers) as lang}
-				<h1>Language: {lang}</h1>
+				<h3>Language: {lang}</h3>
 				<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10 mb-20 mt-5">
 					{#each servers[lang] as server}
-						<div class="transform transition duration-500 hover:scale-110">
+						<div use:reveal class="transform transition duration-500 hover:scale-110">
 							<a href="/{server.server}">
 								{#if server.img}
 									<img src={server.img} width="100%" alt="[img] {server.title}" />
@@ -69,7 +71,7 @@
 			{#if showHistoryKomik}
 				<ul>
 					{#each $historyKomik as history}
-						<li class="mb-2">
+						<li use:reveal class="mb-2">
 							<a href={history.link} class="hover:text-blue-500">
 								<p>{history.title}</p>
 								<p>Server: {history.server}</p>

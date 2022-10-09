@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { reveal } from 'svelte-reveal';
+
+
 	export let data: import('./$types').PageData;
 	let q = '';
 	let chapterAwal = data.item.chapters[0];
@@ -17,7 +20,7 @@
 
 <div class="content">
 	<div class="text-center mb-5">
-		<img src={data.item.img} alt={data.item.title} class="mx-auto" />
+		<img use:reveal src={data.item.img} alt={data.item.title} class="mx-auto" />
 		<h1 class="py-5">{data.item.title}</h1>
 		<div class="mb-5">
 			Cek
@@ -48,7 +51,7 @@
 		/>
 		<div class="mt-3 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 			{#each chapters as chapter}
-				<div>
+				<div use:reveal>
 					<a
 						href="/{data.server}/read/{chapter.link}"
 						class="

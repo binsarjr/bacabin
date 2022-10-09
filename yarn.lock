@@ -2431,6 +2431,11 @@ svelte-hmr@^0.14.12:
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.12.tgz#a127aec02f1896500b10148b2d4d21ddde39973f"
   integrity sha512-4QSW/VvXuqVcFZ+RhxiR8/newmwOCTlbYIezvkeN6302YFRE8cXy0naamHcjz8Y9Ce3ITTZtrHrIL0AGfyo61w==
 
+svelte-lazy-image@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/svelte-lazy-image/-/svelte-lazy-image-0.5.1.tgz#20b14c0736a51a30f5607865d5e2310c60ffd4be"
+  integrity sha512-BDwywMngYjrEtL73N2ZKYYnWlNBWSnw31y1Mb3kNeXVc/9iDir6Ew3bfuDtuEyi3evBFXF0jixkCMFuTseWjWQ==
+
 svelte-local-storage-store@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/svelte-local-storage-store/-/svelte-local-storage-store-0.3.1.tgz#0abb0a119d4a37625394bab0ed2c0fe958e81a31"
@@ -2447,6 +2452,11 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.10.7:
     magic-string "^0.25.7"
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
+
+svelte-reveal@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/svelte-reveal/-/svelte-reveal-0.6.0.tgz#8cb420b5c60abf6116bca94e0f79360d6cd26cd2"
+  integrity sha512-EJFijX7KVl9a8vgoJ7dw7qvLO9Rbuagy3zdAxheMlH26Nig9xpPhF9NAvaz9BS1305ZH1aQ4gbeU/fyYYHUEDQ==
 
 svelte@^3.44.0:
   version "3.50.0"
