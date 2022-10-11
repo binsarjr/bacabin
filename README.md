@@ -1,12 +1,12 @@
 # Bacabin
 
-for personal but if there are other people who want to read please feel free.don't forget to donate on the server you're reading on and come back to this website to read it for free
+For personal use, not limited to anyone who wanted to use it. This software is free to use, however we encourage you to donate on the manga provider if possible.
 
-# Feature
+## Features
 
-- No Ads
+- Block Ads
 - Image loading with concurrency and lazy loading
 
-# Contributing
+## Contributing
 
-for contributing read [here](./contributing.md)
+Feel free to make a contribution, read [contibuting.md](./contributing.md) for more details.
