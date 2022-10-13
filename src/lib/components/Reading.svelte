@@ -6,10 +6,13 @@
 	export let value: ReadChapter;
 	export let server: string;
 
-	let prev = value.prev ? `/${server}/read/${value.prev}` : null;
-	let next = value.next ? `/${server}/read/${value.next}` : null;
-	let chapterList = value.showLink ? `/${server}/${value.showLink}` : null;
-	let images = value.chapterImages;
+	$: prev = value.prev ? `/${server}/read/${value.prev}` : null;
+	$: next = value.next ? `/${server}/read/${value.next}` : null;
+	$: chapterList = value.showLink ? `/${server}/${value.showLink}` : null;
+	$: images = value.chapterImages;
+	function imageErr(index: number) {
+		images[index] = images[index];
+	}
 </script>
 
 <div>
@@ -20,9 +23,15 @@
 		<ChapterPrevNext {prev} {next} {chapterList} />
 	</div>
 	<div class="flex flex-col justify-center items-center">
-		{#each images as image}
-			{@const imageLink = image}
-			<img use:useLazyImage data-src={imageLink} src="/loading.gif" alt={value.title} />
+		{#each images as image, i}
+			<img
+				use:useLazyImage
+				on:error={() => imageErr(i)}
+				data-src={image}
+				src="/loading.gif"
+				alt={value.title + ' ' + i + 1}
+				loading="lazy"
+			/>
 			<!-- <img src={imageLink} loading="lazy" /> -->
 		{/each}
 	</div>
