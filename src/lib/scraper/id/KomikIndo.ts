@@ -64,8 +64,16 @@ class KomikIndo extends BaseKomik {
 
 		const chapterImages: string[] = [];
 		$('#chimg-auh img').each((i, el) => {
-			chapterImages.push($(el).attr()['src']);
+			const onErrorAttr = $(el).attr().onerror.toString()
+			let image = $(el).attr()['src'];
+			if (onErrorAttr.includes("this.src")) {
+				image = onErrorAttr.replace(/^this\.onerror=null;this\.src=\'/i, '').replace(/';$/i, '')
+			}
+			image = `/mirror?referer=${encodeURIComponent(chapter_link)}&url=${image}`
+
+			chapterImages.push(image)
 		});
+		console.log(chapterImages)
 		return {
 			title,
 			next,

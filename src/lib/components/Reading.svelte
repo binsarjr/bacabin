@@ -20,15 +20,11 @@
 			isRunning = true;
 			for (const image of value.chapterImages) {
 				images[images.length] = image;
-				await sleep(1000);
+				await sleep(2000);
 			}
-			isRunning = false;
 		})();
 	}
 
-	function imageErr(index: number) {
-		images[index] = images[index];
-	}
 </script>
 
 <div>
@@ -42,7 +38,6 @@
 		{#each images as image, i}
 			<img
 				use:useLazyImage
-				on:error={() => imageErr(i)}
 				data-src={image}
 				src="/loading.gif"
 				alt={value.title + ' ' + (i + 1)}
