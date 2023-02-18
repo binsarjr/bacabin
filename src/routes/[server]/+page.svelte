@@ -4,31 +4,22 @@
 	import { page } from '$app/stores';
 	import { reveal } from 'svelte-reveal';
 	import { lazyimage } from 'svelte-lazyimage-cache';
-	import loading from '$lib/assets/loading.gif'
+	import loading from '$lib/assets/loading.gif';
+	import { enhance } from '$app/forms';
+	import { browser } from '$app/environment';
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
+	let formCari: HTMLFormElement;
 	let q = data.q;
 	let tid: any;
-	function search() {
-		const currentUrl = new URL($page.url.toString());
-		currentUrl.searchParams.set('q', q || '');
-
-		goto(currentUrl.toString(), { replaceState: true, noScroll: true });
-	}
 
 	function onSearch() {
 		tid && clearTimeout(tid);
 		tid = setTimeout(() => {
-			search();
+			if (formCari) formCari.submit();
 		}, 5_000);
 	}
-	function keydown(e: any) {
-		onSearch();
-		if (e.keyCode == 13) {
-			tid && clearTimeout(tid);
-			search();
-		}
-	}
+	$: if (q.length > 2 && browser) onSearch();
 </script>
 
 <svelte:head>
@@ -54,30 +45,21 @@
 				>
 			</p>
 		</div>
-		<label for="cari">
-			<span>Silakan Cari Komik Yang Anda inginkan</span>
-			<input
-				autocomplete="false"
-				type="text"
-				class="form-control"
-				id="cari"
-				bind:value={q}
-				on:keydown={keydown}
-				minlength={2}
-				required
-			/>
-			<span
-				>Silakan tekan [ENTER] atau tunggu 5 detik setelah Anda berhenti mengetik dan secara
-				otomatis akan melakukan pencarian</span
-			>
-		</label>
-		{#if q.length}
-			<div class="mt-5">
-				<p>
-					Hasil Pencarian dari <strong>{q}</strong>.
-				</p>
-			</div>
-		{/if}
+		<form method="get" bind:this={formCari}>
+			<label for="cari">
+				<span>Silakan Cari Komik Yang Anda inginkan</span>
+				<!-- svelte-ignore a11y-autofocus -->
+				<input autocomplete="false" name="q" type="text" class="form-control" bind:value={q} placeholder="Cari..."/>
+				<span>Silakan tekan [ENTER] atau tunggu 5 detik untuk melakukan pencarian</span>
+			</label>
+			{#if q.length}
+				<div class="mt-5">
+					<p>
+						Hasil Pencarian dari <strong>{q}</strong>.
+					</p>
+				</div>
+			{/if}
+		</form>
 	</div>
 
 	<div class="py-3">
@@ -94,7 +76,7 @@
 								<img
 									use:lazyimage
 									data-src={list.img}
-									src="{loading}"
+									src={loading}
 									loading="lazy"
 									alt="[img] {list.img}"
 									width="100%"
