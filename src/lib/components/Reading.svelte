@@ -7,6 +7,7 @@
 	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import ClickToScroll from './ClickToScroll.svelte';
+	import placeholderImgSrc from '$lib/assets/placeholder.webp';
 	export let value: ReadChapter;
 	export let server: string;
 
@@ -14,7 +15,6 @@
 	let next: string | null = '/#/next';
 	let chapterList: string | null = '/#/chapterlist';
 	$: chapterImages = value.chapterImages;
-	const placeholderImgSrc = '/placeholder.png';
 
 	$: if (browser) {
 		prev = value.prev ? `/${server}/read/${value.prev}` : null;

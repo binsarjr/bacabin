@@ -4,6 +4,7 @@
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import { reveal } from 'svelte-reveal';
 
+	import loading from '$lib/assets/loading.gif';
 	export let comics: Bookmark[] = [];
 	let server = $page.params.server || '';
 	let filteredComics = comics;
@@ -35,7 +36,7 @@
 							<img
 								use:lazyimage
 								data-src={item.img}
-								src="/loading.gif"
+								src={loading}
 								loading="lazy"
 								alt="[img] {item.title}"
 								width="100%"

@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import { reveal } from 'svelte-reveal';
 	import { lazyimage } from 'svelte-lazyimage-cache';
+	import loading from '$lib/assets/loading.gif'
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
 	let q = data.q;
@@ -93,7 +94,7 @@
 								<img
 									use:lazyimage
 									data-src={list.img}
-									src="/loading.gif"
+									src="{loading}"
 									loading="lazy"
 									alt="[img] {list.img}"
 									width="100%"
