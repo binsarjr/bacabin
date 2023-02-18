@@ -1,11 +1,11 @@
-import { error } from '@sveltejs/kit'
-import type { IBaseKomik } from './BaseKomik/interfaces'
-import Manganato from './en/Manganato'
-import Mangareader from './en/Mangareader'
-import Mangastic from './en/Mangastic'
-import Bacakomik from './id/Bacakomik'
-import KomikIndo from './id/KomikIndo'
-import WestManga from './id/WestManga'
+import { error } from '@sveltejs/kit';
+import type { IBaseKomik } from './BaseKomik/interfaces';
+import Manganato from './en/Manganato';
+import Mangareader from './en/Mangareader';
+import Mangastic from './en/Mangastic';
+import Bacakomik from './id/Bacakomik';
+import KomikIndo from './id/KomikIndo';
+import WestManga from './id/WestManga';
 
 export const servers: { [i: string]: IBaseKomik } = {
 	komikindo: KomikIndo,
@@ -14,7 +14,7 @@ export const servers: { [i: string]: IBaseKomik } = {
 	mangastic: Mangastic,
 	// mgkomik: Mgkomik,
 	westmanga: WestManga,
-	mangareader: Mangareader,
+	mangareader: Mangareader
 	// asura: Asura
 };
 
@@ -26,7 +26,7 @@ export const serverLists = () => {
 			url: server.website,
 			img: server.logo,
 			server: key,
-			lang: server.lang,
+			lang: server.lang
 		};
 	});
 };

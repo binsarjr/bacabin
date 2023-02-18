@@ -1,10 +1,10 @@
-import Cheerio from 'cheerio'
-import { gotScraping } from 'got-scraping'
-import type { IBaseKomik, ReadChapter } from './interfaces'
-import type { Chapter, Komik, KomikDetail } from './types'
+import Cheerio from 'cheerio';
+import { gotScraping } from 'got-scraping';
+import type { IBaseKomik, ReadChapter } from './interfaces';
+import type { Chapter, Komik, KomikDetail } from './types';
 // @ts-ignore
-import humanoid from 'humanoid-js'
-export * from './types'
+import humanoid from 'humanoid-js';
+export * from './types';
 
 // let tunnelingAgent = tunnel.httpsOverHttp({
 //   proxy: {
@@ -32,7 +32,7 @@ export default class BaseKomik implements IBaseKomik {
 	protected readonly request = gotScraping.extend({
 		timeout: {
 			request: 10_000
-		},
+		}
 		// agent: {
 		// 	http: tunnelingAgent,
 		// 	// https: tunnelingAgent,
@@ -73,7 +73,7 @@ export default class BaseKomik implements IBaseKomik {
 			name: this.constructor.name,
 			website: this.website,
 			logo: this.logo,
-			lang: this.lang,
+			lang: this.lang
 		};
 	}
 }

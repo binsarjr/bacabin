@@ -1,5 +1,5 @@
-import { serverLists } from '$lib/scraper'
-import type { Load } from '@sveltejs/kit'
+import { serverLists } from '$lib/scraper';
+import type { Load } from '@sveltejs/kit';
 
 export const load: Load = async () => {
 	const servers = serverLists();

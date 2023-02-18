@@ -21,7 +21,7 @@
 		next = value.next ? `/${server}/read/${value.next}` : null;
 		chapterList = value.showLink ? `/${server}/${value.showLink}` : null;
 	}
-	$:if(browser && next) preloadData(next)
+	$: if (browser && next) preloadData(next);
 
 	function onError(index: number) {
 		return (el: any) => {
