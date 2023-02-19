@@ -61,13 +61,13 @@
 
 <!-- Recreate element when value key is change -->
 {#key $page.url.toString()}
-	<GotoDown />
-	<BackToTop />
+	<!-- <GotoDown />
+	<BackToTop /> -->
 	<div class="mb-[30vh]">
 		<Reading value={data.item} server={data.server} />
 	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div id="reload" on:click={reload}>Reload</div>
+	<!-- <div id="reload" on:click={reload}>Reload</div> -->
 {/key}
 
 <style>

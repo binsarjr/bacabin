@@ -8,6 +8,7 @@
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import ClickToScroll from './ClickToScroll.svelte';
 	import placeholderImgSrc from '$lib/assets/placeholder.webp';
+	import ReaderControl from './ReaderControl.svelte';
 	export let value: ReadChapter;
 	export let server: string;
 
@@ -44,12 +45,13 @@
 	}
 </script>
 
+<ReaderControl {prev} {next} {chapterList} />
 <div>
 	<div class="content">
 		<div class="text-center">
 			<h1>{value.title}</h1>
 		</div>
-		<ChapterPrevNext {prev} {next} {chapterList} />
+		<!-- <ChapterPrevNext {prev} {next} {chapterList} /> -->
 	</div>
 
 	<div class="flex flex-col justify-center items-center">
@@ -69,7 +71,7 @@
 	</div>
 
 	<div class="content">
-		<ChapterPrevNext {prev} {next} {chapterList} />
+		<!-- <ChapterPrevNext {prev} {next} {chapterList} /> -->
 		<div class="text-center">
 			<h1>{value.title}</h1>
 		</div>
