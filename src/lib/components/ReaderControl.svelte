@@ -79,13 +79,17 @@
 						</div>
 						<a
 							href={prev}
-							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-							><ArrowLeft /></a
+							class="p-2 inline-block border border-white rounded"
+							class:hover:bg-white={prev}
+							class:hover:text-black={prev}
+							class:opacity-50={!prev}><ArrowLeft /></a
 						>
 						<a
 							href={next}
-							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-							><ArrowRight /></a
+							class="p-2 inline-block border border-white rounded"
+							class:hover:bg-white={next}
+							class:hover:text-black={next}
+							class:opacity-50={!next}><ArrowRight /></a
 						>
 					</div>
 				</div>
