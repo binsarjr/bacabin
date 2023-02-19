@@ -27,19 +27,19 @@
 		const historyData = {
 			title: data.item.title,
 			server: data.server,
-			id: data.showLink,
+			id: data.item.showLink,
 			link: $page.url.toString()
 		};
 		$historyKomik = [
 			historyData,
-			...$historyKomik.filter((history, index) => {
+			...$historyKomik.filter((history: any, index: number) => {
 				if (index > 100) return false;
-				return history.id != data.showLink;
+				return history.id != data.item.showLink;
 			})
 		];
 		$historyChapter = [
 			historyData,
-			...$historyChapter.filter((history, i) => {
+			...$historyChapter.filter((history: any, i: number) => {
 				if (i > 100) return false;
 				return history.id != data.server + data.item.title;
 			})

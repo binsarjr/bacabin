@@ -1,6 +1,6 @@
-import { mirrorImage, refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
@@ -62,7 +62,7 @@ class Bacakomik extends BaseKomik {
 		const prev = prevAttr ? prevAttr['href'] : null;
 		const nextAttr = $('.nextprev:first-child a:last-child[rel="next"]').attr();
 		const next = nextAttr ? nextAttr['href'] : null;
-		const showLink = $('.nextprev:first-child a .daftarch').parent().attr()['href'];
+		const showLink = $('.ls1 a').attr()['href'];
 
 		const chapterImages: string[] = [];
 		$('#chimg-auh img').each((i, el) => {

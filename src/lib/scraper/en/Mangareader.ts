@@ -1,5 +1,5 @@
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class Mangastic extends BaseKomik {
 	website = 'https://mangareader.cc/';
@@ -100,7 +100,7 @@ class Mangastic extends BaseKomik {
 		const prevAttribute = $('.nextprev a.prev').attr();
 		const prev = prevAttribute ? prevAttribute['href'] : null;
 		const nextAttribute = $('.nextprev a.next').attr();
-		const next = nextAttribute ? null : nextAttribute['href'];
+		const next = nextAttribute ? nextAttribute['href'] :null ;
 		const showLink = $('.postarea h2 a').attr()['href'];
 		return { title, chapterImages, next, prev, showLink };
 	}
