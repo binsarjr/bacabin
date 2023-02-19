@@ -13,7 +13,8 @@
 	// @ts-ignore
 	import Refresh from '~icons/mdi/refresh';
 	import { goto } from '$app/navigation';
-
+	import { fade, fly } from 'svelte/transition';
+	import { readData } from '../stores/read';
 	export let prev: string | null;
 	export let chapterList: string | null;
 	export let next: string | null;
@@ -30,8 +31,9 @@
 </script>
 
 <main class="fixed left-0 transition-all w-full" class:active={expand}>
-    <!-- sementara di nonaktifkan dl -->
-	<!-- <div class="flex flex-col justify-center items-center">
+	<!-- sementara di nonaktifkan dl -->
+	<div class="flex flex-col justify-center items-center">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			class="bg-black rounded-t-md px-10 py-2 cursor-pointer"
 			on:click={() => (expand = !expand)}
@@ -42,47 +44,57 @@
 				<ArrowTop />
 			{/if}
 		</div>
-	</div> -->
+	</div>
 	<div class="bg-black py-2">
-		<div class="px-2 w-full md:w-3/4">
-			<div class="flex gap-2 justify-end">
-				<a
-					href={chapterList}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-					><Document /></a
-				>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					on:click={reload}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-				>
-					<Refresh />
+		<div class="px-2 w-full md:w-1/2 mx-auto">
+			<div>
+				<div class="flex gap-2 justify-between">
+					<div />
+					<div>
+						<a
+							href={chapterList}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
+							><Document /></a
+						>
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div
+							on:click={reload}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black cursor-pointer"
+						>
+							<Refresh />
+						</div>
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div
+							on:click={goTop}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black cursor-pointer"
+						>
+							<ArrowTop />
+						</div>
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div
+							on:click={goDown}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black cursor-pointer"
+						>
+							<ArrowBottom />
+						</div>
+						<a
+							href={prev}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
+							><ArrowLeft /></a
+						>
+						<a
+							href={next}
+							class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
+							><ArrowRight /></a
+						>
+					</div>
 				</div>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					on:click={goTop}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-				>
-					<ArrowTop />
-				</div>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					on:click={goDown}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-				>
-					<ArrowBottom />
-				</div>
-				<a
-					href={prev}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-					><ArrowLeft /></a
-				>
-				<a
-					href={next}
-					class="p-2 inline-block border border-white rounded hover:bg-white hover:text-black"
-					><ArrowRight /></a
-				>
 			</div>
+			{#if expand}
+				<div class="py-5">
+					<h2>{$readData?.title}</h2>
+				</div>
+			{/if}
 		</div>
 	</div>
 </main>
@@ -95,10 +107,13 @@
 		user-select: none;
 		-webkit-touch-callout: none;
 	}
-	main:not(.active) {
+	main {
+		bottom: 0;
+	}
+	/* main:not(.active) {
 		bottom: 0;
 	}
 	main.active {
-		bottom: 10px;
-	}
+		bottom: 0;
+	} */
 </style>

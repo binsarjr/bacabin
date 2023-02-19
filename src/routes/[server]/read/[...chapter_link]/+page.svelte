@@ -8,7 +8,9 @@
 	import type { PageData } from './$types';
 	import Reading from '$lib/components/Reading.svelte';
 	import { chapterImagesStore, chapterLink } from '$lib/stores/image-caches';
+	import { readData } from '../../../../lib/stores/read';
 	export let data: PageData;
+	$: $readData = data.item;
 	let preloadImages: string[] = [];
 	$: {
 		data.item.chapterImages;
