@@ -12,9 +12,9 @@
 	let formCari: HTMLFormElement;
 	let q = data.q;
 	let tid: any;
-
+	const resetCari = () => tid && clearTimeout(tid) 
 	function onSearch() {
-		tid && clearTimeout(tid);
+		resetCari()
 		tid = setTimeout(() => {
 			if (formCari) formCari.submit();
 		}, 5_000);
@@ -45,7 +45,7 @@
 				>
 			</p>
 		</div>
-		<form method="get" bind:this={formCari}>
+		<form method="get" on:submit={resetCari} bind:this={formCari}>
 			<label for="cari">
 				<span>Silakan Cari Komik Yang Anda inginkan</span>
 				<!-- svelte-ignore a11y-autofocus -->
