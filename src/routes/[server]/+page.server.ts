@@ -1,6 +1,6 @@
 import { getServerByKeyOrFail } from '$lib/scraper'
+import type { Komik } from '$lib/scraper/BaseKomik'
 import { error, type Load } from '@sveltejs/kit'
-import type { Komik } from '../../../../../../../Workspace/BINSAR/program/bacabin/src/lib/scraper/BaseKomik'
 
 export const load: Load = async ({ params, url }) => {
 	const server = getServerByKeyOrFail(params.server as string);

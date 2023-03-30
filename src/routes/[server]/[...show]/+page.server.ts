@@ -1,5 +1,7 @@
 import { error, type Load } from '@sveltejs/kit'
-import type { KomikDetail } from '../../../../../../../../Workspace/BINSAR/program/bacabin/src/lib/scraper/BaseKomik'
+
+import type { KomikDetail } from '$lib/scraper/BaseKomik'
+
 
 export const load: Load = async ({ params, url }) => {
 	try {

@@ -1,5 +1,6 @@
 import { error, type Load } from '@sveltejs/kit'
-import type { ReadChapter } from '../../../../../../../../../Workspace/BINSAR/program/bacabin/src/lib/scraper/BaseKomik/interfaces'
+
+import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces'
 
 export const load: Load = async ({ params,url }) => {
 	const item = async () => {
