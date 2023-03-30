@@ -1,13 +1,15 @@
-import { getServerByKeyOrFail } from '$lib/scraper'
 import { error, type Load } from '@sveltejs/kit'
+import type { ReadChapter } from '../../../../../../../../../Workspace/BINSAR/program/bacabin/src/lib/scraper/BaseKomik/interfaces'
 
-export const load: Load = async ({ params }) => {
-	const server = getServerByKeyOrFail(params.server as string);
+export const load: Load = async ({ params,url }) => {
 	const item = async () => {
-		const item =await server.read(params.chapter_link as string);
-	if (!item) throw error(404, 'Content Tidak ditemukan');
-	return item
+		const target = new URL(url.toString())
+		target.pathname = '/services/' + params.server + '/read/' + params.chapter_link
+		const resp = await fetch(target.toString())
+		if(resp.status==404) throw error(404, 'Content Tidak ditemukan')
+		const item:ReadChapter = await resp.json()
+		return item
 	}
-	
-	return { item: item(), server: params.server as string };
-};
+
+	return { item: item(), server: params.server as string }
+}

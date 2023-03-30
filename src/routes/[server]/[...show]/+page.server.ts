@@ -1,17 +1,21 @@
-import { getServerByKeyOrFail } from '$lib/scraper';
-import { error, type Load } from '@sveltejs/kit';
+import { error, type Load } from '@sveltejs/kit'
+import type { KomikDetail } from '../../../../../../../../Workspace/BINSAR/program/bacabin/src/lib/scraper/BaseKomik'
 
-export const load: Load = async ({ params }) => {
-	const server = getServerByKeyOrFail(params.server as string);
+export const load: Load = async ({ params, url }) => {
 	try {
-		const item = await server.show(params.show as string);
-		if (!item) throw error(404, 'Data tidak ditemukan');
+		const target = new URL(url.toString())
+		target.pathname = '/services/' + params.server + '/' + params.show
+		const resp = await fetch(target.toString())
+
+		if (resp.status == 404) throw error(404, 'Data tidak ditemukan')
+
+		let item: KomikDetail = await resp.json()
 		return {
 			item,
 			server: params.server as string,
 			show: params.show as string
-		};
+		}
 	} catch (e) {
-		throw error(500, 'Gagal mengambil resources ke server yang di tuju');
+		throw error(500, 'Gagal mengambil resources ke server yang di tuju')
 	}
-};
+}
