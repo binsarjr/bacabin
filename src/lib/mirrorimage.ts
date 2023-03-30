@@ -17,8 +17,8 @@ export const mirrorImage = () => {
 
 export const refererImage = (url: string, referer: string) => {
 	const mirrorLink = new URL(mirrorImage());
+	mirrorLink.searchParams.set('cache', encodeURIComponent('public, max-age=3600'));
 	mirrorLink.searchParams.set('referer', referer);
 	mirrorLink.searchParams.set('url', url);
-	mirrorLink.searchParams.set('cache', encodeURIComponent('public, max-age=3600'));
 	return mirrorLink.toString();
 };
