@@ -1,4 +1,8 @@
-const mirrorImages = ['https://mirrorimage-seven.vercel.app'];
+const mirrorImages = ['https://mirrorimage-seven.vercel.app',
+
+// test edge-function
+'https://testmirrorimage.vercel.app/'
+];
 
 // https://mirrorimage[1-30].vercel.app
 for (let i = 1; i <= 30; i++) mirrorImages.push(`https://mirrorimage${i}.vercel.app`);
