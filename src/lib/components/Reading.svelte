@@ -60,7 +60,6 @@
 				<img
 					use:lazyimage
 					data-src={image}
-					on:error={onError(i)}
 					src={placeholderImgSrc}
 					alt={value.title + ' ' + (i + 1)}
 					loading="lazy"
