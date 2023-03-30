@@ -1,7 +1,7 @@
 const mirrorImages = ['https://mirrorimage-seven.vercel.app',
 
 // test edge-function
-'https://testmirrorimage.vercel.app/'
+// 'https://testmirrorimage.vercel.app/'
 ];
 
 // https://mirrorimage[1-30].vercel.app
