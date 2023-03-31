@@ -7,7 +7,7 @@
 	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import ClickToScroll from './ClickToScroll.svelte';
-	import placeholderImgSrc from '$lib/assets/placeholder.webp';
+	import placeholderImgSrc from '$lib/assets/placeholder.gif';
 	import ReaderControl from './ReaderControl.svelte';
 	export let value: ReadChapter;
 	export let server: string;
