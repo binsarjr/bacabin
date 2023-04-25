@@ -1,5 +1,7 @@
 <script lang="ts">
 	// @ts-ignore
+	import NProgress from 'nprogress';
+	// @ts-ignore
 	import ArrowTop from '~icons/mdi/arrow-top-bold';
 	// @ts-ignore
 	import ArrowBottom from '~icons/mdi/arrow-bottom-bold';
@@ -19,8 +21,10 @@
 	export let next: string | null;
 	let expand = false;
 	async function reload() {
-		invalidate('reading');
 		goTop()
+		NProgress.start()
+		await invalidate('reading');
+		NProgress.done()
 	}
 	function goTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
