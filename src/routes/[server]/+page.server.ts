@@ -1,6 +1,6 @@
-import { getServerByKeyOrFail } from '$lib/scraper';
-import type { Komik } from '$lib/scraper/BaseKomik';
-import { error, type Load } from '@sveltejs/kit';
+import { getServerByKeyOrFail } from '$lib/scraper'
+import type { Komik } from '$lib/scraper/BaseKomik'
+import { error, type Load } from '@sveltejs/kit'
 
 export const load: Load = async ({ params, url }) => {
 	const server = getServerByKeyOrFail(params.server as string);

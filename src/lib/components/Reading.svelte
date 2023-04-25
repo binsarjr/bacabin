@@ -45,7 +45,7 @@
 	}
 </script>
 
-<ReaderControl {prev} {next} bind:chapterList />
+<ReaderControl bind:prev bind:next bind:chapterList />
 <div>
 	<div class="content">
 		<div class="text-center">
