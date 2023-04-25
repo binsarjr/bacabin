@@ -71,7 +71,7 @@
 
 	<div class="py-3">
 		<h2 class="mb-2">Baca Komik</h2>
-		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 ">
+		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-2 gap-y-10">
 			{#if data.lists.length === 0}
 				Data Tidak Ditemukan.Coba cari komik lain
 			{/if}
