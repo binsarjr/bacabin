@@ -12,15 +12,15 @@
 	import ArrowRight from '~icons/mdi/arrow-right-bold';
 	// @ts-ignore
 	import Refresh from '~icons/mdi/refresh';
-	import { goto, invalidate } from '$app/navigation';
-	import { fade, fly } from 'svelte/transition';
+	import { invalidate } from '$app/navigation';
 	import { readData } from '../stores/read';
 	export let prev: string | null;
 	export let chapterList: string | null;
 	export let next: string | null;
 	let expand = false;
 	async function reload() {
-	invalidate('reading')
+		invalidate('reading');
+		goTop()
 	}
 	function goTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });

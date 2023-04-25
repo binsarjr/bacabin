@@ -1,20 +1,20 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { goto } from '$app/navigation';
+
 	import { page } from '$app/stores';
 	import { reveal } from 'svelte-reveal';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import loading from '$lib/assets/loading.gif';
-	import { enhance } from '$app/forms';
 	import { browser } from '$app/environment';
+	import MangaCard from '../../lib/components/MangaCard.svelte';
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
 	let formCari: HTMLFormElement;
 	let q = data.q;
 	let tid: any;
-	const resetCari = () => tid && clearTimeout(tid) 
+	const resetCari = () => tid && clearTimeout(tid);
 	function onSearch() {
-		resetCari()
+		resetCari();
 		tid = setTimeout(() => {
 			if (formCari) formCari.submit();
 		}, 5_000);
@@ -49,7 +49,14 @@
 			<label for="cari">
 				<span>Silakan Cari Komik Yang Anda inginkan</span>
 				<!-- svelte-ignore a11y-autofocus -->
-				<input autocomplete="false" name="q" type="text" class="form-control" bind:value={q} placeholder="Cari..."/>
+				<input
+					autocomplete="false"
+					name="q"
+					type="text"
+					class="form-control"
+					bind:value={q}
+					placeholder="Cari..."
+				/>
 				<span>Silakan tekan [ENTER] atau tunggu 5 detik untuk melakukan pencarian</span>
 			</label>
 			{#if q.length}
@@ -64,30 +71,13 @@
 
 	<div class="py-3">
 		<h2 class="mb-2">Baca Komik</h2>
-		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-5 gap-y-10">
+		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 ">
 			{#if data.lists.length === 0}
 				Data Tidak Ditemukan.Coba cari komik lain
 			{/if}
 			{#key $page.url.toString()}
-				{#each data.lists as list}
-					<div class="cardpost" use:reveal>
-						<a href={[currentPathname, list.show].join('/')}>
-							<div class="image rounded">
-								<img
-									use:lazyimage
-									data-src={list.img}
-									src={loading}
-									loading="lazy"
-									alt="[img] {list.img}"
-									width="100%"
-								/>
-								<div class="text-image">{list.title}</div>
-							</div>
-							<div>
-								<p class="truncate ...">{list.title}</p>
-							</div>
-						</a>
-					</div>
+				{#each data.lists as item}
+					<MangaCard {item}/>
 				{/each}
 			{/key}
 		</div>
