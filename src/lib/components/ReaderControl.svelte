@@ -14,7 +14,7 @@
 	import ArrowRight from '~icons/mdi/arrow-right-bold';
 	// @ts-ignore
 	import Refresh from '~icons/mdi/refresh';
-	import { invalidate } from '$app/navigation';
+	import { invalidate, preloadData } from '$app/navigation';
 	import { readData } from '../stores/read';
 	export let prev: string | null;
 	export let chapterList: string | null;
@@ -24,6 +24,7 @@
 		goTop()
 		NProgress.start()
 		await invalidate('reading');
+		next && preloadData(next)
 		NProgress.done()
 	}
 	function goTop() {

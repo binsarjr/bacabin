@@ -1,10 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { Bookmark } from '$lib/stores/bookmarks';
-	import { lazyimage } from 'svelte-lazyimage-cache';
-	import { reveal } from 'svelte-reveal';
-
-	import loading from '$lib/assets/loading.gif';
 	import MangaCard from './MangaCard.svelte';
 	export let comics: Bookmark[] = [];
 	let server = $page.params.server || '';

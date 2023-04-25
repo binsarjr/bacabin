@@ -51,28 +51,26 @@
 		<div class="text-center">
 			<h1>{value.title}</h1>
 		</div>
-		<!-- <ChapterPrevNext {prev} {next} {chapterList} /> -->
 	</div>
 
 	<div class="flex flex-col justify-center items-center">
 		<ClickToScroll>
 			{#each chapterImages as image, i}
-			{#key  image}
-				<img
-					use:lazyimage
-					data-src={image}
-					src={placeholderImgSrc}
-					alt={value.title + ' ' + (i + 1)}
-					loading="lazy"
-					class="mx-auto"
-				/>
-			{/key}
+				{#key image}
+					<img
+						use:lazyimage
+						data-src={image}
+						src={placeholderImgSrc}
+						alt={value.title + ' ' + (i + 1)}
+						loading="lazy"
+						class="mx-auto"
+					/>
+				{/key}
 			{/each}
 		</ClickToScroll>
 	</div>
 
 	<div class="content">
-		<!-- <ChapterPrevNext {prev} {next} {chapterList} /> -->
 		<div class="text-center">
 			<h1>{value.title}</h1>
 		</div>
