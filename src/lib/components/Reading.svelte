@@ -45,7 +45,7 @@
 	}
 </script>
 
-<ReaderControl {prev} {next} {chapterList} />
+<ReaderControl {prev} {next} bind:chapterList />
 <div>
 	<div class="content">
 		<div class="text-center">
@@ -57,6 +57,7 @@
 	<div class="flex flex-col justify-center items-center">
 		<ClickToScroll>
 			{#each chapterImages as image, i}
+			{#key  image}
 				<img
 					use:lazyimage
 					data-src={image}
@@ -65,6 +66,7 @@
 					loading="lazy"
 					class="mx-auto"
 				/>
+			{/key}
 			{/each}
 		</ClickToScroll>
 	</div>

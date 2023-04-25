@@ -12,7 +12,7 @@
 	import ArrowRight from '~icons/mdi/arrow-right-bold';
 	// @ts-ignore
 	import Refresh from '~icons/mdi/refresh';
-	import { goto } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { fade, fly } from 'svelte/transition';
 	import { readData } from '../stores/read';
 	export let prev: string | null;
@@ -20,7 +20,7 @@
 	export let next: string | null;
 	let expand = false;
 	async function reload() {
-		goto(window.location.href, { noScroll: true });
+	invalidate('reading')
 	}
 	function goTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
