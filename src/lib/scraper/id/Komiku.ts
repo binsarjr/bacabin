@@ -15,11 +15,13 @@ class Komiku extends BaseKomik {
 		const results: Komik[] = [];
 		$('.daftar > div').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr();
-			const img = $(el).find('img').attr()['data-src'];
+			
+			const img = $(el).find('img').attr();
+			if(!img) return
 			results.push({
 				show: anchorAttribute['href'],
 				title: $(el).find('h3').text().trim(),
-				img
+				img: img['data-src']
 			});
 		});
 		
