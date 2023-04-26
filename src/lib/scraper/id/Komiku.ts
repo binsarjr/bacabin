@@ -1,5 +1,5 @@
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Komiku extends BaseKomik {
 	website = 'https://komiku.id/';
@@ -15,16 +15,15 @@ class Komiku extends BaseKomik {
 		const results: Komik[] = [];
 		$('.daftar > div').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr();
-			
+
 			const img = $(el).find('img').attr();
-			if(!img) return
+			if (!img) return;
 			results.push({
 				show: anchorAttribute['href'],
 				title: $(el).find('h3').text().trim(),
 				img: img['data-src']
 			});
 		});
-		
 
 		return results;
 	}
@@ -32,17 +31,16 @@ class Komiku extends BaseKomik {
 	async show(link: string): Promise<KomikDetail | null> {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerioHumanoid(link);
-		const title = $('#Judul h1')
-			.text().trim()
-			
+		const title = $('#Judul h1').first().text().trim();
+
 		const img = $('#Informasi img').attr()['src'];
 
-		const chapters: Chapter[] = (await chapFuture).map(chapter => {
-			let targetLink=new URL(link);
-			targetLink.pathname=chapter.link
-			
-			chapter.link=targetLink.toString()
-			return chapter
+		const chapters: Chapter[] = (await chapFuture).map((chapter) => {
+			let targetLink = new URL(link);
+			targetLink.pathname = chapter.link;
+
+			chapter.link = targetLink.toString();
+			return chapter;
 		});
 		return { title, img, chapters };
 	}
@@ -61,35 +59,32 @@ class Komiku extends BaseKomik {
 
 	async read(chapter_link: string): Promise<ReadChapter | null> {
 		const $ = await this.requestCheerioHumanoid(chapter_link);
-		const title = $('#Judul h1')
-			.text().trim()
-
+		const title = $('#Judul h1').first().text().trim();
 
 		const baseLink = new URL(chapter_link);
 
-		const prevAttr = $('.nxpr a [data-icon="caret-left"]').parent().attr()
-		const nextAttr = $('.nxpr a [data-icon="caret-right"]').parent().attr()
+		const prevAttr = $('.nxpr a [data-icon="caret-left"]').parent().attr();
+		const nextAttr = $('.nxpr a [data-icon="caret-right"]').parent().attr();
 
-		let prev =  null;
-		if(prevAttr) {
-			baseLink.pathname = prevAttr['href']
-			prev=baseLink.toString()
+		let prev = null;
+		if (prevAttr) {
+			baseLink.pathname = prevAttr['href'];
+			prev = baseLink.toString();
 		}
 
-		let next =  null;
-		if(nextAttr) {
-			baseLink.pathname = nextAttr['href']
-			next=baseLink.toString()
+		let next = null;
+		if (nextAttr) {
+			baseLink.pathname = nextAttr['href'];
+			next = baseLink.toString();
 		}
 
-		baseLink.pathname=$('#setting a').attr()['href'];
-		const showLink = baseLink.toString()
+		baseLink.pathname = $('#setting a').attr()['href'];
+		const showLink = baseLink.toString();
 
 		const chapterImages: string[] = [];
 
 		$('#Baca_Komik img').each((i, el) => {
 			let image = $(el).attr()['src'];
-		
 
 			chapterImages.push(image);
 		});
