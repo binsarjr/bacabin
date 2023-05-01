@@ -32,7 +32,7 @@
 	let next: string | null = '/#/next';
 	let chapterList: string | null = '/#/chapterlist';
 
-	$: hasNext = !!next
+	$: hasNext = !!next;
 	$: if (pageState.length) prev = pageState[currentState].navigation.prev;
 	$: if (pageState.length) next = pageState[currentState].navigation.next;
 	$: if (pageState.length) chapterList = pageState[currentState].navigation.chapterList;
@@ -101,12 +101,13 @@
 			if ($readData?.item.next) {
 				loadingNext = true;
 				let result = await readChapter($readData.item.next);
-				let next = '/' + data.server + '/read/' + result?.next;
+				let next = result?.next ? '/' + data.server + '/read/' + result?.next : null;
+				let prev = result?.prev ? '/' + data.server + '/read/' + result?.prev : null;
 				if (result && loadingNext) {
 					let item = {
 						item: result,
 						navigation: {
-							prev: '/' + data.server + '/read/' + result.prev,
+							prev,
 							next,
 							chapterList: '/' + data.server + '/' + result.showLink
 						}
@@ -114,7 +115,7 @@
 
 					pageState[pageState.length] = item;
 					currentState += 1;
-					if (currentState + 1 == batasState && result && result.next) preloadData(next);
+					if (currentState + 1 == batasState && result && next) preloadData(next);
 					history.pushState({}, '', '/' + data.server + '/read/' + $readData.item.next);
 				}
 				loadingNext = false;
@@ -153,11 +154,15 @@
 {#key $page.url.toString()}
 	<!-- <GotoDown />
 	<BackToTop /> -->
-	<div class="mb-[30vh]">
-		{#each pageState as state, i}
-			<Reading bind:value={state.item} />
-			<div class="h-[25vh]" />
-		{/each}
+	<div class="text-center mb-[30vh]">
+		<div class="flex flex-col gap-10">
+			{#each pageState as state, i}
+				<Reading bind:value={state.item} />
+				{#if i == pageState.length - 1 && hasNext}
+					<div class="h-[30vh] mt-5">scroll terus kebawah untuk load data halaman berikutnya</div>
+				{/if}
+			{/each}
+		</div>
 		{#if loadingNext}
 			<img src={loading} alt="loader" class="mx-auto" />
 			<p class="text-center">Lagi ngambil data berikutnya</p>

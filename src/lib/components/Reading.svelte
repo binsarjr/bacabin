@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { preloadData } from '$app/navigation';
-	import ChapterPrevNext from '$lib/components/ChapterPrevNext.svelte';
 	import { refererImage } from '$lib/mirrorimage';
 
 	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import ClickToScroll from './ClickToScroll.svelte';
 	import placeholderImgSrc from '$lib/assets/placeholder.gif';
-	import ReaderControl from './ReaderControl.svelte';
 	export let value: ReadChapter;
 
 	$: chapterImages = value.chapterImages;
@@ -32,20 +28,9 @@
 			}, 1000);
 		};
 	}
-
-	let element: Element;
-	const onScroll = () => {
-		// console.log('not yet', element.scrollHeight, element.scrollTop, element.clientHeight,window.scrollY);
-		 if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-        // you're at the bottom of the page
-		console.log('nah')
-    }
-		console.log(window.scrollY,window.outerHeight)
-	};
 </script>
 
-
-<div bind:this={element} on:scroll={onScroll}>
+<div>
 	<div class="content">
 		<div class="text-center">
 			<h1>{value.title}</h1>
