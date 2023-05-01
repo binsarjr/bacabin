@@ -67,6 +67,7 @@ declare interface OpenGraph {
     width?: number | string;
     height?: number | string;
   }>;
+  image?: string
   images?: Array<{
     url?: string;
     secure_url?: string;

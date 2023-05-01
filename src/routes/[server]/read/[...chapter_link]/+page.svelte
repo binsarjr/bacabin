@@ -65,9 +65,13 @@ openGraph={{
 	url: $page.url.toString(),
 	title:data.server+" - Bacabin",
 	description: `Baca ${data.item.title} Mirror dari ${data.server}`,
+	image:data.item.chapterImages[0],
 	images: [
 		{
-			url: data.item.chapterImages[0]
+			type:'image/jpeg',
+			url: data.item.chapterImages[0],
+			width: '300',
+			height: '300',
 		}
 	],
 	site_name: data.server+" - Bacabin"
