@@ -10,19 +10,8 @@
 	import placeholderImgSrc from '$lib/assets/placeholder.gif';
 	import ReaderControl from './ReaderControl.svelte';
 	export let value: ReadChapter;
-	export let server: string;
 
-	let prev: string | null = '/#/prev';
-	let next: string | null = '/#/next';
-	let chapterList: string | null = '/#/chapterlist';
 	$: chapterImages = value.chapterImages;
-
-	$: if (browser) {
-		prev = value.prev ? `/${server}/read/${value.prev}` : null;
-		next = value.next ? `/${server}/read/${value.next}` : null;
-		chapterList = value.showLink ? `/${server}/${value.showLink}` : null;
-	}
-	$: if (browser && next) preloadData(next);
 
 	function onError(index: number) {
 		return (el: any) => {
@@ -43,10 +32,20 @@
 			}, 1000);
 		};
 	}
+
+	let element: Element;
+	const onScroll = () => {
+		// console.log('not yet', element.scrollHeight, element.scrollTop, element.clientHeight,window.scrollY);
+		 if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+        // you're at the bottom of the page
+		console.log('nah')
+    }
+		console.log(window.scrollY,window.outerHeight)
+	};
 </script>
 
-<ReaderControl bind:prev bind:next bind:chapterList />
-<div>
+
+<div bind:this={element} on:scroll={onScroll}>
 	<div class="content">
 		<div class="text-center">
 			<h1>{value.title}</h1>

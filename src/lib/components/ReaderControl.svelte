@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { readData } from './../stores/read';
 	// @ts-ignore
 	import NProgress from 'nprogress';
 	// @ts-ignore
@@ -15,17 +16,25 @@
 	// @ts-ignore
 	import Refresh from '~icons/mdi/refresh';
 	import { invalidate, preloadData } from '$app/navigation';
-	import { readData } from '../stores/read';
-	export let prev: string | null;
-	export let chapterList: string | null;
-	export let next: string | null;
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
+	let prev: string | null = '/#/prev';
+	let next: string | null = '/#/next';
+	let chapterList: string | null = '/#/chapterlist';
+
+	$: if (browser && $readData) prev = $readData.navigation.prev;
+	$: if (browser && $readData) next = $readData.navigation.next;
+	$: if (browser && $readData) chapterList = $readData.navigation.chapterList;
+
 	let expand = false;
 	async function reload() {
-		goTop()
-		NProgress.start()
-		await invalidate('reading');
-		next && preloadData(next)
-		NProgress.done()
+		location.reload();
+		// goTop()
+		// NProgress.start()
+		// await invalidate('reading');
+		// next && preloadData(next)
+		// NProgress.done()
 	}
 	function goTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -101,7 +110,7 @@
 			</div>
 			{#if expand}
 				<div class="py-5">
-					<h2>{$readData?.title}</h2>
+					<h2>{$readData?.item.title}</h2>
 				</div>
 			{/if}
 		</div>
