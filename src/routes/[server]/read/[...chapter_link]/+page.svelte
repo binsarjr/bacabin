@@ -9,6 +9,7 @@
 	import Reading from '$lib/components/Reading.svelte';
 	import { chapterImagesStore, chapterLink } from '$lib/stores/image-caches';
 	import { readData } from '../../../../lib/stores/read';
+	import SvelteSeo from '../../../../lib/components/Seo/SvelteSeo.svelte';
 	export let data: PageData;
 	$: $readData = data.item;
 	let preloadImages: string[] = [];
@@ -29,7 +30,7 @@
 		const historyData = {
 			title: data.item.title,
 			server: data.server,
-			id: data.item.showLink,
+			id: data.item.showLink!,
 			link: $page.url.toString()
 		};
 		$historyKomik = [
@@ -53,6 +54,25 @@
 	}
 	save();
 </script>
+
+<SvelteSeo
+title={data.server+" - Bacabin"}
+description={"Mirror dari "+data.server}	
+canonical={$page.url.toString()}
+keywords={data.server+",bacabin"}
+openGraph={{
+	type: "website",
+	url: $page.url.toString(),
+	title:data.server+" - Bacabin",
+	description: `Baca ${data.item.title} Mirror dari ${data.server}`,
+	images: [
+		{
+			url: data.item.chapterImages[0]
+		}
+	],
+	site_name: data.server+" - Bacabin"
+}}
+></SvelteSeo>
 
 <svelte:head>
 	<title>{data.item.title}</title>

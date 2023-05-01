@@ -7,6 +7,7 @@
 	import loading from '$lib/assets/loading.gif';
 	import { browser } from '$app/environment';
 	import MangaCard from '../../lib/components/MangaCard.svelte';
+	import SvelteSeo from '../../lib/components/Seo/SvelteSeo.svelte';
 	export let data: PageData;
 	const currentPathname = $page.url.pathname;
 	let formCari: HTMLFormElement;
@@ -21,6 +22,24 @@
 	}
 	$: if (q.length > 2 && browser) onSearch();
 </script>
+<SvelteSeo
+title={data.server.name+" - Bacabin"}
+description={"Mirror dari "+data.server.name}	
+canonical={data.server.website}
+keywords={data.server.name}
+openGraph={{
+	type: "website",
+	url: $page.url.toString(),
+	title:data.server.name+" - Bacabin",
+	description: "Mirror dari "+data.server.name,
+	images: [
+		{
+			url: data.server.logo
+		}
+	],
+	site_name: data.server.name+" - Bacabin"
+}}
+></SvelteSeo>
 
 <svelte:head>
 	<title>{data.server.name} - BacaBin</title>

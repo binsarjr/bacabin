@@ -10,6 +10,7 @@
 	import { setDefaultOptions } from 'svelte-reveal';
 	import { browser } from '$app/environment';
 	import { preloadCode } from '$app/navigation';
+	import SvelteSeo from '../lib/components/Seo/SvelteSeo.svelte';
 
 	setDefaultOptions({
 		transition: 'blur',
@@ -33,6 +34,22 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<SvelteSeo
+	title="BacaBin"
+	description="Tempat baca komik gratis tanpa iklan"
+	canonical={$page.url.toString()}
+	keywords="manhwa,manhua,komik"
+	openGraph={{
+	type: "website",
+	url: $page.url.toString(),
+	title:"Bacabin",
+	description:"Tempat baca komik gratis tanpa iklan",
+	site_name: "Bacabin"
+}}
+/>
+</svelte:head>
 
 <main id="layoutapp" class="py-5">
 	<div class="mb-5 content flex gap-5 font-semibold">
