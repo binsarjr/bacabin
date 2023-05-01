@@ -56,27 +56,27 @@
 </script>
 
 <SvelteSeo
-title={data.server+" - Bacabin"}
-description={"Mirror dari "+data.server}	
-canonical={$page.url.toString()}
-keywords={data.server+",bacabin"}
-openGraph={{
-	type: "website",
-	url: $page.url.toString(),
-	title:data.server+" - Bacabin",
-	description: `Baca ${data.item.title} Mirror dari ${data.server}`,
-	image:data.item.chapterImages[0],
-	images: [
-		{
-			type:'image/jpeg',
-			url: data.item.chapterImages[0],
-			width: '300',
-			height: '300',
-		}
-	],
-	site_name: data.server+" - Bacabin"
-}}
-></SvelteSeo>
+	title={data.server + ' - Bacabin'}
+	description={'Mirror dari ' + data.server}
+	canonical={$page.url.toString()}
+	keywords={data.server + ',bacabin'}
+	openGraph={{
+		type: 'website',
+		url: $page.url.toString(),
+		title: data.server + ' - Bacabin',
+		description: `Baca ${data.item.title} Mirror dari ${data.server}`,
+		image: data.item.chapterImages[0],
+		images: [
+			{
+				type: 'image/jpeg',
+				url: data.item.chapterImages[0],
+				width: '300',
+				height: '300'
+			}
+		],
+		site_name: data.server + ' - Bacabin'
+	}}
+/>
 
 <svelte:head>
 	<title>{data.item.title}</title>

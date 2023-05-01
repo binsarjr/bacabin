@@ -22,24 +22,29 @@
 	}
 	$: if (q.length > 2 && browser) onSearch();
 </script>
+
 <SvelteSeo
-title={data.server.name+" - Bacabin"}
-description={"Mirror dari "+data.server.name}	
-canonical={data.server.website}
-keywords={data.server.name}
-openGraph={{
-	type: "website",
-	url: $page.url.toString(),
-	title:data.server.name+" - Bacabin",
-	description: "Mirror dari "+data.server.name,
-	images: [
-		{
-			url: data.server.logo
-		}
-	],
-	site_name: data.server.name+" - Bacabin"
-}}
-></SvelteSeo>
+	title={data.server.name + ' - Bacabin'}
+	description={'Mirror dari ' + data.server.name}
+	canonical={data.server.website}
+	keywords={data.server.name}
+	openGraph={{
+		type: 'website',
+		url: $page.url.toString(),
+		title: data.server.name + ' - Bacabin',
+		description: 'Mirror dari ' + data.server.name,
+		image: data.server.logo,
+		images: [
+			{
+				type: 'image/jpeg',
+				url: data.server.logo,
+				width: '300',
+				height: '300'
+			}
+		],
+		site_name: data.server.name + ' - Bacabin'
+	}}
+/>
 
 <svelte:head>
 	<title>{data.server.name} - BacaBin</title>
@@ -50,8 +55,11 @@ openGraph={{
 	<div class="my-10 mx-auto">
 		<img src={data.server.logo} alt={data.server.name} width="100px" />
 		<h5>
-			@credit: <a target="_blank" rel="noreferrer" href={data.server.website} class="text-blue-500 hover:text-blue-800"
-				>{data.server.website}</a
+			@credit: <a
+				target="_blank"
+				rel="noreferrer"
+				href={data.server.website}
+				class="text-blue-500 hover:text-blue-800">{data.server.website}</a
 			>
 		</h5>
 		<div class="my-10 tracking-wide">
@@ -96,7 +104,7 @@ openGraph={{
 			{/if}
 			{#key $page.url.toString()}
 				{#each data.lists as item}
-					<MangaCard {item}/>
+					<MangaCard {item} />
 				{/each}
 			{/key}
 		</div>

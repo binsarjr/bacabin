@@ -21,9 +21,7 @@
 		// Full list: https://github.com/rstacruz/nprogress#configuration
 		minimum: 0.16
 	});
-	$: if (browser)
-		preloadCode('*')
-	
+	$: if (browser) preloadCode('*');
 
 	$: {
 		if ($navigating) {
@@ -35,21 +33,19 @@
 	}
 </script>
 
-<svelte:head>
-	<SvelteSeo
+<SvelteSeo
 	title="BacaBin"
 	description="Tempat baca komik gratis tanpa iklan"
 	canonical={$page.url.toString()}
 	keywords="manhwa,manhua,komik"
 	openGraph={{
-	type: "website",
-	url: $page.url.toString(),
-	title:"Bacabin",
-	description:"Tempat baca komik gratis tanpa iklan",
-	site_name: "Bacabin"
-}}
+		type: 'website',
+		url: $page.url.toString(),
+		title: 'Bacabin',
+		description: 'Tempat baca komik gratis tanpa iklan',
+		site_name: 'Bacabin'
+	}}
 />
-</svelte:head>
 
 <main id="layoutapp" class="py-5">
 	<div class="mb-5 content flex gap-5 font-semibold">
