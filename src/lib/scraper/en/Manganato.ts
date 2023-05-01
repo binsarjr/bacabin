@@ -1,11 +1,10 @@
-import { mirrorImage, refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
-import { snakeCase } from '../supports';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
+import { snakeCase } from '../supports'
 
 class Manganato extends BaseKomik {
 	website = 'https://manganato.com';
-	logo = 'https://readmanganato.com/favicon.png';
 	lang = 'english';
 	async latest() {
 		const $ = await this.requestCheerio(this.website);

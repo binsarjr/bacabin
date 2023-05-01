@@ -1,8 +1,8 @@
-import type { Chapter, Komik, KomikDetail } from './types';
+import type { Chapter, Komik, KomikDetail } from './types'
 
 export interface IBaseKomikProperty {
 	name: string;
-	logo: string;
+	logo?: string;
 	website: string;
 	lang: string;
 }

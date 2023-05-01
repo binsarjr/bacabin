@@ -31,7 +31,7 @@
 	<div class="my-10 mx-auto">
 		<img src={data.server.logo} alt={data.server.name} width="100px" />
 		<h5>
-			@credit: <a href={data.server.website} class="text-blue-500 hover:text-blue-800"
+			@credit: <a target="_blank" rel="noreferrer" href={data.server.website} class="text-blue-500 hover:text-blue-800"
 				>{data.server.website}</a
 			>
 		</h5>

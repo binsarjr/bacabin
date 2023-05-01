@@ -1,10 +1,10 @@
-import Cheerio from 'cheerio';
-import { gotScraping } from 'got-scraping';
-import type { IBaseKomik, ReadChapter } from './interfaces';
-import type { Chapter, Komik, KomikDetail } from './types';
+import Cheerio from 'cheerio'
+import { gotScraping } from 'got-scraping'
+import type { IBaseKomik, ReadChapter } from './interfaces'
+import type { Chapter, Komik, KomikDetail } from './types'
 // @ts-ignore
-import humanoid from 'humanoid-js';
-export * from './types';
+import humanoid from 'humanoid-js'
+export * from './types'
 
 // let tunnelingAgent = tunnel.httpsOverHttp({
 //   proxy: {
@@ -14,7 +14,7 @@ export * from './types';
 export default class BaseKomik implements IBaseKomik {
 	name: string;
 	website = '(unkown)';
-	logo = '(unkown)';
+	logo = '';
 	lang = 'indonesia';
 	constructor() {
 		this.name ||= this.constructor.name;
