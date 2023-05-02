@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate, goto, preloadData } from '$app/navigation';
 	import loading from '$lib/assets/loading.gif';
-	import { page } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import BackToTop from '$lib/components/BackToTop.svelte';
 	import GotoDown from '$lib/components/GotoDown.svelte';
 	import { historyChapter, historyKomik } from '$lib/stores/history';
@@ -61,7 +61,6 @@
 	}
 
 	const initial = () => {
-		loadingNext = false;
 		pageState = [
 			{
 				navigation: {
@@ -78,6 +77,9 @@
 
 	onMount(() => {
 		initial();
+	});
+	beforeNavigate(() => {
+		loadingNext = false;
 	});
 	afterNavigate(() => {
 		initial();
@@ -155,21 +157,26 @@
 	<!-- <GotoDown />
 	<BackToTop /> -->
 	<div class="text-center mb-[30vh]">
-		<div class="flex flex-col gap-10">
+		<div class="flex flex-col gap-20">
 			{#each pageState as state, i}
 				<Reading bind:value={state.item} />
-				{#if i == pageState.length - 1 && hasNext}
+				{#if i == pageState.length - 1 && hasNext && !$navigating}
 					<div class="h-[30vh] mt-5">scroll terus kebawah untuk load data halaman berikutnya</div>
+				{/if}
+				{#if hasNext && $navigating}
+					<div class="h-[30vh] mt-5">Sedang berpindah halaman...</div>
 				{/if}
 			{/each}
 		</div>
-		{#if loadingNext}
-			<img src={loading} alt="loader" class="mx-auto" />
-			<p class="text-center">Lagi ngambil data berikutnya</p>
-		{/if}
-		{#if !hasNext}
-			<p class="text-center">.....Tidak ada lagi.....</p>
-		{/if}
+		<div class="my-10">
+			{#if loadingNext}
+				<img src={loading} alt="loader" class="mx-auto" />
+				<p class="text-center">Lagi ngambil data berikutnya</p>
+			{/if}
+			{#if !hasNext}
+				<p class="text-center">.....Tidak ada lagi.....</p>
+			{/if}
+		</div>
 	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- <div id="reload" on:click={reload}>Reload</div> -->
