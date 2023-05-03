@@ -31,6 +31,7 @@ specifiers:
   svelte-local-storage-store: ^0.3.1
   svelte-preprocess: ^4.10.7
   svelte-reveal: ^0.6.0
+  sveltekit-sitemap: ^1.0.21
   tailwindcss: ^3.3.2
   tslib: ^2.3.1
   tunnel: ^0.0.6
@@ -44,6 +45,7 @@ dependencies:
   got-scraping: 3.2.12
   nprogress: 0.2.0
   svelte-lazyimage-cache: 1.0.9
+  sveltekit-sitemap: 1.0.21
 
 devDependencies:
   '@brainandbones/skeleton': 0.32.19
@@ -4348,6 +4350,10 @@ packages:
     resolution: {integrity: sha512-brIBNNB76mXFmU/Kerm4wFnkskBbluBDCjx/8TcpYRb298Yh2dztS2kQ6bhtjMcvUhd5ynClfwpz5h2gnzdQ1A==}
     engines: {node: '>= 8'}
     dev: true
+
+  /sveltekit-sitemap/1.0.21:
+    resolution: {integrity: sha512-Pc8hJFqTdP9vvJfpHfzMm0oSoWVp2I/vOgReTT0lM//ZUCnfdPjAqTc/PA11CFITCCksKOrtun/o3F8ZvMAldA==}
+    dev: false
 
   /tailwindcss/3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
