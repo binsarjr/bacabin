@@ -13,19 +13,16 @@
 		[lang: string]: {
 			title: string;
 			url: string;
-			img: string;
+			img?: string;
 			server: string;
 			lang: string;
 		}[];
 	} = {};
-	$: if (browser) {
-		servers = {};
-		data.servers.map((server) => {
-			const lang = server.lang.charAt(0).toUpperCase() + server.lang.slice(1).toLowerCase();
-			if (!servers[lang]) servers[lang] = [];
-			servers[lang].push(server);
-		});
-	}
+	data.servers.map((server) => {
+		const lang = server.lang.charAt(0).toUpperCase() + server.lang.slice(1).toLowerCase();
+		if (!servers[lang]) servers[lang] = [];
+		servers[lang].push(server);
+	});
 </script>
 
 <svelte:head>

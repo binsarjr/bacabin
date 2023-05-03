@@ -1,10 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	import { page } from '$app/stores';
-	import { reveal } from 'svelte-reveal';
-	import { lazyimage } from 'svelte-lazyimage-cache';
-	import loading from '$lib/assets/loading.gif';
 	import { browser } from '$app/environment';
 	import MangaCard from '../../lib/components/MangaCard.svelte';
 	import SvelteSeo from '../../lib/components/Seo/SvelteSeo.svelte';
