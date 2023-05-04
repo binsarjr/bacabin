@@ -1,8 +1,10 @@
 import { dev } from '$app/environment'
 import type { Handle } from '@sveltejs/kit'
-import { sitemapHook, type RouteDefinition } from 'sveltekit-sitemap'
+import { sequence } from '@sveltejs/kit/hooks'
+import type { RouteDefinition } from 'sveltekit-sitemap'
 import { serverLists } from './lib/scraper'
 import { sitemap } from './sitemap'
+import { sitemapHook } from './temp'
 
 
 const serverPaths = (): RouteDefinition<true> => {
@@ -22,13 +24,20 @@ const serverPaths = (): RouteDefinition<true> => {
 }
 
 
-export const handle: Handle = sitemapHook(sitemap, {
-    getRoutes: async (event) => {
-        return {
-            '/[server]': serverPaths(),
+const sitemapHandler: Handle = async ({ event, resolve }) => {
+    const resp = sitemapHook(sitemap, {
+        getRoutes: async (event) => {
+            return {
+                '/[server]': serverPaths(),
+            }
+        },
+        getRobots: async (event) => {
+            return !dev
         }
-    },
-    getRobots: async (event) => {
-        return !dev
-    }
-})
+    })
+    const r = await resp({event,resolve})
+    
+    return r
+}
+
+export const handle: Handle = sequence(sitemapHandler)
