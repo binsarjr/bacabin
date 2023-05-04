@@ -114,26 +114,29 @@
 			// you're at the bottom of the page
 			if ($readData?.item.next) {
 				loadingNext = true;
-				let result = await nextChapterPromise;
-				let next = result?.next ? '/' + data.server + '/read/' + result?.next : null;
-				let prev = result?.prev ? '/' + data.server + '/read/' + result?.prev : null;
-				if (result && loadingNext) {
-					let item = {
-						item: result,
-						navigation: {
-							prev,
-							next,
-							chapterList: '/' + data.server + '/' + result.showLink
-						}
-					};
+				try {
+					let result = await nextChapterPromise;
+					let next = result?.next ? '/' + data.server + '/read/' + result?.next : null;
+					let prev = result?.prev ? '/' + data.server + '/read/' + result?.prev : null;
+					if (result && loadingNext) {
+						let item = {
+							item: result,
+							navigation: {
+								prev,
+								next,
+								chapterList: '/' + data.server + '/' + result.showLink
+							}
+						};
 
-					pageState[pageState.length] = item;
-					currentState += 1;
-					history.pushState({}, '', '/' + data.server + '/read/' + $readData.item.next);
+						pageState[pageState.length] = item;
+						currentState += 1;
+						history.pushState({}, '', '/' + data.server + '/read/' + $readData.item.next);
+					}
+					await new Promise((resolve) => setTimeout(resolve, 1_500));
+				} finally {
+					loadingNext = false;
+					nextChapterPromise = null;
 				}
-				await new Promise((resolve) => setTimeout(resolve, 1_500));
-				loadingNext = false;
-				nextChapterPromise = null;
 			}
 		}
 	};

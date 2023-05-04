@@ -3,8 +3,8 @@
 
 	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
 	import { lazyimage } from 'svelte-lazyimage-cache';
-	import ClickToScroll from './ClickToScroll.svelte';
 	import placeholderImgSrc from '$lib/assets/placeholder.gif';
+	import { clickToScroll } from '../action/clickToScroll';
 	export let value: ReadChapter;
 
 	$: chapterImages = value.chapterImages;
@@ -37,8 +37,7 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col justify-center items-center">
-		<ClickToScroll>
+	<div class="flex flex-col justify-center items-center" use:clickToScroll>
 			{#each chapterImages as image, i}
 				{#key image}
 					<img
@@ -47,11 +46,10 @@
 						src={placeholderImgSrc}
 						alt={value.title + ' ' + (i + 1)}
 						loading="lazy"
-						class="mx-auto"
+						class="mx-auto w-full md:w-3/4"
 					/>
 				{/key}
 			{/each}
-		</ClickToScroll>
 	</div>
 
 	<div class="content">
