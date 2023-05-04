@@ -23,6 +23,8 @@
 		return json;
 	};
 
+	let nextChapterPromise: Promise<ReadChapter | null> | null = null;
+
 	let loadingNext = false;
 	let pageState: DataReader[] = [];
 	let currentState = 0;
@@ -93,6 +95,14 @@
 
 	const onScroll = async () => {
 		if (loadingNext) return;
+		if (
+			window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 1000 &&
+			!nextChapterPromise
+		) {
+			if ($readData?.item.next) {
+				nextChapterPromise = readChapter($readData.item.next);
+			}
+		}
 		if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 100) {
 			// jika state sudah lebih dari 5 maka berpindah halaman
 			if (currentState >= batasState && $readData?.navigation.next) {
@@ -102,7 +112,7 @@
 			// you're at the bottom of the page
 			if ($readData?.item.next) {
 				loadingNext = true;
-				let result = await readChapter($readData.item.next);
+				let result = await nextChapterPromise;
 				let next = result?.next ? '/' + data.server + '/read/' + result?.next : null;
 				let prev = result?.prev ? '/' + data.server + '/read/' + result?.prev : null;
 				if (result && loadingNext) {
@@ -117,10 +127,10 @@
 
 					pageState[pageState.length] = item;
 					currentState += 1;
-					if (currentState + 1 == batasState && result && next) preloadData(next);
 					history.pushState({}, '', '/' + data.server + '/read/' + $readData.item.next);
 				}
 				loadingNext = false;
+				nextChapterPromise = null;
 			}
 		}
 	};
@@ -156,8 +166,8 @@
 {#key $page.url.toString()}
 	<!-- <GotoDown />
 	<BackToTop /> -->
-	<div class="text-center mb-[30vh]">
-		<div class="flex flex-col gap-20">
+	<div class="text-center mb-[75vh]">
+		<div class="flex flex-col gap-36">
 			{#each pageState as state, i}
 				<Reading bind:value={state.item} />
 				{#if i == pageState.length - 1 && hasNext && !$navigating}
