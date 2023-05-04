@@ -75,6 +75,7 @@
 			}
 		];
 		currentState = 0;
+		nextChapterPromise = null;
 	};
 
 	onMount(() => {
@@ -82,6 +83,7 @@
 	});
 	beforeNavigate(() => {
 		loadingNext = false;
+		nextChapterPromise = null;
 	});
 	afterNavigate(() => {
 		initial();
@@ -99,7 +101,7 @@
 			window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 1000 &&
 			!nextChapterPromise
 		) {
-			if ($readData?.item.next) {
+			if (currentState < batasState && $readData?.item.next) {
 				nextChapterPromise = readChapter($readData.item.next);
 			}
 		}
@@ -129,6 +131,7 @@
 					currentState += 1;
 					history.pushState({}, '', '/' + data.server + '/read/' + $readData.item.next);
 				}
+				await new Promise((resolve) => setTimeout(resolve, 1_500));
 				loadingNext = false;
 				nextChapterPromise = null;
 			}
@@ -166,7 +169,7 @@
 {#key $page.url.toString()}
 	<!-- <GotoDown />
 	<BackToTop /> -->
-	<div class="text-center mb-[75vh]">
+	<div class="text-center mb-[50vh]">
 		<div class="flex flex-col gap-36">
 			{#each pageState as state, i}
 				<Reading bind:value={state.item} />
