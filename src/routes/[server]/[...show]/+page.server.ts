@@ -1,6 +1,6 @@
-import { error, type Load } from '@sveltejs/kit';
+import { error, type Load } from '@sveltejs/kit'
 
-import type { KomikDetail } from '$lib/scraper/BaseKomik';
+import type { KomikDetail } from '$lib/scraper/BaseKomik'
 
 export const load: Load = async ({ params, url }) => {
 	try {
@@ -10,7 +10,7 @@ export const load: Load = async ({ params, url }) => {
 
 		if (resp.status == 404) throw error(404, 'Data tidak ditemukan');
 
-		let item: KomikDetail = await resp.json();
+		const item: KomikDetail = await resp.json();
 		return {
 			item,
 			server: params.server as string,

@@ -1,6 +1,6 @@
-import { refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
@@ -69,7 +69,7 @@ class Bacakomik extends BaseKomik {
 			const onErrorAttr = $(el).attr().onerror.toString();
 			let image = $(el).attr()['src'];
 			if (onErrorAttr.includes('this.src')) {
-				image = onErrorAttr.replace(/^this\.onerror=null;this\.src=\'/i, '').replace(/';$/i, '');
+				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '');
 			}
 
 			chapterImages.push(refererImage(image, chapter_link));
