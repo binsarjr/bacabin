@@ -101,8 +101,12 @@
 			window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 1000 &&
 			!nextChapterPromise
 		) {
-			if (currentState < batasState && $readData?.item.next) {
-				nextChapterPromise = readChapter($readData.item.next);
+			if ($readData?.item.next) {
+				if (currentState < batasState) {
+					nextChapterPromise = readChapter($readData.item.next);
+				} else {
+					if ($readData.navigation.next) preloadData($readData.navigation.next);
+				}
 			}
 		}
 		if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 100) {

@@ -30,14 +30,14 @@
 	}
 </script>
 
-<div>
+<div class="w-full">
 	<div class="content">
 		<div class="text-center">
 			<h1>{value.title}</h1>
 		</div>
 	</div>
 
-	<div class="flex flex-col justify-center items-center" use:clickToScroll>
+	<div class="flex flex-col justify-center items-center w-full" use:clickToScroll>
 			{#each chapterImages as image, i}
 				{#key image}
 					<img
