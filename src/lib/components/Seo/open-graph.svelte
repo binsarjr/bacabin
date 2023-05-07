@@ -17,16 +17,16 @@
       {#if key === "images"}
         {#each openGraph.images ?? [] as image}
           {#each Object.entries(image) as [key, value]}
-            <meta property="og:image:{key}" content={value.toString()} />
+            <meta property="og:image:{key}" content={value?.toString()} />
           {/each}
         {/each}
       {:else if key === "videos"}
         {#each openGraph.videos ?? [] as video}
           {#each Object.entries(video) as [key, value]}
             {#if key === "url"}
-              <meta property="og:video" content={value.toString()} />
+              <meta property="og:video" content={value?.toString()} />
             {:else}
-              <meta property="og:video:{key}" content={value.toString()} />
+              <meta property="og:video:{key}" content={value?.toString()} />
             {/if}
           {/each}
         {/each}
@@ -39,7 +39,7 @@
           {@const transform = key
             .replace(/([a-z])([A-Z])/g, "$1:$2")
             .toLowerCase()}
-          <meta property="music:{transform}" content={value.toString()} />
+          <meta property="music:{transform}" content={value?.toString()} />
         {/each}
       {:else if key === "movie"}
         {#each Object.entries(openGraph.movie ?? {}) as [key, value]}
@@ -51,7 +51,7 @@
             {@const transform = key
               .replace(/([a-z])([A-Z])/g, "$1:$2")
               .toLowerCase()}
-            <meta property="video:{transform}" content={value.toString()} />
+            <meta property="video:{transform}" content={value?.toString()} />
           {/if}
         {/each}
       {:else if key === "article"}
@@ -64,7 +64,7 @@
             {@const transform = key
               .replace(/([a-z])([A-Z])/g, "$1:$2")
               .toLowerCase()}
-            <meta property="article:{transform}" content={value.toString()} />
+            <meta property="article:{transform}" content={value?.toString()} />
           {/if}
         {/each}
       {:else if key === "book"}
@@ -77,7 +77,7 @@
             {@const transform = key
               .replace(/([a-z])([A-Z])/g, "$1:$2")
               .toLowerCase()}
-            <meta property="book:{transform}" content={value.toString()} />
+            <meta property="book:{transform}" content={value?.toString()} />
           {/if}
         {/each}
       {:else if key === "profile"}
