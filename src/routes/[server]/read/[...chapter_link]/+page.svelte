@@ -148,7 +148,7 @@
 
 <svelte:window on:wheel={onScroll} on:scroll={onScroll} />
 <SvelteSeo
-	title={data.server + ' - Bacabin'}
+	title={data.item.title + ' - ' + data.server + ' - Bacabin'}
 	description={'Mirror dari ' + data.server}
 	canonical={$page.url.toString()}
 	keywords={data.server + ',bacabin'}
