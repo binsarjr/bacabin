@@ -6,9 +6,11 @@
 
 	export let data: import('./$types').PageData;
 	let q = '';
-	let chapterAwal = data.item.chapters[0];
+	let chapterAwal = data.item.chapters[0] ?? null;
 	let chapterAkhir =
-		data.item.chapters.length < 2 ? null : data.item.chapters[data.item.chapters.length - 1];
+		data.item.chapters.length < 2 && data.item.chapters.length > 0
+			? null
+			: (data.item.chapters[data.item.chapters.length - 1] ?? null);
 
 	let chapters = data.item.chapters;
 	$: if (q.length) {
@@ -88,11 +90,13 @@
 				>
 			{/if}
 
-			<a
-				href="/{data.server}/read/{chapterAwal.link}"
-				class="py-2 px-4 border rounded bg-secondary hover:bg-white hover:text-black"
-				>{chapterAwal.title}</a
-			>
+			{#if chapterAwal}
+				<a
+					href="/{data.server}/read/{chapterAwal.link}"
+					class="py-2 px-4 border rounded bg-secondary hover:bg-white hover:text-black"
+					>{chapterAwal.title}</a
+				>
+			{/if}
 		</div>
 	</div>
 	<div class="bg-secondary rounded p-5">
