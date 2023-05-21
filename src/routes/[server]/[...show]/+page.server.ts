@@ -1,22 +1,15 @@
-import { error, type Load } from '@sveltejs/kit'
 
-import type { KomikDetail } from '$lib/scraper/BaseKomik'
+import { createContext } from '$lib/trpc/context'
+import { router } from '$lib/trpc/router'
+import type { PageServerLoad } from './$types'
 
-export const load: Load = async ({ params, url }) => {
-	try {
-		const target = new URL(url.toString());
-		target.pathname = '/services/' + params.server + '/' + params.show;
-		const resp = await fetch(target.toString());
-
-		if (resp.status == 404) throw error(404, 'Data tidak ditemukan');
-
-		const item: KomikDetail = await resp.json();
-		return {
-			item,
-			server: params.server as string,
-			show: params.show as string
-		};
-	} catch (e) {
-		throw error(500, 'Gagal mengambil resources ke server yang di tuju');
+export const load: PageServerLoad = async (event) => {
+	return {
+		item: await router.createCaller(await createContext(event)).show({
+			server: event.params.server,
+			show: event.params.show,
+		}),
+		server: event.params.server as string,
+		show: event.params.show as string
 	}
-};
+}

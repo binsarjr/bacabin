@@ -1,17 +1,21 @@
-import { error, type Load } from '@sveltejs/kit';
 
-import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
+import { createContext } from '$lib/trpc/context'
+import { router } from '$lib/trpc/router'
+import { error } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
-export const load: Load = async ({ params, url, depends }) => {
-	depends('reading');
-	const item = async () => {
-		const target = new URL(url.toString());
-		target.pathname = '/services/' + params.server + '/read/' + params.chapter_link;
-		const resp = await fetch(target.toString());
-		if (resp.status == 404) throw error(404, 'Content Tidak ditemukan');
-		const item: ReadChapter = await resp.json();
-		return item;
-	};
+export const load: PageServerLoad = async (event) => {
+	event.depends('reading')
 
-	return { item: item(), server: params.server as string };
-};
+	const item = await router.createCaller(await createContext(event)).read({
+		chapterLink: event.params.chapter_link,
+		server: event.params.server,
+	})
+
+	if (!item) throw error(404)
+
+	return {
+		item,
+		server: event.params.server as string
+	}
+}

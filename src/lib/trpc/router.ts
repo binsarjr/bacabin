@@ -12,6 +12,22 @@ export const router = t.router({
             const searchParams = new URLSearchParams()
             if (input.search) searchParams.set('q', input.search)
             return input.server.list(searchParams)
+        }),
+    show: t.procedure
+        .input(z.object({
+            show: z.string(),
+            server: z.string().transform((val) => getServerByKeyOrFail(val))
+        }))
+        .query(async ({ input }) => {
+            return input.server.show(input.show)
+        }),
+    read: t.procedure
+        .input(z.object({
+            chapterLink: z.string(),
+            server: z.string().transform((val) => getServerByKeyOrFail(val))
+        }))
+        .query(async ({ input }) => {
+            return input.server.read(input.chapterLink)
         })
 });
 

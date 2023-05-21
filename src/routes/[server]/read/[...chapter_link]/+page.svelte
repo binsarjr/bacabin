@@ -14,14 +14,9 @@
 	import { readData, type DataReader } from '../../../../lib/stores/read';
 	import type { ReadChapter } from '../../../../lib/scraper/BaseKomik/interfaces';
 	import { readable } from 'svelte/store';
+	import { trpc } from '$lib/trpc/client';
 	export let data: PageData;
 
-	const readChapter = async (chapterLink: string) => {
-		const resp = await fetch('/services/' + data.server + '/read/' + chapterLink);
-		if (resp.status == 404) return null;
-		const json: ReadChapter = await resp.json();
-		return json;
-	};
 
 	let nextChapterPromise: Promise<ReadChapter | null> | null = null;
 
@@ -103,7 +98,10 @@
 		) {
 			if ($readData?.item.next) {
 				if (currentState < batasState) {
-					nextChapterPromise = readChapter($readData.item.next);
+					nextChapterPromise = trpc($page).read.query({
+						chapterLink: $readData.item.next,
+						server: $page.params.server
+					});
 				} else {
 					if ($readData.navigation.next) preloadData($readData.navigation.next);
 				}

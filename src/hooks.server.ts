@@ -71,4 +71,7 @@ const sitemapHandler: Handle = async ({ event, resolve }) => {
 
 
 
-export const handle: Handle = sequence(sitemapHandler, createTRPCHandle({ router, createContext }))
+export const handle: Handle = sequence(sitemapHandler, createTRPCHandle({
+	router,
+	createContext,
+}))

@@ -82,7 +82,7 @@
 				/>
 				<span>Silakan tekan [ENTER] atau tunggu 5 detik untuk melakukan pencarian</span>
 			</label>
-			{#if q.length}
+			{#if q?.length}
 				<div class="mt-5">
 					<p>
 						Hasil Pencarian dari <strong>{q}</strong>.
