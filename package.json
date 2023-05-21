@@ -46,11 +46,15 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@trpc/client": "^10.27.1",
+		"@trpc/server": "^10.27.1",
 		"@types/cheerio": "^0.22.31",
 		"cheerio": "^1.0.0-rc.12",
 		"got-scraping": "^3.2.10",
 		"nprogress": "^0.2.0",
 		"svelte-lazyimage-cache": "^1.0.9",
-		"sveltekit-sitemap": "^1.0.21"
+		"sveltekit-sitemap": "^1.0.21",
+		"trpc-sveltekit": "^3.5.7",
+		"zod": "^3.21.4"
 	}
 }
