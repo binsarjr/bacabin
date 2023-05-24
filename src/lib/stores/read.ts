@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store'
-import type { ReadChapter } from '../scraper/BaseKomik/interfaces'
+import { writable } from 'svelte/store';
+import type { ReadChapter } from '../server/scraper/BaseKomik/interfaces';
 
 export interface DataReader {
 	navigation: {

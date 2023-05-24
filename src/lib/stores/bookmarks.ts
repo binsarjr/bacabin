@@ -1,4 +1,4 @@
-import type { Komik } from '$lib/scraper/BaseKomik';
+import type { Komik } from '$lib/server/scraper/BaseKomik';
 import { writable } from 'svelte-local-storage-store';
 
 export type Bookmark = Komik & {

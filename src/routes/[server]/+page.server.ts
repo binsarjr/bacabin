@@ -1,4 +1,4 @@
-import { getServerByKeyOrFail } from '$lib/scraper'
+import { getServerByKeyOrFail } from '$lib/server/scraper'
 import { createContext } from '$lib/trpc/context'
 import { router } from '$lib/trpc/router'
 import { error } from '@sveltejs/kit'

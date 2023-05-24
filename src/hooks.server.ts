@@ -5,7 +5,7 @@ import type { Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 import type { RouteDefinition } from 'sveltekit-sitemap'
 import { createTRPCHandle } from 'trpc-sveltekit'
-import { getServerByKeyOrFail, serverLists } from './lib/scraper'
+import { getServerByKeyOrFail, serverLists } from './lib/server/scraper'
 import { sitemap } from './sitemap'
 import { sitemapHook } from './temp'
 const serverPaths = (): RouteDefinition<true> => {

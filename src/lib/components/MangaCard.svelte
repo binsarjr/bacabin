@@ -3,13 +3,19 @@
 	import loading from '$lib/assets/loading.gif';
 
 	import { reveal } from 'svelte-reveal';
-	import type { Komik } from '../scraper/BaseKomik';
+	import type { Komik } from '../server/scraper/BaseKomik';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import type { Bookmark } from '../stores/bookmarks';
 
-	const currentPathname = $page.url.pathname;
+	let currentPathname = $page.url.pathname;
 	export let item: Komik;
+	export let server: string|undefined=undefined
 	export let bookmark: Bookmark | undefined = undefined;
+	if(server) {
+		let paths = currentPathname.split('/')
+		paths[0] = server
+		currentPathname = paths.join('/')
+	}
 </script>
 
 <div class="cardpost " use:reveal>

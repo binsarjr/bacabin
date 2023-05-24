@@ -12,7 +12,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { readData, type DataReader } from '../../../../lib/stores/read';
-	import type { ReadChapter } from '../../../../lib/scraper/BaseKomik/interfaces';
+	import type { ReadChapter } from '../../../../lib/server/scraper/BaseKomik/interfaces';
 	import { readable } from 'svelte/store';
 	import { trpc } from '$lib/trpc/client';
 	export let data: PageData;

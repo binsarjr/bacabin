@@ -8,6 +8,7 @@ export const sitemap = (<const>{
    "/[server]/read/[...chapter_link]": false,
    "/[server]/read": true,
    "/bookmarks": false,
+   "/search": false,
    "/services": true
 }) satisfies RO_Sitemap
 

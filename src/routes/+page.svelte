@@ -4,6 +4,7 @@
 	import type { PageData } from './$types';
 	import { reveal } from 'svelte-reveal';
 	import { browser } from '$app/environment';
+	import FormQuicksearch from '$lib/components/FormQuicksearch.svelte';
 
 	export let data: PageData;
 	let showHistoryKomik = true;
@@ -43,8 +44,9 @@
 			</p>
 		</div>
 	</div>
+	<FormQuicksearch/>
 
-	<div class="mb-10">
+	<div class="my-10">
 		<h3 class="mb-5">Silakan Pilih Server Website</h3>
 		<div class="flex flex-col">
 			{#each Object.keys(servers) as lang}

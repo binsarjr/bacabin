@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { refererImage } from '$lib/mirrorimage';
 
-	import type { ReadChapter } from '$lib/scraper/BaseKomik/interfaces';
+	import type { ReadChapter } from '$lib/server/scraper/BaseKomik/interfaces';
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import placeholderImgSrc from '$lib/assets/placeholder.gif';
 	import { clickToScroll } from '../action/clickToScroll';
