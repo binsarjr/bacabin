@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="google-site-verification" content="wNLPTT7QlzU1IZZSD4Qw5wcmR4dFo5Sxqp4ZnTE192I" />
+		%sveltekit.head%
+	</head>
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<meta name="google-site-verification" content="wNLPTT7QlzU1IZZSD4Qw5wcmR4dFo5Sxqp4ZnTE192I" />
-	%sveltekit.head%
-</head>
+	<body>
+		<div>%sveltekit.body%</div>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP31T6T2XD"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
 
-<body>
-	<div>%sveltekit.body%</div>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP31T6T2XD"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'G-CP31T6T2XD');
-	</script>
-</body>
-
+			gtag('config', 'G-CP31T6T2XD');
+		</script>
+	</body>
 </html>

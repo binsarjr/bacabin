@@ -10,4 +10,4 @@ export interface DataReader {
 	item: ReadChapter;
 }
 
-export const readData = writable<DataReader|null>(null);
+export const readData = writable<DataReader | null>(null);

@@ -1,4 +1,3 @@
-
 // const mirrorImages = [
 // 	'https://mirrorimage-seven.vercel.app'
 
@@ -18,8 +17,8 @@
 // };
 
 export const refererImage = (url: string, referer: string) => {
-	const searchParams = new URLSearchParams()
+	const searchParams = new URLSearchParams();
 	searchParams.set('referer', referer);
 	searchParams.set('url', url);
-	return `/services/mirror?`+searchParams.toString()
+	return `/services/mirror?` + searchParams.toString();
 };

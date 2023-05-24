@@ -1,14 +1,14 @@
-import { error } from '@sveltejs/kit'
-import type { IBaseKomik } from './BaseKomik/interfaces'
-import Manganato from './en/Manganato'
-import Mangareader from './en/Mangareader'
-import Mangastic from './en/Mangastic'
-import WebtoonEnglish from './en/WebtoonEnglish'
-import Bacakomik from './id/Bacakomik'
-import KomikIndo from './id/KomikIndo'
-import Komiku from './id/Komiku'
-import WebtoonIndonesia from './id/WebtoonIndonesia'
-import WestManga from './id/WestManga'
+import { error } from '@sveltejs/kit';
+import type { IBaseKomik } from './BaseKomik/interfaces';
+import Manganato from './en/Manganato';
+import Mangareader from './en/Mangareader';
+import Mangastic from './en/Mangastic';
+import WebtoonEnglish from './en/WebtoonEnglish';
+import Bacakomik from './id/Bacakomik';
+import KomikIndo from './id/KomikIndo';
+import Komiku from './id/Komiku';
+import WebtoonIndonesia from './id/WebtoonIndonesia';
+import WestManga from './id/WestManga';
 
 export const servers: { [i: string]: IBaseKomik } = {
 	komikindo: KomikIndo,
@@ -20,7 +20,7 @@ export const servers: { [i: string]: IBaseKomik } = {
 	westmanga: WestManga,
 	mangareader: Mangareader,
 	'webtoon-id': WebtoonIndonesia,
-	'webtoon-en': WebtoonEnglish,
+	'webtoon-en': WebtoonEnglish
 	// asura: Asura
 };
 

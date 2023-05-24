@@ -1,7 +1,7 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
-import { snakeCase } from '../supports'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
+import { snakeCase } from '../supports';
 
 class Manganato extends BaseKomik {
 	website = 'https://manganato.com';

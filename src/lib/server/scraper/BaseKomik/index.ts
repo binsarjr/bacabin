@@ -1,10 +1,11 @@
-import Cheerio from 'cheerio'
-import { gotScraping } from 'got-scraping'
-import type { IBaseKomik, ReadChapter } from './interfaces'
-import type { Chapter, Komik, KomikDetail } from './types'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import Cheerio from 'cheerio';
+import { gotScraping } from 'got-scraping';
+import type { IBaseKomik, ReadChapter } from './interfaces';
+import type { Chapter, Komik, KomikDetail } from './types';
 // @ts-ignore
-import humanoid from 'humanoid-js'
-export * from './types'
+import humanoid from 'humanoid-js';
+export * from './types';
 
 // let tunnelingAgent = tunnel.httpsOverHttp({
 //   proxy: {

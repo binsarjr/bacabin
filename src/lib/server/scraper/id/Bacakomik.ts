@@ -1,6 +1,6 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
