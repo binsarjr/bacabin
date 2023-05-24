@@ -19,7 +19,7 @@
 
 <form method="get" action="/search">
 	<strong>[NEW BETA]: Cari Komik berdasarkan server tercepat</strong>
-	<div class="flex gap-2 items-center my-2">
+	<div class="flex gap-2 items-center my-2 flex-wrap">
 		<div>PILIH BAHASA:</div>
 		{#each languages as lang}
 			<label>
@@ -42,7 +42,7 @@
 		</label>
 		<button class="px-4 py-2 rounded-lg text-white bg-green-500 font-semibold">Cari</button>
 	</div>
-	<div class="flex gap-2 items-center">
+	<div class=" flex flex-wrap gap-2 items-center">
 		<div>PILIH SERVER:</div>
 		{#each servers as item}
 			<label>
