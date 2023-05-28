@@ -100,7 +100,7 @@
 			{/if}
 			{#key $page.url.toString()}
 				{#each data.lists as item}
-					<MangaCard {item} />
+					<MangaCard {item} server={$page.params.server} />
 				{/each}
 			{/key}
 		</div>

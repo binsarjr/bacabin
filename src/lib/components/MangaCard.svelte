@@ -7,19 +7,14 @@
 	import { lazyimage } from 'svelte-lazyimage-cache';
 	import type { Bookmark } from '../stores/bookmarks';
 
-	let currentPathname = $page.url.pathname;
 	export let item: Komik;
 	export let server: string|undefined=undefined
 	export let bookmark: Bookmark | undefined = undefined;
-	if(server) {
-		let paths = currentPathname.split('/')
-		paths[0] = server
-		currentPathname = paths.join('/')
-	}
+	
 </script>
 
 <div class="cardpost " use:reveal>
-	<a href={[currentPathname, item.show].join('/')}>
+	<a href={[server, item.show].join('/')}>
 		<div class="image rounded  transition duration-0 ease-in-out hover:scale-105 hover:-translate-y-3">
 			<img use:lazyimage data-src={item.img} src={loading} loading="lazy" alt="[img] {item.img}" />
 			<div class="text-image">{item.title}</div>
