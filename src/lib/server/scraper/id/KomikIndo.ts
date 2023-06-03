@@ -1,9 +1,9 @@
-import { refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class KomikIndo extends BaseKomik {
-	website = 'https://komikindo.pro';
+	website = 'https://komikindo.app';
 	logo = 'https://cdn.kena-blok.xyz/uploads/2020/12/komikindo.png?width=140';
 	lang = 'indonesia';
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
@@ -12,7 +12,8 @@ class KomikIndo extends BaseKomik {
 		searchParams.delete('q');
 		link.search = searchParams.toString();
 
-		const $ = await this.requestCheerio(link.toString());
+		const $ = await this.requestCheerioHumanoid(link.toString());
+		console.log($.html())
 		const results: Komik[] = [];
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr();
@@ -29,7 +30,7 @@ class KomikIndo extends BaseKomik {
 
 	async show(link: string): Promise<KomikDetail | null> {
 		const chapFuture = this.chapters(link);
-		const $ = await this.requestCheerio(link);
+		const $ = await this.requestCheerioHumanoid(link);
 		const title = $('.infoanime h1.entry-title')
 			.text()
 			.replace(/^komik\s+/i, '');
@@ -40,7 +41,7 @@ class KomikIndo extends BaseKomik {
 	}
 
 	async chapters(link: string): Promise<Chapter[]> {
-		const $ = await this.requestCheerio(link);
+		const $ = await this.requestCheerioHumanoid(link);
 		const chapters: Chapter[] = [];
 		$('#chapter_list li').each((i, el) => {
 			chapters.push({
@@ -52,7 +53,7 @@ class KomikIndo extends BaseKomik {
 	}
 
 	async read(chapter_link: string): Promise<ReadChapter | null> {
-		const $ = await this.requestCheerio(chapter_link);
+		const $ = await this.requestCheerioHumanoid(chapter_link);
 		const title = $('.chapter-content h1.entry-title')
 			.text()
 			.replace(/^komik\s+/i, '');
@@ -69,7 +70,7 @@ class KomikIndo extends BaseKomik {
 			const onErrorAttr = $(el).attr().onerror.toString();
 			let image = $(el).attr()['src'];
 			if (onErrorAttr.includes('this.src')) {
-				image = onErrorAttr.replace(/^this\.onerror=null;this\.src=\'/i, '').replace(/';$/i, '');
+				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '');
 			}
 
 			chapterImages.push(refererImage(image, chapter_link));
