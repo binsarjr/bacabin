@@ -1,17 +1,19 @@
-import { error } from '@sveltejs/kit';
-import type { IBaseKomik } from './BaseKomik/interfaces';
-import Manganato from './en/Manganato';
-import Mangareader from './en/Mangareader';
-import Mangastic from './en/Mangastic';
-import WebtoonEnglish from './en/WebtoonEnglish';
-import Bacakomik from './id/Bacakomik';
-import KomikIndo from './id/KomikIndo';
-import Komiku from './id/Komiku';
-import WebtoonIndonesia from './id/WebtoonIndonesia';
-import WestManga from './id/WestManga';
+import NgomikNet from '$lib/server/scraper/id/NgomikNet'
+import { error } from '@sveltejs/kit'
+import type { IBaseKomik } from './BaseKomik/interfaces'
+import Manganato from './en/Manganato'
+import Mangareader from './en/Mangareader'
+import Mangastic from './en/Mangastic'
+import WebtoonEnglish from './en/WebtoonEnglish'
+import Bacakomik from './id/Bacakomik'
+import KomikIndo from './id/KomikIndo'
+import Komiku from './id/Komiku'
+import WebtoonIndonesia from './id/WebtoonIndonesia'
+import WestManga from './id/WestManga'
 
 export const servers: { [i: string]: IBaseKomik } = {
 	komikindo: KomikIndo,
+	ngomiknet: NgomikNet,
 	komiku: Komiku,
 	bacakomik: Bacakomik,
 	manganato: Manganato,

@@ -13,7 +13,6 @@ class KomikIndo extends BaseKomik {
 		link.search = searchParams.toString();
 
 		const $ = await this.requestCheerioHumanoid(link.toString());
-		console.log($.html())
 		const results: Komik[] = [];
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr();
