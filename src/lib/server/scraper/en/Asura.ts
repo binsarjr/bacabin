@@ -1,10 +1,11 @@
-import { refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class Asura extends BaseKomik {
 	website = 'https://asura.gg/';
-	logo = 'https://asura.gg/wp-content/uploads/2021/03/Group_1.png';
+	// logo = 'https://asura.gg/wp-content/uploads/2021/03/Group_1.png';
+	name = "Asura"
 	lang = 'english';
 	async latest() {
 		const $ = await this.requestCheerio(this.website);
