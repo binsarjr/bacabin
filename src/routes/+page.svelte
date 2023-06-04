@@ -51,7 +51,7 @@
 		<div class="flex flex-col">
 			{#each Object.keys(servers) as lang}
 				<h3>Language: {lang}</h3>
-				<div class="grid grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10 mb-20 mt-5">
+				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center lg:grid-cols-5 gap-10 mb-20 mt-5">
 					{#each servers[lang] as server}
 						<div use:reveal class="transform transition duration-500 hover:scale-110">
 							<a href="/{server.server}">
