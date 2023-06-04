@@ -31,8 +31,10 @@
 	<span>Silakan Cari Komik Yang Anda inginkan</span>
 	<div class="flex w-full gap-2 items-center mb-4">
 		<label for="cari" class="flex-grow">
+				<!-- svelte-ignore a11y-autofocus -->
 			<input
 				autocomplete="false"
+				 autofocus={!!q}
 				name="q"
 				type="text"
 				class="form-control"
@@ -56,7 +58,7 @@
 			<p>
 				Hasil Pencarian dari <strong>{q}</strong>.
 				{#if server}
-					Didapatkan dari server <strong>{server}</strong>
+					Didapatkan dari server <a href="/{server}"><strong>{server}</strong></a>
 				{/if}
 			</p>
 		</div>
