@@ -1,4 +1,5 @@
 import Asura from '$lib/server/scraper/en/Asura'
+import Kiryuu from '$lib/server/scraper/id/Kiryuu'
 import NgomikNet from '$lib/server/scraper/id/NgomikNet'
 import { error } from '@sveltejs/kit'
 import type { IBaseKomik } from './BaseKomik/interfaces'
@@ -24,7 +25,8 @@ export const servers: { [i: string]: IBaseKomik } = {
 	mangareader: Mangareader,
 	'webtoon-id': WebtoonIndonesia,
 	'webtoon-en': WebtoonEnglish,
-	asura: Asura
+	asura: Asura,
+	kiryuu: Kiryuu
 };
 
 export const serverLists = () => {

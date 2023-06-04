@@ -2,7 +2,7 @@ import { refererImage } from '$lib/mirrorimage'
 import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
 import type { ReadChapter } from '../BaseKomik/interfaces'
 
-class NgomikNet extends BaseKomik {
+export class NgomikNet extends BaseKomik {
 	website = 'https://ngomik.net/';
 	name = 'Ngomik.Net'
 	lang = 'indonesia';
@@ -59,8 +59,10 @@ class NgomikNet extends BaseKomik {
 		const $ = await this.requestCheerio(link)
 		const chapters: Chapter[] = []
 		$('#chapterlist ul > li a').each((i, el) => {
+			const title= $(el).find('.chapternum').text().trim()
+			if(!title) return
 			chapters.push({
-				title: $(el).find('.chapternum').text(),
+				title,
 				link: $(el).attr()['href']
 			})
 		})
