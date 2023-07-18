@@ -1,14 +1,14 @@
-import type { RO_Sitemap } from 'sveltekit-sitemap';
+import type { RO_Sitemap } from '@binsarjr/sveltekit-sitemap';
 
 export const sitemap = (<const>{
    "/": true,
-   "/[server]": true,
+   "/[server]": false,
    "/[server]/[...show]": false,
    "/[server]/bookmarks": false,
    "/[server]/read/[...chapter_link]": false,
-   "/[server]/read": true,
-   "/bookmarks": false,
-   "/search": false,
+   "/[server]/read": false,
+   "/bookmarks": true,
+   "/search": true,
    "/services": true
 }) satisfies RO_Sitemap
 
