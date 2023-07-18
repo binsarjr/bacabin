@@ -37,6 +37,7 @@ const serviceServerPaths = async () => {
 					results.push({
 						path: `/${serverName}/${item.show}`,
 						priority: '0.7',
+						changeFreq: 'Weekly',
 						image: {
 							url: item.img,
 							altText: '[COVER] ' + item.title,
