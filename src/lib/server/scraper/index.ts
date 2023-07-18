@@ -4,35 +4,36 @@ import Komikav from '$lib/server/scraper/id/Komikav'
 import Komikcast from '$lib/server/scraper/id/Komikcast'
 import Mangayaro from '$lib/server/scraper/id/Mangayaro'
 import NgomikNet from '$lib/server/scraper/id/NgomikNet'
+import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
 import { error } from '@sveltejs/kit'
 import type { IBaseKomik } from './BaseKomik/interfaces'
 import Manganato from './en/Manganato'
 import Mangareader from './en/Mangareader'
 import Mangastic from './en/Mangastic'
-import WebtoonEnglish from './en/WebtoonEnglish'
 import Bacakomik from './id/Bacakomik'
 import KomikIndo from './id/KomikIndo'
 import Komiku from './id/Komiku'
-import WebtoonIndonesia from './id/WebtoonIndonesia'
 import WestManga from './id/WestManga'
 
+
 export const servers: { [i: string]: IBaseKomik } = {
-	komikindo: KomikIndo,
+	'shinigami-id': ShinigamiId,
 	ngomiknet: NgomikNet,
 	komiku: Komiku,
+	komikindo: KomikIndo,
 	bacakomik: Bacakomik,
 	manganato: Manganato,
 	mangastic: Mangastic,
 	// mgkomik: Mgkomik,
 	westmanga: WestManga,
 	mangareader: Mangareader,
-	'webtoon-id': WebtoonIndonesia,
-	'webtoon-en': WebtoonEnglish,
+	// 'webtoon-id': WebtoonIndonesia,
+	// 'webtoon-en': WebtoonEnglish,
 	asura: Asura,
 	kiryuu: Kiryuu,
 	komikav: Komikav,
 	mangayaro: Mangayaro,
-	komikcast: Komikcast
+	komikcast: Komikcast,
 };
 
 export const serverLists = () => {
