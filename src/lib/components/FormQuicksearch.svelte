@@ -5,7 +5,7 @@
 	export let q = '';
 	export let server: string | undefined = undefined;
 
-	q||=$page.url.searchParams.get('q')||''
+	q ||= $page.url.searchParams.get('q') || '';
 
 	let languages: string[] = [];
 	let servers: string[] = [];
@@ -13,17 +13,22 @@
 		languages = await trpc($page).serverLanguages.query();
 		servers = await trpc($page).servers.query();
 	});
-	$: langSelected = $page.url.searchParams.getAll('lang')
-	$: serverSelected = $page.url.searchParams.getAll('server')
+	$: langSelected = $page.url.searchParams.getAll('lang');
+	$: serverSelected = $page.url.searchParams.getAll('server');
 </script>
 
 <form method="get" action="/search">
 	<strong>[NEW BETA]: Cari Komik berdasarkan server tercepat</strong>
 	<div class="flex gap-2 items-center my-2 flex-wrap">
 		<div>PILIH BAHASA:</div>
-		{#each languages as lang}
+		{#each languages as lang, i}
 			<label>
-				<input type="checkbox" name="lang" value={lang}  checked={langSelected.includes(lang)}/>
+				<input
+					type="checkbox"
+					name="lang"
+					value={lang}
+					checked={langSelected.includes(lang) || i === 0}
+				/>
 				{lang}
 			</label>
 		{/each}
@@ -31,10 +36,10 @@
 	<span>Silakan Cari Komik Yang Anda inginkan</span>
 	<div class="flex w-full gap-2 items-center mb-4">
 		<label for="cari" class="flex-grow">
-				<!-- svelte-ignore a11y-autofocus -->
+			<!-- svelte-ignore a11y-autofocus -->
 			<input
 				autocomplete="false"
-				 autofocus={!!q}
+				autofocus={!!q}
 				name="q"
 				type="text"
 				class="form-control"
@@ -46,9 +51,14 @@
 	</div>
 	<div class=" flex flex-wrap gap-2 items-center">
 		<div>PILIH SERVER:</div>
-		{#each servers as item}
+		{#each servers as item, i}
 			<label>
-				<input type="checkbox" name="server" value={item}  checked={serverSelected.includes(item)}/>
+				<input
+					type="checkbox"
+					name="server"
+					value={item}
+					checked={serverSelected.includes(item) || i === 0}
+				/>
 				{item}
 			</label>
 		{/each}
