@@ -1,22 +1,22 @@
-import { getServerByKeyOrFail, servers } from '$lib/server/scraper'
-import type { Komik } from '$lib/server/scraper/BaseKomik/types'
-import { t } from '$lib/trpc/t'
-import { z } from 'zod'
+import { getServerByKeyOrFail, servers } from '$lib/server/scraper';
+import type { Komik } from '$lib/server/scraper/BaseKomik/types';
+import { t } from '$lib/trpc/t';
+import { z } from 'zod';
 
 export const router = t.router({
 	servers: t.procedure.query(async () => {
-		const lists: string[] = []
+		const lists: string[] = [];
 		Object.entries(servers).map(([key, server]) => {
-			if (!lists.includes(key)) lists.push(key)
-		})
-		return lists
+			if (!lists.includes(key)) lists.push(key);
+		});
+		return lists;
 	}),
 	serverLanguages: t.procedure.query(async () => {
-		const languages: string[] = []
+		const languages: string[] = [];
 		Object.entries(servers).map(([key, server]) => {
-			if (!languages.includes(server.lang)) languages.push(server.lang)
-		})
-		return languages
+			if (!languages.includes(server.lang)) languages.push(server.lang);
+		});
+		return languages;
 	}),
 	// cari komik berdasarkan server tercepat
 	quicksearch: t.procedure
@@ -33,22 +33,22 @@ export const router = t.router({
 					Object.entries(servers).map(async ([key, server]) => {
 						if (languages?.length) {
 							if (!languages.includes(server.lang))
-								throw new Error(server.name + ' Language tidak sesuai')
+								throw new Error(server.name + ' Language tidak sesuai');
 						}
 						if (inputServers?.length) {
-							if (!inputServers.includes(key)) throw new Error(server.name + ' tidak sesuai')
+							if (!inputServers.includes(key)) throw new Error(server.name + ' tidak sesuai');
 						}
-						const searchParams = new URLSearchParams()
-						if (keyword) searchParams.set('q', keyword)
-						const lists = await server.list(searchParams)
+						const searchParams = new URLSearchParams();
+						if (keyword) searchParams.set('q', keyword);
+						const lists = await server.list(searchParams);
 						if (lists.length == 0)
-							throw new Error('Data di server ' + server.name + ' TIdak ditemukan')
-						return { lists, server: key }
+							throw new Error('Data di server ' + server.name + ' TIdak ditemukan');
+						return { lists, server: key };
 					})
-				)
-				return response
+				);
+				return response;
 			} catch (error) {
-				return { lists: [] as Komik[], server: undefined }
+				return { lists: [] as Komik[], server: undefined };
 			}
 		}),
 	list: t.procedure
@@ -59,9 +59,9 @@ export const router = t.router({
 			})
 		)
 		.query(async ({ input }) => {
-			const searchParams = new URLSearchParams()
-			if (input.search) searchParams.set('q', input.search)
-			return input.server.list(searchParams)
+			const searchParams = new URLSearchParams();
+			if (input.search) searchParams.set('q', input.search);
+			return input.server.list(searchParams);
 		}),
 	show: t.procedure
 		.input(
@@ -71,7 +71,7 @@ export const router = t.router({
 			})
 		)
 		.query(async ({ input }) => {
-			return input.server.show(input.show)
+			return input.server.show(input.show);
 		}),
 	read: t.procedure
 		.input(
@@ -81,6 +81,6 @@ export const router = t.router({
 			})
 		)
 		.query(async ({ input }) => {
-			return input.server.read(input.chapterLink)
+			return input.server.read(input.chapterLink);
 		})
-})
+});

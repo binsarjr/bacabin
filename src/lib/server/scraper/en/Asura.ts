@@ -1,11 +1,11 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Asura extends BaseKomik {
 	website = 'https://asura.gg/';
 	// logo = 'https://asura.gg/wp-content/uploads/2021/03/Group_1.png';
-	name = "Asura"
+	name = 'Asura';
 	lang = 'english';
 	async latest() {
 		const $ = await this.requestCheerio(this.website);
@@ -15,8 +15,8 @@ class Asura extends BaseKomik {
 			if (!img) return;
 			results.push({
 				img: img['src'],
-				show: $(el).find('a:nth-child(1)').attr()['href'],
-				title: $(el).find('a:nth-child(1)').attr()['title']
+				show: $(el).find('a:nth-child(1)').attr()!['href'],
+				title: $(el).find('a:nth-child(1)').attr()!['title']
 			});
 		});
 		return results;
@@ -34,9 +34,9 @@ class Asura extends BaseKomik {
 		const results: Komik[] = [];
 		$('.listupd > div').each((i, el) => {
 			results.push({
-				img: $(el).find('img').attr()['src'],
-				show: $(el).find('a:nth-child(1)').attr()['href'],
-				title: $(el).find('a:nth-child(1)').attr()['title']
+				img: $(el).find('img').attr()!['src'],
+				show: $(el).find('a:nth-child(1)').attr()!['href'],
+				title: $(el).find('a:nth-child(1)').attr()!['title']
 			});
 		});
 		return results;
@@ -46,7 +46,7 @@ class Asura extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('.entry-title').text();
-		const img = $('.thumb img').attr()['src'];
+		const img = $('.thumb img').attr()!['src'];
 		const chapters = await chapFuture;
 		return {
 			title,
@@ -60,7 +60,7 @@ class Asura extends BaseKomik {
 		$('#chapterlist ul > li a').each((i, el) => {
 			chapters.push({
 				title: $(el).find('.chapternum').text(),
-				link: $(el).attr()['href']
+				link: $(el).attr()!['href']
 			});
 		});
 		return chapters;
@@ -72,14 +72,14 @@ class Asura extends BaseKomik {
 		const prevAttribute = $('.ch-prev-btn:not(.disabled)').attr();
 		const prev = prevAttribute ? prevAttribute['href'] : null;
 
-		const showLink = $('.headpost a').attr()['href'];
+		const showLink = $('.headpost a').attr()!['href'];
 		const nextAttribute = $('.ch-next-btn:not(.disabled)').attr();
 		const next = nextAttribute ? nextAttribute['href'] : null;
 
 		const chapterImages: string[] = [];
 
 		$('#readerarea img').each((i, el) => {
-			const imageUrl = $(el).attr()['src'];
+			const imageUrl = $(el).attr()!['src'];
 			chapterImages.push(refererImage(imageUrl, chapter_link));
 		});
 		return {

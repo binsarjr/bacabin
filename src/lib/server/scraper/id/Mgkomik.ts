@@ -15,8 +15,8 @@ class Mgkomik extends BaseKomik {
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.c-tabs-item__content').each((i, el) => {
-			const anchorAttribute = $(el).find('a img.img-responsive').parent().attr();
-			const img = $(el).find('img.img-responsive').attr()['src'];
+			const anchorAttribute = $(el).find('a img.img-responsive').parent().attr()!;
+			const img = $(el).find('img.img-responsive').attr()!['src'];
 			results.push({
 				show: anchorAttribute['href'],
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -33,7 +33,7 @@ class Mgkomik extends BaseKomik {
 		const title = $('.post-title h1')
 			.text()
 			.replace(/^komik\s+/i, '');
-		const img = $('.summary_image img').attr()['src'];
+		const img = $('.summary_image img').attr()!['src'];
 
 		const chapters: Chapter[] = await chapFuture;
 		return { title, img, chapters };
@@ -44,7 +44,7 @@ class Mgkomik extends BaseKomik {
 		const chapters: Chapter[] = [];
 		$('ul.main li').each((i, el) => {
 			chapters.push({
-				link: $(el).find('a').attr()['href'],
+				link: $(el).find('a').attr()!['href'],
 				title: $(el).find('a').text()
 			});
 		});
@@ -64,7 +64,7 @@ class Mgkomik extends BaseKomik {
 
 		const chapterImages: string[] = [];
 		$('.reading-content img').each((i, el) => {
-			chapterImages.push($(el).attr()['src']);
+			chapterImages.push($(el).attr()!['src']);
 		});
 		return {
 			title,

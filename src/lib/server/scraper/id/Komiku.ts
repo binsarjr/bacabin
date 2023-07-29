@@ -14,7 +14,7 @@ class Komiku extends BaseKomik {
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.daftar > div').each((i, el) => {
-			const anchorAttribute = $(el).find('a').attr();
+			const anchorAttribute = $(el).find('a').attr()!;
 
 			const img = $(el).find('img').attr();
 			if (!img) return;
@@ -33,10 +33,10 @@ class Komiku extends BaseKomik {
 		const $ = await this.requestCheerioHumanoid(link);
 		const title = $('#Judul h1').first().text().trim();
 
-		const img = $('#Informasi img').attr()['src'];
+		const img = $('#Informasi img').attr()!['src'];
 
 		const chapters: Chapter[] = (await chapFuture).map((chapter) => {
-			let targetLink = new URL(link);
+			const targetLink = new URL(link);
 			targetLink.pathname = chapter.link;
 
 			chapter.link = targetLink.toString();
@@ -50,7 +50,7 @@ class Komiku extends BaseKomik {
 		const chapters: Chapter[] = [];
 		$('#Daftar_Chapter td.judulseries').each((i, el) => {
 			chapters.push({
-				link: $(el).find('a').attr()['href'],
+				link: $(el).find('a').attr()!['href'],
 				title: $(el).find('a').text().trim()
 			});
 		});
@@ -78,13 +78,13 @@ class Komiku extends BaseKomik {
 			next = baseLink.toString();
 		}
 
-		baseLink.pathname = $('#setting a').attr()['href'];
+		baseLink.pathname = $('#setting a').attr()!['href'];
 		const showLink = baseLink.toString();
 
 		const chapterImages: string[] = [];
 
 		$('#Baca_Komik img').each((i, el) => {
-			let image = $(el).attr()['src'];
+			const image = $(el).attr()!['src'];
 
 			chapterImages.push(image);
 		});

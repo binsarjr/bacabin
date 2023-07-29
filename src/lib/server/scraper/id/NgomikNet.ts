@@ -1,93 +1,94 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 export class NgomikNet extends BaseKomik {
 	website = 'https://ngomik.net/';
-	name = 'Ngomik.Net'
+	name = 'Ngomik.Net';
 	lang = 'indonesia';
 	async latest() {
-		const $ = await this.requestCheerioHumanoid(this.website)
-		const results: Komik[] = []
+		const $ = await this.requestCheerioHumanoid(this.website);
+		const results: Komik[] = [];
 		$('.listupd > div').each((i, el) => {
-			const img = $(el).find('img').attr()
-			if (!img) return
+			const img = $(el).find('img').attr();
+			if (!img) return;
 			results.push({
 				img: refererImage(img['src'], this.website),
-				show: $(el).find('a:nth-child(1)').attr()['href'],
-				title: $(el).find('a:nth-child(1)').attr()['title']
-			})
-		})
-		return results
+				show: $(el).find('a:nth-child(1)').attr()!['href'],
+				title: $(el).find('a:nth-child(1)').attr()!['title']
+			});
+		});
+		return results;
 	}
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
-		const keyword = searchParams.get('q') || ''
-		if (!keyword) return this.latest()
+		const keyword = searchParams.get('q') || '';
+		if (!keyword) return this.latest();
 
-		searchParams.delete('q')
-		searchParams.set('s', keyword)
+		searchParams.delete('q');
+		searchParams.set('s', keyword);
 
-		const link = new URL(this.website)
-		link.search = searchParams.toString()
-		const $ = await this.requestCheerioHumanoid(link.toString())
-		const results: Komik[] = []
+		const link = new URL(this.website);
+		link.search = searchParams.toString();
+		const $ = await this.requestCheerioHumanoid(link.toString());
+		const results: Komik[] = [];
 		$('.listupd > div').each((i, el) => {
-			let img = $(el).find('img').attr()['src']
-			img = refererImage(img, link.toString())
+			let img = $(el).find('img').attr()!['src'];
+			img = refererImage(img, link.toString());
 			results.push({
 				img,
-				show: $(el).find('a:nth-child(1)').attr()['href'],
-				title: $(el).find('a:nth-child(1)').attr()['title']
-			})
-		})
-		return results
+				show: $(el).find('a:nth-child(1)').attr()!['href'],
+				title: $(el).find('a:nth-child(1)').attr()!['title']
+			});
+		});
+		return results;
 	}
 
 	async show(link: string): Promise<KomikDetail | null> {
-		const chapFuture = this.chapters(link)
-		const $ = await this.requestCheerio(link)
-		const title = $('.entry-title').text()
-		const img = refererImage($('.thumb img').attr()['src'], link)
-		const chapters = await chapFuture
+		const chapFuture = this.chapters(link);
+		const $ = await this.requestCheerio(link);
+		const title = $('.entry-title').text();
+		const img = refererImage($('.thumb img').attr()!['src'], link);
+		const chapters = await chapFuture;
 		return {
 			title,
 			img,
 			chapters
-		}
+		};
 	}
 	async chapters(link: string): Promise<Chapter[]> {
-		const $ = await this.requestCheerio(link)
-		const chapters: Chapter[] = []
+		const $ = await this.requestCheerio(link);
+		const chapters: Chapter[] = [];
 		$('#chapterlist ul > li a').each((i, el) => {
-			const title= $(el).find('.chapternum').text().trim()
-			if(!title) return
+			const title = $(el).find('.chapternum').text().trim();
+			if (!title) return;
 			chapters.push({
 				title,
-				link: $(el).attr()['href']
-			})
-		})
-		return chapters
+				link: $(el).attr()!['href']
+			});
+		});
+		return chapters;
 	}
 	async read(chapter_link: string): Promise<ReadChapter | null> {
-		const $ = await this.requestCheerioHumanoid(chapter_link)
-		const regexTsReader = /ts_reader\.run\((.*?)\);<\/script/i
+		const $ = await this.requestCheerioHumanoid(chapter_link);
+		const regexTsReader = /ts_reader\.run\((.*?)\);<\/script/i;
 		const data = JSON.parse($.html().match(regexTsReader)![1]) as {
-			prevUrl: string
-			nextUrl: string
+			prevUrl: string;
+			nextUrl: string;
 			sources: {
-				source: string
-				images: string[]
-			}[]
-		}
-		const title = $('.entry-title').text()
+				source: string;
+				images: string[];
+			}[];
+		};
+		const title = $('.entry-title').text();
 
+		const prev = data.prevUrl ? data.prevUrl : null;
 
-		const prev = data.prevUrl ? data.prevUrl : null
+		const showLink = $('.headpost a').attr()!['href'];
+		const next = data.nextUrl ? data.nextUrl : null;
 
-		const showLink = $('.headpost a').attr()['href']
-		const next = data.nextUrl ? data.nextUrl : null
-
-		const chapterImages: string[] = data.sources[0].images.map(image => refererImage(image, chapter_link))
+		const chapterImages: string[] = data.sources[0].images.map((image) =>
+			refererImage(image, chapter_link)
+		);
 
 		return {
 			title,
@@ -95,8 +96,8 @@ export class NgomikNet extends BaseKomik {
 			showLink,
 			next,
 			chapterImages
-		}
+		};
 	}
 }
 
-export default NgomikNet.getInstance()
+export default NgomikNet.getInstance();

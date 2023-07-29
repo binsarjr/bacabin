@@ -11,9 +11,9 @@ class Manganato extends BaseKomik {
 		const results: Komik[] = [];
 		$('.content-homepage-item').each((i, el) => {
 			results.push({
-				img: $(el).find('img.img-loading').attr()['src'],
-				show: $(el).find('.content-homepage-item-right a:nth-child(1)').attr()['href'],
-				title: $(el).find('.content-homepage-item-right a:nth-child(1)').attr()['title']
+				img: $(el).find('img.img-loading').attr()!['src'],
+				show: $(el).find('.content-homepage-item-right a:nth-child(1)').attr()!['href'],
+				title: $(el).find('.content-homepage-item-right a:nth-child(1)').attr()!['title']
 			});
 		});
 		return results;
@@ -33,8 +33,8 @@ class Manganato extends BaseKomik {
 		const results: Komik[] = [];
 		$('.search-story-item').each((i, el) => {
 			results.push({
-				img: $(el).find('img').attr()['src'],
-				show: $(el).find('.item-title').attr()['href'],
+				img: $(el).find('img').attr()!['src'],
+				show: $(el).find('.item-title').attr()!['href'],
 				title: $(el).find('.item-title').text()
 			});
 		});
@@ -45,7 +45,7 @@ class Manganato extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('.story-info-right h1').text();
-		const img = $('.panel-story-info img').attr()['src'];
+		const img = $('.panel-story-info img').attr()!['src'];
 		const chapters = await chapFuture;
 		return {
 			title,
@@ -59,7 +59,7 @@ class Manganato extends BaseKomik {
 		$('ul.row-content-chapter li a').each((i, el) => {
 			chapters.push({
 				title: $(el).text(),
-				link: $(el).attr()['href']
+				link: $(el).attr()!['href']
 			});
 		});
 		return chapters;
@@ -72,14 +72,14 @@ class Manganato extends BaseKomik {
 		const prev = prevAttribute ? prevAttribute['href'] : null;
 
 		// get from breadcrumbs
-		const showLink = $('.panel-breadcrumb a:not(:first-child):not(:last-child)').attr()['href'];
+		const showLink = $('.panel-breadcrumb a:not(:first-child):not(:last-child)').attr()!['href'];
 		const nextAttribute = $('.navi-change-chapter-btn-next').attr();
 		const next = nextAttribute ? nextAttribute['href'] : null;
 
 		const chapterImages: string[] = [];
 
 		$('.container-chapter-reader img').each((i, el) => {
-			const imageUrl = $(el).attr()['src'];
+			const imageUrl = $(el).attr()!['src'];
 			chapterImages.push(refererImage(imageUrl, chapter_link));
 		});
 		return {

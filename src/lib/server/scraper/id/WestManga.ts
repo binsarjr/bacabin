@@ -14,7 +14,7 @@ class WestManga extends BaseKomik {
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.animepost').each((i, el) => {
-			const anchorAttribute = $(el).find('a').attr();
+			const anchorAttribute = $(el).find('a').attr()!;
 			const img = $(el).find('img').attr();
 			if (!img) return;
 			results.push({
@@ -33,7 +33,7 @@ class WestManga extends BaseKomik {
 		const title = $('h1.entry-title')
 			.text()
 			.replace(/^komik\s+/i, '');
-		const img = $('.thumb img').attr()['src'];
+		const img = $('.thumb img').attr()!['src'];
 
 		const chapters: Chapter[] = await chapFuture;
 		return { title, img, chapters };
@@ -44,7 +44,7 @@ class WestManga extends BaseKomik {
 		const chapters: Chapter[] = [];
 		$('#chapter_list li').each((i, el) => {
 			chapters.push({
-				link: $(el).find('a chapter').parent().attr()['href'],
+				link: $(el).find('a chapter').parent().attr()!['href'],
 				title: $(el).find('a chapter').text()
 			});
 		});
@@ -61,11 +61,11 @@ class WestManga extends BaseKomik {
 		const prev = prevAttr ? prevAttr['href'] : null;
 		const nextAttr = $('.nextprev:first-child a:last-child[rel="next"]').attr();
 		const next = nextAttr ? nextAttr['href'] : null;
-		const showLink = $('.nextprev:first-child a .daftarch').parent().attr()['ref'];
+		const showLink = $('.nextprev:first-child a .daftarch').parent().attr()!['ref'];
 
 		const chapterImages: string[] = [];
 		$('#chimg img').each((i, el) => {
-			chapterImages.push($(el).attr()['src']);
+			chapterImages.push($(el).attr()!['src']);
 		});
 		return {
 			title,

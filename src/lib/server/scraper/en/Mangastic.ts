@@ -22,10 +22,10 @@ class Mangastic extends BaseKomik {
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.row.c-tabs-item__content').each((i, el) => {
-			let imgEl = $(el).find('.tab-thumb img').attr();
+			const imgEl = $(el).find('.tab-thumb img').attr()!;
 			results.push({
 				title: $(el).find('h3').text(),
-				show: $(el).find('h3 a').attr()['href'],
+				show: $(el).find('h3 a').attr()!['href'],
 				img: imgEl['data-src'] || imgEl['src']
 			});
 		});
@@ -36,7 +36,7 @@ class Mangastic extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('.post-title h1').text();
-		const img = $('.summary_image img').attr()['data-src'];
+		const img = $('.summary_image img').attr()!['data-src'];
 		const chapters = await chapFuture;
 		return {
 			chapters,
@@ -51,7 +51,7 @@ class Mangastic extends BaseKomik {
 		$('li.wp-manga-chapter').each((i, el) => {
 			chapters.push({
 				title: $(el).find('a').text(),
-				link: $(el).find('a').attr()['href']
+				link: $(el).find('a').attr()!['href']
 			});
 		});
 		return chapters;
@@ -61,15 +61,15 @@ class Mangastic extends BaseKomik {
 		const $ = await this.requestCheerio(chapter_link);
 		const chapterImages: string[] = [];
 		const title = $('#chapter-heading').text();
-		const prevAttribute = $('.nav-previous a').attr();
+		const prevAttribute = $('.nav-previous a').attr()!;
 		const prev = prevAttribute ? prevAttribute['href'] : null;
-		const nextAttribute = $('.nav-next a').attr();
+		const nextAttribute = $('.nav-next a').attr()!;
 		const next = /manga\s+info/i.test($('.nav-next a').text()) ? null : nextAttribute['href'];
 
-		const showLink = $('.breadcrumb li:nth-child(2) a').attr()['href'];
+		const showLink = $('.breadcrumb li:nth-child(2) a').attr()!['href'];
 
 		$('.page-break.no-gaps').each((i, el) => {
-			chapterImages.push($(el).find('img').attr()['data-src']);
+			chapterImages.push($(el).find('img').attr()!['data-src']);
 		});
 
 		return { title, chapterImages, next, prev, showLink };

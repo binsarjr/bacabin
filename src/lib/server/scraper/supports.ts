@@ -1,10 +1,10 @@
 export function hapusPathTerakhir(url: string) {
-	url = url.replace(/\/+$/, '')
-	let pathTerakhirIndex = url.lastIndexOf('/')
+	url = url.replace(/\/+$/, '');
+	let pathTerakhirIndex = url.lastIndexOf('/');
 	if (pathTerakhirIndex !== -1) {
-		return url.substring(0, pathTerakhirIndex)
+		return url.substring(0, pathTerakhirIndex);
 	}
-	return url
+	return url;
 }
 
 export const snakeCase = (text: string) =>
@@ -12,4 +12,4 @@ export const snakeCase = (text: string) =>
 		.replace(/\W+/g, ' ')
 		.split(/ |\B(?=[A-Z])/)
 		.map((word) => word.toLowerCase())
-		.join('_')
+		.join('_');

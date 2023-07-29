@@ -16,8 +16,8 @@ class Mangastic extends BaseKomik {
 			dataTemps.push(title);
 			results.push({
 				title,
-				img: $(el).find('img').attr()['src'],
-				show: $(el).find('a').attr()['href']
+				img: $(el).find('img').attr()!['src'],
+				show: $(el).find('a').attr()!['href']
 			});
 		});
 
@@ -28,8 +28,8 @@ class Mangastic extends BaseKomik {
 			dataTemps.push(title);
 			results.push({
 				title,
-				img: $(el).find('.img img').attr()['src'],
-				show: $(el).find('.img a.series').attr()['href']
+				img: $(el).find('.img img').attr()!['src'],
+				show: $(el).find('.img a.series').attr()!['href']
 			});
 		});
 
@@ -40,8 +40,8 @@ class Mangastic extends BaseKomik {
 			dataTemps.push(title);
 			results.push({
 				title,
-				img: $(el).find('.thumb img').attr()['src'],
-				show: $(el).find('.thumb a.series').attr()['href']
+				img: $(el).find('.thumb img').attr()!['src'],
+				show: $(el).find('.thumb a.series').attr()!['href']
 			});
 		});
 		return results;
@@ -61,8 +61,8 @@ class Mangastic extends BaseKomik {
 		$('li .anipost').each((_, el) => {
 			results.push({
 				title: $(el).find('h3.title_mg').text(),
-				show: $(el).find('.left > a').attr()['href'],
-				img: $(el).find('.thumb img').attr()['src']
+				show: $(el).find('.left > a').attr()!['href'],
+				img: $(el).find('.thumb img').attr()!['src']
 			});
 		});
 		return results;
@@ -72,7 +72,7 @@ class Mangastic extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('h1').text();
-		const img = $('.imgdesc img').attr()['src'];
+		const img = $('.imgdesc img').attr()!['src'];
 		const chapters = await chapFuture;
 		return {
 			chapters,
@@ -87,7 +87,7 @@ class Mangastic extends BaseKomik {
 		$('ul li span.leftoff').each((_, el) => {
 			chapters.push({
 				title: $(el).find('a').text(),
-				link: $(el).find('a').attr()['href']
+				link: $(el).find('a').attr()!['href']
 			});
 		});
 		return chapters;
@@ -101,7 +101,7 @@ class Mangastic extends BaseKomik {
 		const prev = prevAttribute ? prevAttribute['href'] : null;
 		const nextAttribute = $('.nextprev a.next').attr();
 		const next = nextAttribute ? nextAttribute['href'] : null;
-		const showLink = $('.postarea h2 a').attr()['href'];
+		const showLink = $('.postarea h2 a').attr()!['href'];
 		return { title, chapterImages, next, prev, showLink };
 	}
 }
