@@ -12,7 +12,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@binsarjr/sveltekit-sitemap": "^0.1.1",
+		"@binsarjr/sveltekit-sitemap": "^0.1.2",
 		"@brainandbones/skeleton": "^0.32.19",
 		"@iconify/json": "^2.2.24",
 		"@sveltejs/adapter-vercel": "^2.4.3",
