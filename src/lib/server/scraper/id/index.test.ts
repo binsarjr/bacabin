@@ -1,16 +1,16 @@
-import type { KomikDetail } from '$lib/server/scraper/BaseKomik';
-import Bacakomik from '$lib/server/scraper/id/Bacakomik';
-import Kiryuu from '$lib/server/scraper/id/Kiryuu';
-import KomikIndo from '$lib/server/scraper/id/KomikIndo';
-import Komikav from '$lib/server/scraper/id/Komikav';
-import Komikcast from '$lib/server/scraper/id/Komikcast';
-import Komiku from '$lib/server/scraper/id/Komiku';
-import Mangayaro from '$lib/server/scraper/id/Mangayaro';
-import Mgkomik from '$lib/server/scraper/id/Mgkomik';
-import NgomikNet from '$lib/server/scraper/id/NgomikNet';
-import ShinigamiId from '$lib/server/scraper/id/ShinigamiId';
-import WestManga from '$lib/server/scraper/id/WestManga';
-import { describe, expect, it } from 'vitest';
+import type { KomikDetail } from '$lib/server/scraper/BaseKomik'
+import Bacakomik from '$lib/server/scraper/id/Bacakomik'
+import Kiryuu from '$lib/server/scraper/id/Kiryuu'
+import KomikIndo from '$lib/server/scraper/id/KomikIndo'
+import Komikav from '$lib/server/scraper/id/Komikav'
+import Komikcast from '$lib/server/scraper/id/Komikcast'
+import Komiku from '$lib/server/scraper/id/Komiku'
+import Mangayaro from '$lib/server/scraper/id/Mangayaro'
+import Mgkomik from '$lib/server/scraper/id/Mgkomik'
+import NgomikNet from '$lib/server/scraper/id/NgomikNet'
+import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
+import WestManga from '$lib/server/scraper/id/WestManga'
+import { describe, expect, it } from 'vitest'
 
 const packages = [
 	Bacakomik,
@@ -18,11 +18,11 @@ const packages = [
 	Komiku,
 	Mangayaro,
 	NgomikNet,
+	Komikav,
 	ShinigamiId,
 	// bagian yang testingnya tidak selesai semua
 	Komikcast,
 	KomikIndo,
-	Komikav,
 	Mgkomik,
 	WestManga
 ];

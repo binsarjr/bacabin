@@ -1,15 +1,16 @@
-import Asura from '$lib/server/scraper/en/Asura';
-import Kiryuu from '$lib/server/scraper/id/Kiryuu';
-import Mangayaro from '$lib/server/scraper/id/Mangayaro';
-import NgomikNet from '$lib/server/scraper/id/NgomikNet';
-import ShinigamiId from '$lib/server/scraper/id/ShinigamiId';
-import { error } from '@sveltejs/kit';
-import type { IBaseKomik } from './BaseKomik/interfaces';
-import Manganato from './en/Manganato';
-import Mangareader from './en/Mangareader';
-import Mangastic from './en/Mangastic';
-import Bacakomik from './id/Bacakomik';
-import Komiku from './id/Komiku';
+import Asura from '$lib/server/scraper/en/Asura'
+import Kiryuu from '$lib/server/scraper/id/Kiryuu'
+import Komikav from '$lib/server/scraper/id/Komikav'
+import Mangayaro from '$lib/server/scraper/id/Mangayaro'
+import NgomikNet from '$lib/server/scraper/id/NgomikNet'
+import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
+import { error } from '@sveltejs/kit'
+import type { IBaseKomik } from './BaseKomik/interfaces'
+import Manganato from './en/Manganato'
+import Mangareader from './en/Mangareader'
+import Mangastic from './en/Mangastic'
+import Bacakomik from './id/Bacakomik'
+import Komiku from './id/Komiku'
 
 export const servers: { [i: string]: IBaseKomik } = {
 	'shinigami-id': ShinigamiId,
@@ -24,7 +25,7 @@ export const servers: { [i: string]: IBaseKomik } = {
 	mangareader: Mangareader,
 	asura: Asura,
 	kiryuu: Kiryuu,
-	// komikav: Komikav,
+	komikav: Komikav,
 	mangayaro: Mangayaro
 	// komikcast: Komikcast,
 };

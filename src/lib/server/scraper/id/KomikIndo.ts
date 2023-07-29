@@ -1,9 +1,9 @@
-import { refererImage } from '$lib/mirrorimage';
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
-import type { ReadChapter } from '../BaseKomik/interfaces';
+import { refererImage } from '$lib/mirrorimage'
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
+import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class KomikIndo extends BaseKomik {
-	website = 'https://komikindo.app';
+	website = 'https://komikindo.one';
 	logo = 'https://cdn.kena-blok.xyz/uploads/2020/12/komikindo.png?width=140';
 	lang = 'indonesia';
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
