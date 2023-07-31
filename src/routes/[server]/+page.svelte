@@ -4,9 +4,10 @@
 	import { browser } from '$app/environment';
 	import MangaCard from '../../lib/components/MangaCard.svelte';
 	import SvelteSeo from '../../lib/components/Seo/SvelteSeo.svelte';
+	import LoadMore from '$lib/components/LoadMore.svelte';
 	export let data: PageData;
-	const currentPathname = $page.url.pathname;
 	let formCari: HTMLFormElement;
+
 	let q = data.q;
 	let tid: any;
 	const resetCari = () => tid && clearTimeout(tid);
@@ -105,4 +106,7 @@
 			{/key}
 		</div>
 	</div>
+	{#if !$page.url.searchParams.get('q')}
+		<LoadMore bind:data={data.lists} />
+	{/if}
 </div>
