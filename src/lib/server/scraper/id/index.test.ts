@@ -7,6 +7,7 @@ import Komikcast from '$lib/server/scraper/id/Komikcast'
 import Komiku from '$lib/server/scraper/id/Komiku'
 import Mangayaro from '$lib/server/scraper/id/Mangayaro'
 import Mgkomik from '$lib/server/scraper/id/Mgkomik'
+import MirrorKomik from '$lib/server/scraper/id/MirrorKomik'
 import NgomikNet from '$lib/server/scraper/id/NgomikNet'
 import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
 import WestManga from '$lib/server/scraper/id/WestManga'
@@ -24,7 +25,8 @@ const packages = [
 	Komikcast,
 	KomikIndo,
 	Mgkomik,
-	WestManga
+	WestManga,
+	MirrorKomik
 ];
 
 describe('Komik berbahasa indonesia', () => {

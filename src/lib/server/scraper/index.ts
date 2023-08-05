@@ -2,6 +2,7 @@ import Asura from '$lib/server/scraper/en/Asura'
 import Kiryuu from '$lib/server/scraper/id/Kiryuu'
 import Komikav from '$lib/server/scraper/id/Komikav'
 import Mangayaro from '$lib/server/scraper/id/Mangayaro'
+import MirrorKomik from '$lib/server/scraper/id/MirrorKomik'
 import NgomikNet from '$lib/server/scraper/id/NgomikNet'
 import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
 import { error } from '@sveltejs/kit'
@@ -26,8 +27,9 @@ export const servers: { [i: string]: IBaseKomik } = {
 	asura: Asura,
 	kiryuu: Kiryuu,
 	komikav: Komikav,
-	mangayaro: Mangayaro
+	mangayaro: Mangayaro,
 	// komikcast: Komikcast,
+	mirrorkomik: MirrorKomik
 };
 
 export const serverLists = () => {
