@@ -4,7 +4,7 @@ import type { ReadChapter } from '../BaseKomik/interfaces'
 
 class Bacakomik extends BaseKomik {
 	website = 'https://bacakomik.co/';
-	logo = 'https://i0.wp.com/bacakomik.co/wp-content/uploads/2020/09/bacakomikv2.png';
+	logo = 'https://i0.wp.com/menantuincaran.lol/bapuk/2020/09/bacakomikv2.png';
 	lang = 'indonesia';
 
 	async nextPage(next: number) {
@@ -16,7 +16,7 @@ class Bacakomik extends BaseKomik {
 		const results: Komik[] = []
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
-			const img = $(el).find('img').attr()!['src']
+			const img = refererImage($(el).find('img').attr()!['src'], link.toString())
 			results.push({
 				show: anchorAttribute['href'],
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -41,7 +41,7 @@ class Bacakomik extends BaseKomik {
 		const results: Komik[] = await this.nextPage(next || 1)
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
-			const img = $(el).find('img').attr()!['src']
+			const img = refererImage($(el).find('img').attr()!['src'], link.toString())
 			results.push({
 				show: anchorAttribute['href'],
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -89,8 +89,9 @@ class Bacakomik extends BaseKomik {
 		const showLink = $('.ls1 a').attr()!['href']
 
 		const chapterImages: string[] = []
-		$('#chimg-auh img').each((i, el) => {
+		$('#imagenya-xiaomeng img').each((i, el) => {
 			const onErrorAttr = $(el).attr()!.onerror.toString()
+			
 			let image = $(el).attr()!['src']
 			if (onErrorAttr.includes('this.src')) {
 				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '')
