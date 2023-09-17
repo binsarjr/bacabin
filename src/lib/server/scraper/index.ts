@@ -2,6 +2,7 @@ import AkomaEnnglish from '$lib/server/scraper/en/AkomaEnnglish'
 import Asura from '$lib/server/scraper/en/Asura'
 import AkomaIndonesia from '$lib/server/scraper/id/AkomaIndonesia'
 import Kiryuu from '$lib/server/scraper/id/Kiryuu'
+import KomikIndo from '$lib/server/scraper/id/KomikIndo'
 import Komikav from '$lib/server/scraper/id/Komikav'
 import Mangayaro from '$lib/server/scraper/id/Mangayaro'
 import MirrorKomik from '$lib/server/scraper/id/MirrorKomik'
@@ -19,7 +20,7 @@ export const servers: { [i: string]: IBaseKomik } = {
 	'shinigami-id': ShinigamiId,
 	ngomiknet: NgomikNet,
 	komiku: Komiku,
-	// komikindo: KomikIndo,
+	komikindo: KomikIndo,
 	bacakomik: Bacakomik,
 	manganato: Manganato,
 	mangastic: Mangastic,
