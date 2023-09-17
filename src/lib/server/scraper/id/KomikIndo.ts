@@ -6,7 +6,14 @@ class KomikIndo extends BaseKomik {
 	website = 'https://komikindo.tv';
 	logo = 'https://cdn.kena-blok.xyz/uploads/2020/12/komikindo.png?width=140';
 	lang = 'indonesia';
+		// async latest(next = 1) {
+
+		// }
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
+		// const next = +(searchParams.get('next')?.toString() || '')
+		// if (next) return this.latest(next)
+
+
 		const link = new URL(this.website)
 		searchParams.set('s', searchParams.get('q') || '')
 		searchParams.delete('q')

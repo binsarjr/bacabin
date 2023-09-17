@@ -26,19 +26,10 @@ class Bacakomik extends BaseKomik {
 
 		return results
 	}
-	async list(searchParams: URLSearchParams): Promise<Komik[]> {
-		const next = +(searchParams.get('next')?.toString() || '')
-		if (next) return this.nextPage(next)
-
-
-		const keyword = searchParams.get('q') || ''
-		searchParams.delete('q')
-		const link = new URL(this.website)
-		searchParams.set('s', keyword)
-		link.search = searchParams.toString()
+	async search(link: URL): Promise<Komik[]> {
 
 		const $ = await this.requestCheerio(link.toString())
-		const results: Komik[] = await this.nextPage(next || 1)
+		const results: Komik[] = []
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
 			const img = refererImage($(el).find('img').attr()!['src'], link.toString())
@@ -50,6 +41,19 @@ class Bacakomik extends BaseKomik {
 		})
 
 		return results
+	}
+	async list(searchParams: URLSearchParams): Promise<Komik[]> {
+		const next = +(searchParams.get('next')?.toString() || '')
+		if (next) return this.nextPage(next)
+
+
+		const keyword = searchParams.get('q') || ''
+		searchParams.delete('q')
+		const link = new URL(this.website)
+		searchParams.set('s', keyword)
+		link.search = searchParams.toString()
+		return this.search(link)
+
 	}
 
 	async show(link: string): Promise<KomikDetail | null> {
@@ -91,7 +95,7 @@ class Bacakomik extends BaseKomik {
 		const chapterImages: string[] = []
 		$('#imagenya-xiaomeng img').each((i, el) => {
 			const onErrorAttr = $(el).attr()!.onerror.toString()
-			
+
 			let image = $(el).attr()!['src']
 			if (onErrorAttr.includes('this.src')) {
 				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '')

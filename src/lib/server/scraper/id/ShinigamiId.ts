@@ -14,14 +14,17 @@ export class ShinigamiId extends BaseKomik {
 		link.pathname = '/wp-admin/admin-ajax.php'
 
 
+		const referer = new URL(this.website)
+		referer.pathname = '/terbaru'
+		referer.search = 'm_orderby=latest'
 		const body = await this.request.post(link.toString(), {
 			headers: {
-				referer: 'https://shinigami.ae/terbaru/?m_orderby=latest',
+				referer: referer.toString(),
 				'x-requested-with': 'XMLHttpRequest',
 				'content-type': 'application/x-www-form-urlencoded'
 			},
 			body: `action=madara_load_more&page=${next}&template=madara-core%2Fcontent%2Fcontent-archive&vars%5Bpaged%5D=1&vars%5Borderby%5D=meta_value_num&vars%5Btemplate%5D=archive&vars%5Bsidebar%5D=full&vars%5Bmeta_query%5D%5B0%5D%5B0%5D%5Bkey%5D=_wp_manga_chapter_type&vars%5Bmeta_query%5D%5B0%5D%5B0%5D%5Bvalue%5D=manga&vars%5Bmeta_query%5D%5B0%5D%5Brelation%5D=AND&vars%5Bmeta_query%5D%5Brelation%5D=AND&vars%5Bpost_type%5D=wp-manga&vars%5Bpost_status%5D=publish&vars%5Bmeta_key%5D=_latest_update&vars%5Border%5D=desc`
-			
+
 		}).text()
 		const $ = load(body)
 

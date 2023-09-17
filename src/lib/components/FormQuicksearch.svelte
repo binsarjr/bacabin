@@ -57,7 +57,7 @@
 					type="checkbox"
 					name="server"
 					value={item}
-					checked={serverSelected.includes(item) || i === 0}
+					checked={serverSelected.includes(item)}
 				/>
 				{item}
 			</label>
