@@ -4,8 +4,8 @@ import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKo
 import type { ReadChapter } from '../BaseKomik/interfaces'
 
 export class ShinigamiId extends BaseKomik {
-	website = 'https://shinigami.id';
-	name = 'shinigami.id';
+	website = 'https://shinigami.ae';
+	name = 'shinigami.ae';
 	logo = 'https://wuz.shinigami.id/wp-content/uploads/2022/03/20044501/11.png';
 	lang = 'indonesia';
 
@@ -16,7 +16,7 @@ export class ShinigamiId extends BaseKomik {
 
 		const body = await this.request.post(link.toString(), {
 			headers: {
-				referer: 'https://shinigami.id/terbaru/?m_orderby=latest',
+				referer: 'https://shinigami.ae/terbaru/?m_orderby=latest',
 				'x-requested-with': 'XMLHttpRequest',
 				'content-type': 'application/x-www-form-urlencoded'
 			},

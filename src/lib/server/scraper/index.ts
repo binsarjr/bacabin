@@ -1,4 +1,6 @@
+import AkomaEnnglish from '$lib/server/scraper/en/AkomaEnnglish'
 import Asura from '$lib/server/scraper/en/Asura'
+import AkomaIndonesia from '$lib/server/scraper/id/AkomaIndonesia'
 import Kiryuu from '$lib/server/scraper/id/Kiryuu'
 import Komikav from '$lib/server/scraper/id/Komikav'
 import Mangayaro from '$lib/server/scraper/id/Mangayaro'
@@ -29,7 +31,9 @@ export const servers: { [i: string]: IBaseKomik } = {
 	komikav: Komikav,
 	mangayaro: Mangayaro,
 	// komikcast: Komikcast,
-	mirrorkomik: MirrorKomik
+	mirrorkomik: MirrorKomik,
+	akoma: AkomaIndonesia,
+	'akoma-en':AkomaEnnglish
 };
 
 export const serverLists = () => {
