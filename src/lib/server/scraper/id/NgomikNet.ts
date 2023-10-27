@@ -1,6 +1,6 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 export class NgomikNet extends BaseKomik {
 	website = 'https://ngomik.net/';
@@ -21,7 +21,7 @@ export class NgomikNet extends BaseKomik {
 			const img = $(el).find('img').attr()
 			if (!img) return
 			results.push({
-				img: refererImage(img['src'], this.website),
+				img: refererImage({ url: img['src'], referer: this.website }),
 				show: $(el).find('a:nth-child(1)').attr()!['href'],
 				title: $(el).find('a:nth-child(1)').attr()!['title']
 			})
@@ -44,7 +44,7 @@ export class NgomikNet extends BaseKomik {
 		const results: Komik[] = []
 		$('.listupd > div').each((i, el) => {
 			let img = $(el).find('img').attr()!['src']
-			img = refererImage(img, link.toString())
+			img = refererImage({ url: img, referer: link.toString() })
 			results.push({
 				img,
 				show: $(el).find('a:nth-child(1)').attr()!['href'],
@@ -58,7 +58,7 @@ export class NgomikNet extends BaseKomik {
 		const chapFuture = this.chapters(link)
 		const $ = await this.requestCheerio(link)
 		const title = $('.entry-title').text()
-		const img = refererImage($('.thumb img').attr()!['src'], link)
+		const img = refererImage({ url: $('.thumb img').attr()!['src'], referer: link })
 		const chapters = await chapFuture
 		return {
 			title,
@@ -98,7 +98,7 @@ export class NgomikNet extends BaseKomik {
 		const next = data.nextUrl ? data.nextUrl : null
 
 		const chapterImages: string[] = data.sources[0].images.map((image) =>
-			refererImage(image, chapter_link)
+			refererImage({ url: image, referer: chapter_link })
 		)
 
 		return {

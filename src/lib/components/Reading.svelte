@@ -18,7 +18,7 @@
 				if (target.searchParams.has('url') && target.searchParams.has('referer')) {
 					let url = target.searchParams.get('url') || '';
 					let referer = target.searchParams.get('referer') || '';
-					chapterImages[index] = refererImage(url, referer);
+					chapterImages[index] = refererImage({url, referer});
 					console.log('[reload]', chapterImages[index]);
 				} else {
 					target.searchParams.set('time', Date.now().toString());

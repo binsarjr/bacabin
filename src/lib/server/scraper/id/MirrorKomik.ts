@@ -1,6 +1,6 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class MirrorKomik extends BaseKomik {
 	website = 'https://mirrorkomik.net/';
@@ -16,7 +16,7 @@ class MirrorKomik extends BaseKomik {
 		const results: Komik[] = []
 		$('.flexbox3 .flexbox3-item').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
-			const img = refererImage($(el).find('img').attr()!['src'], link.toString())
+			const img = refererImage({ url: $(el).find('img').attr()!['src'], referer: link.toString() })
 			results.push({
 				show: this.toLink(anchorAttribute['href']),
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -42,7 +42,7 @@ class MirrorKomik extends BaseKomik {
 		const results: Komik[] = keyword ? [] : await this.nextPage(next || 1)
 		$('.animepost .animposx').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
-			const img = refererImage($(el).find('img').attr()!['data-src'], link.toString())
+			const img = refererImage({ url: $(el).find('img').attr()!['data-src'], referer: link.toString() })
 			results.push({
 				show: this.toLink(anchorAttribute['href']),
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -59,7 +59,7 @@ class MirrorKomik extends BaseKomik {
 		const title = $('article .inftable tr:nth-child(1) td:nth-child(2)').text()
 			.replace(/^komik\s+/i, '')
 
-		const img = refererImage($('article .ims img').attr()!['src'], link)
+		const img = refererImage({ url: $('article .ims img').attr()!['src'], referer: link })
 
 		const chapters: Chapter[] = await chapFuture
 		return { title, img, chapters }
@@ -115,7 +115,7 @@ class MirrorKomik extends BaseKomik {
 		}).json<string[]>()).map(img => {
 			const imgurl = new URL(img)
 			const webUrl = new URL(this.website)
-			if (imgurl.hostname == webUrl.hostname) img = refererImage(img, chapter_link)
+			if (imgurl.hostname == webUrl.hostname) img = refererImage({ url: img, referer: chapter_link })
 			return img
 		})
 

@@ -7,11 +7,13 @@ class Komikcast extends BaseKomik {
 	website = 'https://komikcast.site/';
 	lang = 'indonesia';
 
-	constructor() {
+	constructor () {
 		super();
-		super.logo = refererImage(
-			'https://komikcast.site/wp-content/uploads/2022/09/WMKCme.png',
-			this.website
+		super.logo = refererImage({
+			url:
+				'https://komikcast.site/wp-content/uploads/2022/09/WMKCme.png',
+			referer: this.website
+		}
 		);
 	}
 	async latest() {
@@ -21,7 +23,7 @@ class Komikcast extends BaseKomik {
 			const img = $(el).find('img').attr();
 			if (!img) return;
 			results.push({
-				img: refererImage(img['src'], this.website),
+				img: refererImage({ url: img['src'], referer: this.website }),
 				show: $(el).find('a[title]').attr()!['href'],
 				title: $(el).find('a[title]').attr()!['title']
 			});
@@ -30,7 +32,7 @@ class Komikcast extends BaseKomik {
 			const img = $(el).find('img').attr();
 			if (!img) return;
 			results.push({
-				img: refererImage(img['src'], this.website),
+				img: refererImage({ url: img['src'], referer: this.website }),
 				show: $(el).find('a[href]:nth-child(1)').attr()!['href'],
 				title: $(el).find('a h3').text()
 			});
@@ -51,7 +53,7 @@ class Komikcast extends BaseKomik {
 		const results: Komik[] = [];
 		$('.list-update_items-wrapper.search-item > div').each((i, el) => {
 			let img = $(el).find('img').attr()!['src'];
-			img = refererImage(img, link.toString());
+			img = refererImage({ url: img, referer: link.toString() });
 			results.push({
 				img,
 				show: $(el).find('a:nth-child(1)').attr()!['href'],
@@ -64,7 +66,7 @@ class Komikcast extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('.komik_info-content-body-title').text();
-		const img = refererImage($('.komik_info-content-thumbnail > img').attr()!['src'], link);
+		const img = refererImage({ url: $('.komik_info-content-thumbnail > img').attr()!['src'], referer: link });
 		const chapters = await chapFuture;
 		return {
 			title,
@@ -99,7 +101,7 @@ class Komikcast extends BaseKomik {
 		const chapterImages: string[] = [];
 
 		$('.main-reading-area img').each((i, el) => {
-			chapterImages.push(refererImage($(el).attr()!['src'], chapter_link));
+			chapterImages.push(refererImage({ url: $(el).attr()!['src'], referer: chapter_link }));
 		});
 
 		return {

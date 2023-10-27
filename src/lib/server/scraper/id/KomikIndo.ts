@@ -1,14 +1,14 @@
-import { refererImage } from '$lib/mirrorimage'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class KomikIndo extends BaseKomik {
 	website = 'https://komikindo.tv';
 	logo = 'https://cdn.kena-blok.xyz/uploads/2020/12/komikindo.png?width=140';
 	lang = 'indonesia';
-		// async latest(next = 1) {
+	// async latest(next = 1) {
 
-		// }
+	// }
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		// const next = +(searchParams.get('next')?.toString() || '')
 		// if (next) return this.latest(next)
@@ -23,7 +23,7 @@ class KomikIndo extends BaseKomik {
 		const results: Komik[] = []
 		$('.animepost').each((i, el) => {
 			const anchorAttribute = $(el).find('a').attr()!
-			const img = refererImage($(el).find('img').attr()!['src'], link.toString())
+			const img = refererImage({ url: $(el).find('img').attr()!['src'], referer: link.toString() })
 			results.push({
 				show: anchorAttribute['href'],
 				title: anchorAttribute['title'].replace(/^komik\s+/i, ''),
@@ -79,7 +79,7 @@ class KomikIndo extends BaseKomik {
 				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '')
 			}
 
-			chapterImages.push(refererImage(image, chapter_link))
+			chapterImages.push(refererImage({ url: image, referer: chapter_link }))
 		})
 		return {
 			title,

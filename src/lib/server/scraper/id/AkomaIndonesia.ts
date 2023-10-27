@@ -1,7 +1,7 @@
-import { refererImage } from '$lib/mirrorimage'
-import { error } from '@sveltejs/kit'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { refererImage } from '$lib/mirrorimage';
+import { error } from '@sveltejs/kit';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 export class Akoma extends BaseKomik {
 	website = 'https://akoma.xyz/';
@@ -122,7 +122,7 @@ export class Akoma extends BaseKomik {
 				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '')
 			}
 
-			chapterImages.push(refererImage(image, chapter_link))
+			chapterImages.push(refererImage({ url: image, referer: chapter_link }))
 		})
 		return {
 			title,

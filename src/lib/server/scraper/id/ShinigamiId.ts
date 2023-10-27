@@ -1,7 +1,7 @@
-import { hapusPathTerakhir } from '$lib/server/scraper/supports'
-import { load } from 'cheerio'
-import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik'
-import type { ReadChapter } from '../BaseKomik/interfaces'
+import { hapusPathTerakhir } from '$lib/server/scraper/supports';
+import { load } from 'cheerio';
+import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKomik';
+import type { ReadChapter } from '../BaseKomik/interfaces';
 
 export class ShinigamiId extends BaseKomik {
 	website = 'https://shinigami.ae';
@@ -32,7 +32,6 @@ export class ShinigamiId extends BaseKomik {
 		const results: Komik[] = []
 		$('.page-item-detail').each((i, el) => {
 			const img = $(el).find('img').attr()!['data-src']
-			// img = refererImage(img, link.toString())
 			results.push({
 				img,
 				show: $(el).find('.item-thumb a').attr()!['href'],
@@ -79,7 +78,6 @@ export class ShinigamiId extends BaseKomik {
 		const results: Komik[] = []
 		$('.search-wrap  .row.c-tabs-item__content').each((i, el) => {
 			const img = $(el).find('img').attr()!['data-src']
-			// img = refererImage(img, link.toString())
 			results.push({
 				img,
 				show: $(el).find('.tab-thumb a').attr()!['href'],

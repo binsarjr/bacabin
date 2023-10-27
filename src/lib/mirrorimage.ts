@@ -16,7 +16,7 @@
 // 	return mirror;
 // };
 
-export const refererImage = (url: string, referer: string) => {
+export const refererImage = ({ url, referer }: { url: string, referer: string }) => {
 	const searchParams = new URLSearchParams();
 	searchParams.set('referer', referer);
 	searchParams.set('url', url);
