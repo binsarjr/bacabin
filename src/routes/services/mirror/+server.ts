@@ -1,12 +1,20 @@
 import { error, type RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ url, setHeaders, request }) => {
+	const isUseBase64 = url.searchParams.has('base64');
+
 	let urlTarget = url.searchParams.get('url');
-	const referrer = url.searchParams.get('referer');
+	let referrer = url.searchParams.get('referer');
+
 
 	if (!urlTarget || !referrer) throw error(422, 'Mohon masukkan query string url dan referer');
 
 	urlTarget = decodeURIComponent(urlTarget);
+	referrer = decodeURIComponent(referrer);
+	if (isUseBase64) {
+		urlTarget = Buffer.from(urlTarget, 'base64').toString()
+		referrer = Buffer.from(referrer, 'base64').toString()
+	}
 
 	let headers: any = {};
 

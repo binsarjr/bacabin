@@ -40,7 +40,7 @@ class KomikIndo extends BaseKomik {
 		const title = $('.infoanime h1.entry-title')
 			.text()
 			.replace(/^komik\s+/i, '')
-		const img = refererImage($('.infoanime .thumb img').attr()!['src'], link)
+		const img = refererImage({ url: $('.infoanime .thumb img').attr()!['src'], referer: link })
 
 		const chapters: Chapter[] = await chapFuture
 		return { title, img, chapters }

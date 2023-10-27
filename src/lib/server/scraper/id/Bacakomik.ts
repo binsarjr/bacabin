@@ -3,7 +3,7 @@ import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKo
 import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Bacakomik extends BaseKomik {
-	website = 'https://bacakomik.co/';
+	website = 'https://bacakomik.me/';
 	logo = 'https://i0.wp.com/menantuincaran.lol/bapuk/2020/09/bacakomikv2.png';
 	lang = 'indonesia';
 

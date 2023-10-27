@@ -21,7 +21,7 @@ export class NgomikNet extends BaseKomik {
 			const img = $(el).find('img').attr()
 			if (!img) return
 			results.push({
-				img: refererImage({ url: img['src'], referer: this.website }),
+				img: refererImage({ url: img['src'], referer: this.website, base64: true }),
 				show: $(el).find('a:nth-child(1)').attr()!['href'],
 				title: $(el).find('a:nth-child(1)').attr()!['title']
 			})
@@ -44,7 +44,7 @@ export class NgomikNet extends BaseKomik {
 		const results: Komik[] = []
 		$('.listupd > div').each((i, el) => {
 			let img = $(el).find('img').attr()!['src']
-			img = refererImage({ url: img, referer: link.toString() })
+			img = refererImage({ url: img, referer: link.toString(), base64: true })
 			results.push({
 				img,
 				show: $(el).find('a:nth-child(1)').attr()!['href'],
@@ -58,7 +58,7 @@ export class NgomikNet extends BaseKomik {
 		const chapFuture = this.chapters(link)
 		const $ = await this.requestCheerio(link)
 		const title = $('.entry-title').text()
-		const img = refererImage({ url: $('.thumb img').attr()!['src'], referer: link })
+		const img = refererImage({ url: $('.thumb img').attr()!['src'], referer: link, base64: true })
 		const chapters = await chapFuture
 		return {
 			title,
@@ -98,7 +98,7 @@ export class NgomikNet extends BaseKomik {
 		const next = data.nextUrl ? data.nextUrl : null
 
 		const chapterImages: string[] = data.sources[0].images.map((image) =>
-			refererImage({ url: image, referer: chapter_link })
+			refererImage({ url: image, referer: chapter_link, base64: true })
 		)
 
 		return {

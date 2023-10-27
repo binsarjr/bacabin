@@ -16,9 +16,10 @@
 // 	return mirror;
 // };
 
-export const refererImage = ({ url, referer }: { url: string, referer: string }) => {
+export const refererImage = ({ url, referer, base64: isBase64 = false }: { url: string, referer: string, base64?: boolean }) => {
 	const searchParams = new URLSearchParams();
-	searchParams.set('referer', referer);
-	searchParams.set('url', url);
+	searchParams.set('referer', isBase64 ? Buffer.from(referer, 'utf8').toString('base64') : referer);
+	searchParams.set('url', isBase64 ? Buffer.from(url, 'utf8').toString('base64') : url);
+	if (isBase64) searchParams.set('base64', '')
 	return `/services/mirror?` + searchParams.toString();
 };

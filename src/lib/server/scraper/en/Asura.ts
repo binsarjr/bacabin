@@ -3,7 +3,7 @@ import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKo
 import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Asura extends BaseKomik {
-	website = 'https://asura.gg/';
+	website = 'https://asuratoon.com/';
 	// logo = 'https://asura.gg/wp-content/uploads/2021/03/Group_1.png';
 	name = 'Asura';
 	lang = 'english';

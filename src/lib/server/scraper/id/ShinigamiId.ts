@@ -4,8 +4,8 @@ import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKo
 import type { ReadChapter } from '../BaseKomik/interfaces';
 
 export class ShinigamiId extends BaseKomik {
-	website = 'https://shinigami.ae';
-	name = 'shinigami.ae';
+	website = 'https://shinigami.sh/';
+	name = 'shinigami.sh';
 	logo = 'https://wuz.shinigami.id/wp-content/uploads/2022/03/20044501/11.png';
 	lang = 'indonesia';
 

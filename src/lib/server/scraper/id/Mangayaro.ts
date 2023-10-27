@@ -2,7 +2,7 @@ import { refererImage } from '$lib/mirrorimage';
 import { NgomikNet } from '$lib/server/scraper/id/NgomikNet';
 
 class Mangayaro extends NgomikNet {
-	website = 'https://www.mangayaro.net/';
+	website = 'https://www.mangayaro.id/';
 	lang = 'indonesia';
 	constructor () {
 		super();
