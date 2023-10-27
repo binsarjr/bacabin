@@ -90,7 +90,7 @@ class Bacakomik extends BaseKomik {
 		const prev = prevAttr ? prevAttr['href'] : null
 		const nextAttr = $('.nextprev:first-child a:last-child[rel="next"]').attr()
 		const next = nextAttr ? nextAttr['href'] : null
-		const showLink = $('.ls1 a').attr()!['href']
+		const showLink = $('.nextprev:first-child a .daftarch').parent().attr()!['href']
 
 		const chapterImages: string[] = []
 		$('#imagenya-xiaomeng img').each((i, el) => {
