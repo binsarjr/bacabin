@@ -12,6 +12,9 @@
     "test": "vitest",
     "format": "prettier --write ."
   },
+  "engines": {
+    "node": "18.*"
+  },
   "devDependencies": {
     "@binsarjr/sveltekit-sitemap": "^0.1.2",
     "@brainandbones/skeleton": "^0.32.19",
