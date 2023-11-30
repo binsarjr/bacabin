@@ -7,17 +7,15 @@ class Komikcast extends BaseKomik {
 	website = 'https://komikcast.site/';
 	lang = 'indonesia';
 
-	constructor () {
+	constructor() {
 		super();
 		super.logo = refererImage({
-			url:
-				'https://komikcast.site/wp-content/uploads/2022/09/WMKCme.png',
+			url: 'https://komikcast.site/wp-content/uploads/2022/09/WMKCme.png',
 			referer: this.website
-		}
-		);
+		});
 	}
 	async latest() {
-		const $ = await this.requestCheerioHumanoid(this.website);
+		const $ = await this.requestCheerio(this.website);
 		const results: Komik[] = [];
 		$('.listupd.komikinfo .swiper-wrapper .splide-slide').each((i, el) => {
 			const img = $(el).find('img').attr();
@@ -49,7 +47,7 @@ class Komikcast extends BaseKomik {
 
 		const link = new URL(this.website);
 		link.search = searchParams.toString();
-		const $ = await this.requestCheerioHumanoid(link.toString());
+		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.list-update_items-wrapper.search-item > div').each((i, el) => {
 			let img = $(el).find('img').attr()!['src'];
@@ -66,7 +64,10 @@ class Komikcast extends BaseKomik {
 		const chapFuture = this.chapters(link);
 		const $ = await this.requestCheerio(link);
 		const title = $('.komik_info-content-body-title').text();
-		const img = refererImage({ url: $('.komik_info-content-thumbnail > img').attr()!['src'], referer: link });
+		const img = refererImage({
+			url: $('.komik_info-content-thumbnail > img').attr()!['src'],
+			referer: link
+		});
 		const chapters = await chapFuture;
 		return {
 			title,
@@ -88,7 +89,7 @@ class Komikcast extends BaseKomik {
 		return chapters;
 	}
 	async read(chapter_link: string): Promise<ReadChapter | null> {
-		const $ = await this.requestCheerioHumanoid(chapter_link);
+		const $ = await this.requestCheerio(chapter_link);
 		const title = $('.chapter_headpost h1').text();
 
 		const prevAttribute = $('.nextprev a[rel="prev"][href]').attr();

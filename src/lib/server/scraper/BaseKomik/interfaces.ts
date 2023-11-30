@@ -21,4 +21,10 @@ export interface IBaseKomik extends IBaseKomikProperty {
 	chapters(link: string): Promise<Chapter[]>;
 	read(chapter_link: string): Promise<ReadChapter | null>;
 	toObject(): IBaseKomikProperty;
+	fetchWithTimeout(
+		resource: string,
+		options?: Request & {
+			timeout: number;
+		}
+	): Promise<Response>;
 }

@@ -2,14 +2,14 @@ import BaseKomik, { type Chapter, type Komik, type KomikDetail } from '../BaseKo
 import type { ReadChapter } from '../BaseKomik/interfaces';
 
 class Mangastic extends BaseKomik {
-	website = 'https://mangastic.me/';
-	logo = 'https://mangastic.me/wp-content/uploads/2021/11/Picture2.png';
+	website = 'https://toon69.com/';
+	logo = 'https://toon69.com/wp-content/uploads/2021/11/Picture2.png';
 	lang = 'english';
 
 	async list(searchParams: URLSearchParams): Promise<Komik[]> {
 		const keyword = searchParams.get('q') || '';
 		searchParams.delete('q');
-		const link = new URL('https://mangastic.me/?s=&op=&author=&artist=&release=&adult=');
+		const link = new URL('https://toon69.com/?s=&op=&author=&artist=&release=&adult=');
 		searchParams.set('s', keyword);
 		searchParams.set('post_type', 'wp-manga');
 		// searchParams.set('op', '');
@@ -19,6 +19,7 @@ class Mangastic extends BaseKomik {
 		// searchParams.set('adult', '');
 
 		link.search = searchParams.toString();
+		console.log(link.toString());
 		const $ = await this.requestCheerio(link.toString());
 		const results: Komik[] = [];
 		$('.row.c-tabs-item__content').each((i, el) => {

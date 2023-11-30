@@ -1,30 +1,26 @@
-import AkomaEnnglish from '$lib/server/scraper/en/AkomaEnnglish'
-import Asura from '$lib/server/scraper/en/Asura'
-import AkomaIndonesia from '$lib/server/scraper/id/AkomaIndonesia'
-import Kiryuu from '$lib/server/scraper/id/Kiryuu'
-import KomikIndo from '$lib/server/scraper/id/KomikIndo'
-import Komikav from '$lib/server/scraper/id/Komikav'
-import Mangayaro from '$lib/server/scraper/id/Mangayaro'
-import MirrorKomik from '$lib/server/scraper/id/MirrorKomik'
-import NgomikNet from '$lib/server/scraper/id/NgomikNet'
-import ShinigamiId from '$lib/server/scraper/id/ShinigamiId'
-import { error } from '@sveltejs/kit'
-import type { IBaseKomik } from './BaseKomik/interfaces'
-import Manganato from './en/Manganato'
-import Mangareader from './en/Mangareader'
-import Mangastic from './en/Mangastic'
-import Bacakomik from './id/Bacakomik'
-import Komiku from './id/Komiku'
+import { error } from '@sveltejs/kit';
+import type { IBaseKomik } from './BaseKomik/interfaces';
+import Asura from './en/Asura';
+import Manganato from './en/Manganato';
+import Mangareader from './en/Mangareader';
+import Bacakomik from './id/Bacakomik';
+import Kiryuu from './id/Kiryuu';
+import KomikIndo from './id/KomikIndo';
+import Komikav from './id/Komikav';
+import Komiku from './id/Komiku';
+import Mangayaro from './id/Mangayaro';
+import MirrorKomik from './id/MirrorKomik';
+import NgomikNet from './id/NgomikNet';
 
 export const servers: { [i: string]: IBaseKomik } = {
-	'shinigami-id': ShinigamiId,
-	ngomiknet: NgomikNet,
 	komiku: Komiku,
+	// 'shinigami-id': ShinigamiId,
+	ngomiknet: NgomikNet,
 	komikindo: KomikIndo,
 	bacakomik: Bacakomik,
 	manganato: Manganato,
-	mangastic: Mangastic,
-	// mgkomik: Mgkomik,
+	// mangastic: Mangastic
+	// mgkomik: Mgkomik
 	// westmanga: WestManga,
 	mangareader: Mangareader,
 	asura: Asura,
@@ -32,9 +28,9 @@ export const servers: { [i: string]: IBaseKomik } = {
 	komikav: Komikav,
 	mangayaro: Mangayaro,
 	// komikcast: Komikcast,
-	mirrorkomik: MirrorKomik,
-	akoma: AkomaIndonesia,
-	'akoma-en':AkomaEnnglish
+	mirrorkomik: MirrorKomik
+	// akoma: AkomaIndonesia,
+	// 'akoma-en':AkomaEnnglish
 };
 
 export const serverLists = () => {

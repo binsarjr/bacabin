@@ -6,9 +6,14 @@ class Kiryuu extends NgomikNet {
 	lang = 'indonesia';
 	constructor() {
 		super();
+		// @ts-ignore
 		super.website = this.website;
+		// @ts-ignore
+
 		super.logo = this.logo;
+		// @ts-ignore
 		super.lang = this.lang;
+		// @ts-ignore
 		super.name = 'Kiryuu';
 	}
 }
