@@ -97,7 +97,7 @@ class Bacakomik extends BaseKomik {
 				image = onErrorAttr.replace(/^this\.onerror=null;this\.src='/i, '').replace(/';$/i, '');
 			}
 
-			chapterImages.push(image);
+			chapterImages.push(refererImage({ url: image, referer: chapter_link }));
 		});
 		return {
 			title,
